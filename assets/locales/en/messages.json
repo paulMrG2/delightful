@@ -1,0 +1,30 @@
+{
+    "appName": {
+        "message": "Delightful"
+    },
+    "appShortName": {
+        "message": "Delightful"
+    },
+    "appDescription": {
+        "message": "A little delight goes a long way. Too much delight ruins the fun."
+    },
+
+
+    "menu__buttonSettings": {
+        "message": "Settings"
+    },
+
+
+    "settings__pageTitle": {
+        "message": "Delightful Settings"
+    },
+    "settings__devMessage": {
+        "message": "This extension is still being developed... so it's like pre-beta. If you have a complaint you'll have to work through the issue yourself... maybe do some yoga, snap some twigs, or throw stones in the water... whatever makes you feel better."
+    },
+    "settings__notAvailable": {
+        "message": "Settings to come"
+    },
+    "settings__settingPercentChance": {
+        "message": "Choose percentage chance of getting a delight"
+    }
+}
