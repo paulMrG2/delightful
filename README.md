@@ -8,7 +8,7 @@ _A little delight goes a long way_
 - Asana
 
 ## Installation
-[Delightful on the Chrome Web Store](https://chrome.google.com/webstore/detail/delightful)
+Will be on the Chrome web store soon.
 
 ## Delights
 - [Confetti](https://github.com/catdad/canvas-confetti) by [Kiril Vatev](https://github.com/catdad)
