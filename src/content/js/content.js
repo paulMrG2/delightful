@@ -14,6 +14,8 @@ document.addEventListener('click', event => {
         // todo build percentage chance into user settings, then get from chromeStorage
         let tempPercentageForTesting = 1.0; // 100% chance (0.8 = 80% etc.)
         if (Math.random() < tempPercentageForTesting) {
+            // Flag start of animation
+            animationRunning = true;
 
             // Build an array of delights from user settings
             // todo build custom user delight settings, then get them from chromeStorage
@@ -25,15 +27,12 @@ document.addEventListener('click', event => {
             // Randomly choose a delight
             let delightName = tempListOfDelightNames[(Math.floor(Math.random() * tempListOfDelightNames.length))];
 
-            // Flag start of animation
-            animationRunning = true;
-
             // Call the animation
             // todo add more animations
             switch (delightName) {
                 case 'confetti':
                     getConfetti();
-                    endAnimation(4000);
+                    endAnimation(4500);
                     break;
                 case 'parrot':
                     getParrot();
@@ -50,23 +49,21 @@ document.addEventListener('click', event => {
  * @returns {boolean}
  */
 const checkMatch = target => {
+
+    let className = target.getAttribute('class');
+
     // Asana task complete button top of open task pane
-    if (target.className.includes('TaskCompletionToggleButton--isPressed') || target.closest('.TaskCompletionToggleButton--isPressed')) {
+    if (className.includes('TaskCompletionToggleButton--isNotPressed') || target.closest('.TaskCompletionToggleButton--isNotPressed')) {
         return true;
     }
-    /**
-     * todo
-     * subtask completion not firing, probably because of stopPropagation or preventDefault?
-     * also need to check/choose complete/incomplete status, which is a few steps up the dom
-     * already using capture=true on the event listener, but not sure if that even helps?
-     */
+
     // Asana subtask complete button in main task list or subtask in open task pane
-    if (target.className.includes('TaskRowCompletionStatus-checkbox--enabled') || target.closest('.TaskRowCompletionStatus-checkbox--enabled')) {
+    if (className.includes('TaskCompletionStatusIndicator--incomplete') || target.closest('.TaskCompletionStatusIndicator--incomplete')) {
         return true;
     }
 
     // TESTING
-    if (target.className.includes('bc-browsers') || target.closest('.bc-browsers')) {
+    if (className.includes('bc-browsers') || target.closest('.bc-browsers')) {
         return true;
     }
 

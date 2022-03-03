@@ -9,10 +9,12 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
                 active:        true,
                 currentWindow: true
             }, function (tabs) {
-                chrome.scripting.executeScript({
-                    target: {tabId: tabId},
-                    files:  ["app.js"]
-                });
+                if (changeInfo.status === 'complete') {
+                    chrome.scripting.executeScript({
+                        target: {tabId: tabId},
+                        files:  ["app.js"]
+                    });
+                }
             });
         }
     }
