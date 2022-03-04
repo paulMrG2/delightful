@@ -9,12 +9,10 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
                 active:        true,
                 currentWindow: true
             }, function (tabs) {
-                if (changeInfo.status === 'complete') {
-                    chrome.scripting.executeScript({
-                        target: {tabId: tabId},
-                        files:  ["app.js"]
-                    });
-                }
+                chrome.scripting.executeScript({
+                    target: {tabId: tabId},
+                    files:  ["app.js"]
+                });
             });
         }
     }
@@ -24,17 +22,16 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
  * Receive and respond to requests from the front end
  */
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-        switch (request.delight) {
-            case "parrot":
-                getImageData('assets/img/parrot.svg').then(dataUrl => {
-                    sendResponse({image: dataUrl});
-                });
-                break;
-        }
-        // Return true here to keep connection open during async calls
-        return true;
+    switch (request.delight) {
+        case "parrot":
+            getImageData('assets/img/parrot.svg').then(dataUrl => {
+                sendResponse({image: dataUrl});
+            });
+            break;
     }
-);
+    // Return true here to keep connection open during async calls
+    return true;
+});
 
 /**
  * Read image file and return base64 encoded data url

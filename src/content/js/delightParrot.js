@@ -10,6 +10,7 @@ export function getParrot() {
     let width = 600;
 
     // todo find a cleaner way to do the class, it looks ugly :|
+    // maybe try chrome.tabs.insertCSS({file: "content.css"});
     let parrotClass = ".delightParrot {";
     parrotClass += "width:" + width + "px;max-height:100vh;";
     parrotClass += "position:fixed;bottom:0;";
@@ -20,7 +21,7 @@ export function getParrot() {
     parrotClass += "transition: transform " + duration + "ms linear;"
     parrotClass += "}";
 
-    chrome.runtime.sendMessage({delight: "parrot"}, response => {
+    chrome.runtime.sendMessage({type: 'delight', delight: "parrot"}, response => {
 
         // Add css/style to document head
         const style = document.createElement('style');
