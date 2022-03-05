@@ -1,14 +1,19 @@
-import {delightContainer} from "./delightContainter";
-
 /**
- * Confetti
+ * Delightful
+ *
+ * Delight: Canvas confetti
+ *
+ * Sources used
+ * https://www.npmjs.com/package/canvas-confetti
  */
+
+import {delightContainer} from "./delightContainter";
 
 const confetti = require('canvas-confetti');
 
 export const getConfetti = () => {
-    let duration = 4000;
-    let end = Date.now() + 800;
+    let duration = 2000;
+    let end = Date.now() + 400;
 
     const confettiCanvas = document.createElement('canvas');
     confettiCanvas.style.width = '100%';
@@ -26,18 +31,21 @@ export const getConfetti = () => {
 
     // Big one in the middle
     myConfetti({
+        origin:        {x: 0.5, y: 0.6},
         particleCount: 100,
         spread:        180,
-        origin:        {x: 0.5, y: 0.6}
+        ticks:         90
     });
 
+    // The finale - bigger one in the middle
     setTimeout(() => {
         myConfetti({
+            origin:        {x: 0.5, y: 0.4},
             particleCount: 400,
             spread:        400,
-            origin:        {x: 0.5, y: 0.4}
+            ticks:         90
         });
-    }, 900);
+    }, 300);
 
     const randomInRange = (min, max) => {
         return Math.random() * (max - min) + min;
@@ -51,17 +59,19 @@ export const getConfetti = () => {
         }
 
         myConfetti({
-            particleCount: 80,
             angle:         60,
+            origin:        {x: randomInRange(0.1, 0.9), y: Math.random()},
+            particleCount: 80,
             spread:        55,
-            origin:        {x: randomInRange(0.1, 0.9), y: Math.random()}
+            ticks:         90,
         });
 
         myConfetti({
-            particleCount: 80,
             angle:         120,
+            origin:        {x: randomInRange(0.1, 0.9), y: Math.random()},
+            particleCount: 80,
             spread:        55,
-            origin:        {x: randomInRange(0.1, 0.9), y: Math.random()}
+            ticks:         90,
         });
 
     }, 100);

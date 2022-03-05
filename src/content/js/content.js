@@ -5,11 +5,12 @@ let delightfulAnimationRunning = false;
 
 if (typeof window.delightfulActivated === 'undefined') {
     window.delightfulActivated = true;
-    
+
     /**
      * Main document event listener for clicks on any element
      */
     document.addEventListener('click', event => {
+
         if (!delightfulAnimationRunning && checkMatch(event.target)) {
 
             // Use settings from user to determine percentage chance of a delight happening
@@ -53,20 +54,26 @@ if (typeof window.delightfulActivated === 'undefined') {
      */
     const checkMatch = target => {
 
-        let className = target.getAttribute('class');
+        let className = target.getAttribute('class') || '';
 
         // Asana task complete button top of open task pane
         if (className.includes('TaskCompletionToggleButton--isNotPressed') || target.closest('.TaskCompletionToggleButton--isNotPressed')) {
             return true;
         }
 
-        // Asana subtask complete button in main task list or subtask in open task pane
+        // Asana task complete button in main task list or subtask in open task pane
         if (className.includes('TaskCompletionStatusIndicator--incomplete') || target.closest('.TaskCompletionStatusIndicator--incomplete')) {
             return true;
         }
 
-        // TESTING
-        if (className.includes('bc-browsers') || target.closest('.bc-browsers')) {
+        // Github projects, select 'Done'
+        // todo get status name from user settings, could even loop through multiple statuses
+        if((target.hasAttribute('name') && target.getAttribute('name') === 'Done') || target.closest("div[name='Done']")) {
+            return true;
+        }
+
+        // Github issues button on comment block 'Close issue' or 'Close with comment'
+        if((target.hasAttribute('name') && target.getAttribute('name') === 'comment_and_close') || target.closest("button[name='comment_and_close']")) {
             return true;
         }
 

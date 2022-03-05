@@ -12,7 +12,7 @@
     ],
     "host_permissions": [
         "https://app.asana.com/*",
-        "https://developer.mozilla.org/*"
+        "https://github.com/*"
     ],
     "icons": {
         "16": "assets/img/delight16.png",

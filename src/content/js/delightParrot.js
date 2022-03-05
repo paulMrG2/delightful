@@ -1,16 +1,19 @@
 /**
- * The parrot
+ * Delightful
+ *
+ * Delight: Party parrot
+ *
+ * Sources used
+ * https://codepen.io/nathangath/pen/RgvzVY/
  */
 
 import { delightContainer } from "./delightContainter";
 
-
 export function getParrot() {
-    let duration = 3000;
-    let width = 600;
+    let duration = 2000;
+    let width = 400;
 
     // todo find a cleaner way to do the class, it looks ugly :|
-    // maybe try chrome.tabs.insertCSS({file: "content.css"});
     let parrotClass = ".delightParrot {";
     parrotClass += "width:" + width + "px;max-height:100vh;";
     parrotClass += "position:fixed;bottom:0;";
@@ -18,7 +21,7 @@ export function getParrot() {
     parrotClass += "}";
     parrotClass += ".delightParrotMove {";
     parrotClass += "transform: translateX(calc(50vw + " + (width / 2) + "px));";
-    parrotClass += "transition: transform " + duration + "ms linear;"
+    parrotClass += "transition: transform " + (duration - 300) + "ms cubic-bezier(0.2, 0.8, 0.8, 0.2);"
     parrotClass += "}";
 
     chrome.runtime.sendMessage({type: 'delight', delight: "parrot"}, response => {
