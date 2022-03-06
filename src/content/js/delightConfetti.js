@@ -11,8 +11,7 @@ import {delightContainer} from "./delightContainter";
 
 const confetti = require('canvas-confetti');
 
-export const getConfetti = () => {
-    let duration = 2000;
+export const getConfetti = (duration) => {
     let end = Date.now() + 400;
 
     const confettiCanvas = document.createElement('canvas');

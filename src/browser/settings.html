@@ -1,18 +1,29 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 <head>
-    <title data-locale="settings__pageTitle">Delight Settings</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title data-locale="settings_pageTitle">Delightful Settings</title>
+    <link rel="stylesheet" href="settings.css">
 </head>
 <body>
 <div>
-    <h1>Delight Settings</h1>
+    <h1 data-locale="settings_pageTitle">Delightful Settings</h1>
     <p data-locale="appDescription">A little delight goes a long way. Too much delight ruins the fun.</p>
-    <p data-locale="settings__devMessage">This extension is still being developed... so it's like pre-beta. If you have a complaint you'll have to work through the issue yourself... maybe do some yoga, snap some twigs, or throw stones in the water... whatever makes you feel better.</p>
-    <h2 data-locale="settings__notAvailable">Settings to come</h2>
-    <ul>
-        <li data-locale="settings__settingDelightSwitch">Switch on/off specific delights</li>
-        <li data-locale="settings__settingPercentChance">Choose percentage chance of getting a delight</li>
-    </ul>
+    <p data-locale="settings_devMessage">This extension is still being developed... so it's like pre-beta. If you have a complaint you'll have to work through the issue yourself... maybe do some yoga, snap some twigs, or throw stones in the water... whatever makes you feel better.</p>
+    <h2 data-locale="settings_heading">Settings</h2>
+
+    <h3 data-locale="settings_enabledSitesHeading">Enabled sites</h3>
+    <div class="settings__enabledSitesList"></div>
+
+    <h3 data-locale="settings_enabledDelightsHeading">Enabled delights</h3>
+    <div class="settings__enabledDelightsList"></div>
+
+    <h3 data-locale="settings_settingHowOften">How often do you want to see a delight? (coming soon)</h3>
+    <div class="settings__enabledSitesList"></div>
+
+
 </div>
 <script src="settings.js"></script>
 </body>

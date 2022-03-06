@@ -9,8 +9,7 @@
 
 import { delightContainer } from "./delightContainter";
 
-export function getParrot() {
-    let duration = 2000;
+export function getParrot(duration) {
     let width = 400;
 
     // todo find a cleaner way to do the class, it looks ugly :|

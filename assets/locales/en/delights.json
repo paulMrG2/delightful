@@ -1,0 +1,14 @@
+{
+  "delights_confettiName": {
+    "message": "Confetti"
+  },
+  "delights_confettiNameWithDescription": {
+    "message": "Confetti (a bunch of confetti explosions all over the screen)"
+  },
+  "delights_parrotName": {
+    "message": "Parrot"
+  },
+  "delights_parrotNameWithDescription": {
+    "message": "Parrot (the beloved party parrot dances across the bottom of the screen)"
+  }
+}

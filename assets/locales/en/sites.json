@@ -1,0 +1,14 @@
+{
+  "sites_asanaName": {
+    "message": "Asana"
+  },
+  "sites_asanaNameWithTrigger": {
+    "message": "Asana (when you complete a task or subtask)"
+  },
+  "sites_githubName": {
+    "message": "Github"
+  },
+  "sites_githubNameWithTrigger": {
+    "message": "Github (when you mark an issue as 'Done')"
+  }
+}
