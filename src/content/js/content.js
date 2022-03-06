@@ -34,44 +34,45 @@ if (typeof window.delightfulActivated === 'undefined') {
      * Main document event listener for clicks on any element
      */
     document.addEventListener('mouseup', event => {
-
         if (!delightfulAnimationRunning) {
-
             if ((allSettings.allSites !== null) && matchTrigger(event.target)) {
-
-                // Use settings from user to determine percentage chance of a delight happening
-                // todo build percentage chance into user settings, then get from chromeStorage
-                let tempPercentageForTesting = 1.0; // 100% chance (0.8 = 80% etc.)
-                if (Math.random() < tempPercentageForTesting) {
-
-                    // Flag start of animation
-                    delightfulAnimationRunning = true;
-
-                    // Randomly choose a delight
-                    let enabledDelights = [];
-                    for(let i = 0; i < allSettings.allDelights.length; i++) {
-                        if(allSettings.allDelights[i].enabled) {
-                            enabledDelights.push(allSettings.allDelights[i]);
-                        }
-                    }
-                    let delight = enabledDelights[(Math.floor(Math.random() * enabledDelights.length))];
-
-                    // Call the animation
-                    // todo add more animations
-                    switch (delight.defaultName) {
-                        case 'Confetti':
-                            getConfetti(2000);
-                            endAnimation(2000);
-                            break;
-                        case 'Parrot':
-                            getParrot(2000);
-                            endAnimation(2000);
-                            break;
-                    }
-                }
+                doAnimation();
             }
         }
     }, true);
+
+    const doAnimation = () => {
+        // Use settings from user to determine percentage chance of a delight happening
+        // todo build percentage chance into user settings, then get from chromeStorage
+        let tempPercentageForTesting = 1.0; // 100% chance (0.8 = 80% etc.)
+        if (Math.random() < tempPercentageForTesting) {
+
+            // Flag start of animation
+            delightfulAnimationRunning = true;
+
+            // Randomly choose a delight
+            let enabledDelights = [];
+            for (let i = 0; i < allSettings.allDelights.length; i++) {
+                if (allSettings.allDelights[i].enabled) {
+                    enabledDelights.push(allSettings.allDelights[i]);
+                }
+            }
+            let delight = enabledDelights[(Math.floor(Math.random() * enabledDelights.length))];
+
+            // Call the animation
+            // todo add more animations
+            switch (delight.defaultName) {
+                case 'Confetti':
+                    getConfetti(2000);
+                    endAnimation(2000);
+                    break;
+                case 'Parrot':
+                    getParrot(2000);
+                    endAnimation(2000);
+                    break;
+            }
+        }
+    };
 
     /**
      * Check if a match is found
@@ -99,6 +100,7 @@ if (typeof window.delightfulActivated === 'undefined') {
         }
 
         // Github
+        // todo user-defined status names from settings
         let github = allSettings.allSites.map(site => site.host).indexOf('github.com');
         if ((github > -1) && allSettings.allSites[github].enabled) {
 
@@ -131,8 +133,43 @@ if (typeof window.delightfulActivated === 'undefined') {
             }
         }
 
+        // Trello (drag and drop makes for a bit of a challenge)
+        // todo user-defined list names from settings
+        let trello = allSettings.allSites.map(site => site.host).indexOf('trello.com');
+        if ((trello > -1) && allSettings.allSites[trello].enabled) {
+            setTimeout(() => {
+                let task = target.closest('a');
+                if (task !== null) {
+                    let taskHref = task.getAttribute("href").toString();
+                    let listContent = document.querySelectorAll('.js-list-content');
+                    listContent.forEach(list => {
+                        let anchors = list.querySelectorAll('.list-card');
+                        anchors.forEach(anchor => {
+                            let href = anchor.getAttribute('href');
+                            if (href !== null) {
+                                href = href.toString();
+                                if (href === taskHref) {
+                                    let listName = list.querySelector('.js-list-name-assist');
+                                    if (listName !== null) {
+                                        // Loop through multiple status list
+                                        for (let i = 0; i < allSettings.allSites[trello].statusList.length; i++) {
+                                            let status = allSettings.allSites[trello].statusList[i];
+                                            if (listName.innerHTML === status) {
+                                                doAnimation();
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        });
+                    });
+                }
+            }, 100);
+        }
+
         return false;
     };
+
 
     const endAnimation = duration => {
         setTimeout(() => {

@@ -17,6 +17,16 @@ export const allSiteSettings = [
         i18nNameWithTrigger:    "sites_githubNameWithTrigger",
         id:                     "delightful_sites_github",
         statusList:             ["Done"]
+    },
+    {
+        defaultName:            "Trello",
+        defaultNameWithTrigger: "Trello (when you drop a card on 'Done')",
+        enabled:                true,
+        host:                   "trello.com",
+        i18nName:               "sites_trelloName",
+        i18nNameWithTrigger:    "sites_trelloNameWithTrigger",
+        id:                     "delightful_sites_trello",
+        statusList:             ["Done"]
     }
 ];
 

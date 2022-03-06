@@ -9,6 +9,12 @@
     "message": "Github"
   },
   "sites_githubNameWithTrigger": {
-    "message": "Github (when you mark an issue as 'Done')"
+    "message": "Github (when you mark an issue as 'Done') user-defined status names coming soon"
+  },
+  "sites_trelloName": {
+    "message": "Trello"
+  },
+  "sites_trelloNameWithTrigger": {
+    "message": "Trello (when you drop a card on 'Done') user-defined list names coming soon"
   }
 }
