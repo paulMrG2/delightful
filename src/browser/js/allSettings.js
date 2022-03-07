@@ -53,13 +53,13 @@ export const chanceOfDelightSetting = [
     {
         defaultName: "ALL OF THE THINGS!",
         i18nName:    "chance_allOfTheThings",
-        selected:    true,
+        selected:    false,
         value:       1.0
     },
     {
         defaultName: "Lots of delight",
         i18nName:    "chance_lotsOfDelight",
-        selected:    false,
+        selected:    true,
         value:       0.75
     },
     {
