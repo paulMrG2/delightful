@@ -9,8 +9,8 @@ Install [Delightful](https://chrome.google.com/webstore/detail/delightful/lcpnco
 
 ## Project Management Software Coverage
 - **Asana** (when you complete a task or subtask)
-- **Github** (when you mark an issue as Done) _user-defined status names coming soon_
-- **Trello** (when you drop a card on a list named 'Done') _user-defined list names coming soon_
+- **Github** (when you mark an issue as \<status name\>) _define your own status names_
+- **Trello** (when you drop a card on a list named \<list name\>) _define your own list names_
 
 ## Delights
 - [Confetti](https://github.com/catdad/canvas-confetti) by [Kiril Vatev](https://github.com/catdad)
