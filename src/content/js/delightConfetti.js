@@ -36,16 +36,6 @@ export const getConfetti = (duration) => {
         ticks:         90
     });
 
-    // The finale - bigger one in the middle
-    setTimeout(() => {
-        myConfetti({
-            origin:        {x: 0.5, y: 0.4},
-            particleCount: 400,
-            spread:        400,
-            ticks:         90
-        });
-    }, 300);
-
     const randomInRange = (min, max) => {
         return Math.random() * (max - min) + min;
     };
@@ -74,6 +64,16 @@ export const getConfetti = (duration) => {
         });
 
     }, 100);
+
+    // The finale - bigger one in the middle
+    setTimeout(() => {
+        myConfetti({
+            origin:        {x: 0.5, y: 0.4},
+            particleCount: 400,
+            spread:        400,
+            ticks:         90
+        });
+    }, 300);
 
     // Cleanup after animation complete
     setTimeout(() => {

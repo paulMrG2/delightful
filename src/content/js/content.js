@@ -4,6 +4,13 @@ import {getParrot} from './delightParrot';
 if (typeof window.delightfulActivated === 'undefined') {
 
     /**
+     * Stop executeScript from background from executing multiple times
+     *
+     * @type {boolean}
+     */
+    window.delightfulActivated = true;
+
+    /**
      * Reference vars
      */
     const ref = {
@@ -15,11 +22,10 @@ if (typeof window.delightfulActivated === 'undefined') {
      * List of settings
      */
     const allSettings = {
-        allDelights: null,
-        allSites:    null
+        allDelights:     null,
+        allSites:        null,
+        chanceOfDelight: null
     };
-
-    window.delightfulActivated = true;
 
     /**
      * Keep settings up to date
@@ -27,6 +33,7 @@ if (typeof window.delightfulActivated === 'undefined') {
     chrome.runtime.sendMessage({type: 'allSettings'}, response => {
         allSettings.allSites = response.allSites;
         allSettings.allDelights = response.allDelights;
+        allSettings.chanceOfDelight = response.chanceOfDelight;
     });
     chrome.storage.onChanged.addListener(function (changes, namespace) {
         if (typeof changes.enabledSites?.newValue !== 'undefined') {
@@ -34,6 +41,9 @@ if (typeof window.delightfulActivated === 'undefined') {
         }
         if (typeof changes.enabledDelights?.newValue !== 'undefined') {
             allSettings.allDelights = changes.enabledDelights.newValue.delights;
+        }
+        if (typeof changes.chanceOfDelight?.newValue !== 'undefined') {
+            allSettings.chanceOfDelight = changes.chanceOfDelight.newValue.chance;
         }
     });
 
@@ -50,7 +60,7 @@ if (typeof window.delightfulActivated === 'undefined') {
         let trello = allSettings.allSites.map(site => site.host).indexOf('trello.com');
         if ((trello > -1) && allSettings.allSites[trello].enabled) {
             let listContent = event.target.closest('.js-list-content');
-            if(listContent !== null) {
+            if (listContent !== null) {
                 let listName = listContent.querySelector('.js-list-name-assist');
                 if (listName !== null) {
                     // Name of the list we're starting from (don't run animation if dropped in same list)
@@ -69,6 +79,7 @@ if (typeof window.delightfulActivated === 'undefined') {
      * Main document event listener for clicks on any element
      */
     document.addEventListener('mouseup', event => {
+
         if (!ref.delightfulAnimationRunning) {
             if ((allSettings.allSites !== null) && matchTrigger(event.target)) {
                 doAnimation();
@@ -80,10 +91,16 @@ if (typeof window.delightfulActivated === 'undefined') {
      * Initiate the animation
      */
     const doAnimation = () => {
+
         // Use settings from user to determine percentage chance of a delight happening
-        // todo build percentage chance into user settings, then get from chromeStorage
-        let tempPercentageForTesting = 1.0; // 100% chance (0.8 = 80% etc.)
-        if (Math.random() < tempPercentageForTesting) {
+        let userDefinedChance = 0;
+        allSettings.chanceOfDelight.map(chance => {
+            if(chance.selected) {
+                userDefinedChance = chance.value;
+            }
+        });
+
+        if (Math.random() < userDefinedChance) {
 
             // Flag start of animation
             ref.delightfulAnimationRunning = true;
@@ -138,7 +155,6 @@ if (typeof window.delightfulActivated === 'undefined') {
         }
 
         // Github
-        // todo user-defined status names from settings
         let github = allSettings.allSites.map(site => site.host).indexOf('github.com');
         if ((github > -1) && allSettings.allSites[github].enabled) {
 
@@ -170,8 +186,8 @@ if (typeof window.delightfulActivated === 'undefined') {
                 return true;
             }
         }
+
         // Trello (drag and drop makes for a bit of a challenge)
-        // todo user-defined list names from settings
         let trello = allSettings.allSites.map(site => site.host).indexOf('trello.com');
         if ((trello > -1) && allSettings.allSites[trello].enabled) {
             setTimeout(() => {
@@ -207,7 +223,11 @@ if (typeof window.delightfulActivated === 'undefined') {
         return false;
     };
 
-
+    /**
+     * Set animation not running
+     *
+     * @param duration
+     */
     const endAnimation = duration => {
         setTimeout(() => {
             ref.delightfulAnimationRunning = false;

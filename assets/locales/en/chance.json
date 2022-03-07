@@ -1,0 +1,17 @@
+{
+  "chance_allOfTheThings": {
+    "message": "ALL OF THE THINGS!"
+  },
+  "chance_lotsOfDelight": {
+    "message": "Lots of delight"
+  },
+  "chance_sometimes": {
+    "message": "Sometimes"
+  },
+  "chance_tooMuchDelightRuinsTheFun": {
+    "message": "Too much delight ruins the fun"
+  },
+  "chance_off": {
+    "message": "OFF"
+  }
+}

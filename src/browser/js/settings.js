@@ -9,21 +9,79 @@ const settings = () => {
      * Localisation
      */
     const localize = () => {
+        document.title = chrome.i18n.getMessage("settings_pageTitle");
         document.querySelectorAll('[data-locale]').forEach(el => {
             let text = chrome.i18n.getMessage(el.dataset.locale);
-            if((typeof text !== 'undefined') && text !== '') {
+            if ((typeof text !== 'undefined') && text !== '') {
                 el.innerText = text;
             }
         });
-        document.title = chrome.i18n.getMessage("settings_pageTitle");
     }
 
     /**
      * List of settings
      */
     const allSettings = {
-        allDelights: null,
-        allSites:    null
+        allDelights:     null,
+        allSites:        null,
+        chanceOfDelight: null
+    };
+
+    /**
+     * Generate chance of delight select
+     */
+    const chanceOfDelight = () => {
+
+        // Display the list
+        const chanceOfDelightList = document.querySelector('.settings__chanceOfDelight');
+
+        // Label
+        const label = document.createElement('label');
+        label.className = "settings__chanceOfDelightLabel";
+        label.dataset.locale = "settings_chanceOfDelightLabel";
+        label.htmlFor = "settings_chanceOfDelightLabel";
+        label.innerText = "Chance of getting a delight";
+        chanceOfDelightList.append(label);
+
+        // Select
+        const select = document.createElement('select');
+        select.className = "settings__chanceOfDelightSelect";
+        select.id = "settings__chanceOfDelightSelect";
+        chanceOfDelightList.append(select);
+
+        // Options
+        allSettings.chanceOfDelight.map(chance => {
+            const option = document.createElement('option');
+            option.dataset.locale = chance.i18nName;
+            option.innerText = chance.defaultName;
+            option.value = chance.value;
+            if (chance.selected) {
+                option.setAttribute('selected', 'selected');
+            }
+            select.append(option);
+        });
+
+        select.addEventListener('change', event => {
+            saveChanceOfDelight(event.currentTarget.value);
+        });
+    };
+
+    /**
+     * Save changes to chance of delight
+     *
+     * @param value
+     */
+    const saveChanceOfDelight = value => {
+
+        // Update all selected true/false
+        allSettings.chanceOfDelight.map((chance, i) => {
+            allSettings.chanceOfDelight[i].selected = (chance.value.toString() === value);
+        });
+
+        // Store it
+        chrome.storage.sync.set({
+            chanceOfDelight: {chance: allSettings.chanceOfDelight}
+        });
     };
 
     /**
@@ -58,7 +116,7 @@ const settings = () => {
         wrapper.append(label);
 
         // Status list (if exists)
-        if(typeof details.statusList !== 'undefined') {
+        if (typeof details.statusList !== 'undefined') {
             const statusInput = document.createElement('input');
             statusInput.className = "settings__enabledDelightsListStatus";
             statusInput.id = details.id + "Status";
@@ -77,6 +135,7 @@ const settings = () => {
      * Sync enabled sites and update the list in the dom
      */
     const enabledSites = () => {
+
         // Display the list
         const enabledSitesList = document.querySelector('.settings__enabledSitesList');
         allSettings.allSites.map(site => {
@@ -91,6 +150,7 @@ const settings = () => {
      * @param checked
      */
     const saveEnabledSite = (id, checked) => {
+
         let idx = allSettings.allSites.map(site => site.id).indexOf(id);
         if (idx > -1) {
 
@@ -104,7 +164,14 @@ const settings = () => {
         }
     };
 
+    /**
+     * Save changes to a status list for a site
+     *
+     * @param id
+     * @param value
+     */
     const saveEnabledSiteStatusList = (id, value) => {
+
         let idx = allSettings.allSites.map(site => site.id).indexOf(id);
         if (idx > -1) {
 
@@ -156,6 +223,7 @@ const settings = () => {
      * Sync enabled delights and update the list in the dom
      */
     const enabledDelights = () => {
+
         // Display the list
         const enabledDelightsList = document.querySelector('.settings__enabledDelightsList');
         allSettings.allDelights.map(delight => {
@@ -170,6 +238,7 @@ const settings = () => {
      * @param checked
      */
     const saveEnabledDelight = (id, checked) => {
+
         let idx = allSettings.allDelights.map(delight => delight.id).indexOf(id);
         if (idx > -1) {
 
@@ -191,6 +260,8 @@ const settings = () => {
     chrome.runtime.sendMessage({type: 'allSettings'}, response => {
         allSettings.allSites = response.allSites;
         allSettings.allDelights = response.allDelights;
+        allSettings.chanceOfDelight = response.chanceOfDelight;
+        chanceOfDelight();
         enabledSites();
         enabledDelights();
         localize();

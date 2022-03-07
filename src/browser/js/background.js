@@ -1,15 +1,19 @@
-import {allSiteSettings, allDelightSettings} from "./allSettings";
+import {allSiteSettings, allDelightSettings, chanceOfDelightSetting} from "./allSettings";
 
+/**
+ * List of settings
+ */
 const allSettings = {
-    allSites:    [...allSiteSettings],
-    allDelights: [...allDelightSettings]
+    allSites:        [...allSiteSettings],
+    allDelights:     [...allDelightSettings],
+    chanceOfDelight: [...chanceOfDelightSetting]
 };
 
 /**
- * Storage sync enabled sites and update the list in the dom
+ * Storage sync enabled sites
  */
 const enabledSites = () => {
-    //chrome.storage.sync.remove('enabledSites');
+
     // Get stored list of sites
     chrome.storage.sync.get('enabledSites', result => {
 
@@ -34,10 +38,10 @@ const enabledSites = () => {
 };
 
 /**
- * Storage sync enabled delights and update the list in the dom
+ * Storage sync enabled delights
  */
 const enabledDelights = () => {
-    //chrome.storage.sync.remove('enabledDelights');
+
     // Get stored list of delights
     chrome.storage.sync.get('enabledDelights', result => {
 
@@ -59,12 +63,38 @@ const enabledDelights = () => {
 };
 
 /**
- * Initial setup
+ * Storage sync chance of delight
+ */
+const chanceOfDelight = () => {
+
+    // Get stored list of delights
+    chrome.storage.sync.get('chanceOfDelight', result => {
+
+        if (typeof result !== 'undefined' && result.chanceOfDelight?.chance?.length > 0) {
+            // If we found the list, update the local array
+            result.chanceOfDelight.chance.map(chance => {
+                let idx = allSettings.chanceOfDelight.map(cd => cd.defaultName).indexOf(chance.defaultName);
+                if (idx > -1) {
+                    allSettings.chanceOfDelight[idx].selected = chance.selected;
+                }
+            });
+        }
+
+        // Store it
+        chrome.storage.sync.set({
+            chanceOfDelight: {chance: allSettings.chanceOfDelight}
+        });
+    });
+}
+
+/**
+ * Constructor
  * - Get existing lists of sites and delights
  * - Update them with any new ones
  */
 enabledSites();
 enabledDelights();
+chanceOfDelight();
 // Keep settings up to date
 chrome.storage.onChanged.addListener(function (changes, namespace) {
     if (typeof changes.enabledSites?.newValue !== 'undefined') {
@@ -72,6 +102,9 @@ chrome.storage.onChanged.addListener(function (changes, namespace) {
     }
     if (typeof changes.enabledDelights?.newValue !== 'undefined') {
         allSettings.allDelights = changes.enabledDelights.newValue.delights;
+    }
+    if (typeof changes.chanceOfDelight?.newValue !== 'undefined') {
+        allSettings.chanceOfDelight = changes.chanceOfDelight.newValue.chance;
     }
 });
 
@@ -112,8 +145,9 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
             break;
         case 'allSettings':
             sendResponse({
-                allSites:    allSettings.allSites,
-                allDelights: allSettings.allDelights
+                allSites:        allSettings.allSites,
+                allDelights:     allSettings.allDelights,
+                chanceOfDelight: allSettings.chanceOfDelight
             });
             break;
         case 'allSites':
@@ -121,6 +155,9 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
             break;
         case 'allDelights':
             sendResponse(allSettings.allDelights);
+            break;
+        case 'chanceOfDelight':
+            sendResponse(allSettings.chanceOfDelight);
             break;
     }
     // Return true here to keep connection open during async calls

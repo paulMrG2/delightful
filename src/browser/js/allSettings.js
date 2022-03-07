@@ -48,3 +48,36 @@ export const allDelightSettings = [
         id:                         "delightful_delights_parrot"
     }
 ];
+
+export const chanceOfDelightSetting = [
+    {
+        defaultName: "ALL OF THE THINGS!",
+        i18nName:    "chance_allOfTheThings",
+        selected:    true,
+        value:       1.0
+    },
+    {
+        defaultName: "Lots of delight",
+        i18nName:    "chance_lotsOfDelight",
+        selected:    false,
+        value:       0.75
+    },
+    {
+        defaultName: "Sometimes",
+        i18nName:    "chance_sometimes",
+        selected:    false,
+        value:       0.5
+    },
+    {
+        defaultName: "Too much delight ruins the fun",
+        i18nName:    "chance_tooMuchDelightRuinsTheFun",
+        selected:    false,
+        value:       0.25
+    },
+    {
+        defaultName: "OFF",
+        i18nName:    "chance_off",
+        selected:    false,
+        value:       0
+    }
+];

@@ -17,6 +17,10 @@
   },
 
   "settings_settingHowOften": {
-    "message": "How often do you want to see a delight? (coming soon)"
+    "message": "How often do you want to see a delight?"
+  },
+
+  "settings_chanceOfDelightLabel": {
+    "message": "Chance of getting a delight"
   }
 }
