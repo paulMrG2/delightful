@@ -156,8 +156,8 @@ if (typeof window.delightfulActivated === 'undefined') {
                 }
 
                 // Match the target via child node
-                if (target.closest(("div[name='" + status + "']"))) {
-                    let closest = target.closest(("div[name='" + status + "']"));
+                let closest = target.closest("div[name='" + status + "']");
+                if (closest !== null) {
                     // Make sure status doesn't already have a checkmark next to it
                     if (!closest.firstChild.hasChildNodes()) {
                         return true;
