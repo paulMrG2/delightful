@@ -1,7 +1,7 @@
 import {allSiteSettings, allDelightSettings} from "./allSettings";
 
 const allSettings = {
-    allSites: [...allSiteSettings],
+    allSites:    [...allSiteSettings],
     allDelights: [...allDelightSettings]
 };
 
@@ -14,12 +14,14 @@ const enabledSites = () => {
     chrome.storage.sync.get('enabledSites', result => {
 
         if (typeof result !== 'undefined' && result.enabledSites?.sites?.length > 0) {
-            console.log('found the sites list')
             // If we found the list, update the local array
             result.enabledSites.sites.map(site => {
                 let idx = allSettings.allSites.map(as => as.defaultName).indexOf(site.defaultName);
                 if (idx > -1) {
                     allSettings.allSites[idx].enabled = site.enabled;
+                    if (typeof site.statusList !== 'undefined') {
+                        allSettings.allSites[idx].statusList = site.statusList;
+                    }
                 }
             });
         }
@@ -39,10 +41,7 @@ const enabledDelights = () => {
     // Get stored list of delights
     chrome.storage.sync.get('enabledDelights', result => {
 
-        console.log('our delights from storage', result);
-
         if (typeof result !== 'undefined' && result.enabledDelights?.delights?.length > 0) {
-            console.log('found the delights list')
             // If we found the list, update the local array
             result.enabledDelights.delights.map(delight => {
                 let idx = allSettings.allDelights.map(as => as.defaultName).indexOf(delight.defaultName);
@@ -51,8 +50,6 @@ const enabledDelights = () => {
                 }
             });
         }
-
-        console.log('we just got here now', allSettings.allDelights);
 
         // Store it
         chrome.storage.sync.set({
@@ -115,7 +112,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
             break;
         case 'allSettings':
             sendResponse({
-                allSites: allSettings.allSites,
+                allSites:    allSettings.allSites,
                 allDelights: allSettings.allDelights
             });
             break;

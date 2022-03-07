@@ -10,7 +10,7 @@ export const allSiteSettings = [
     },
     {
         defaultName:            "Github",
-        defaultNameWithTrigger: "Github (when you mark an issue as 'Done')",
+        defaultNameWithTrigger: "Github (when you mark an issue as <status name>)",
         enabled:                true,
         host:                   "github.com",
         i18nName:               "sites_githubName",
@@ -20,7 +20,7 @@ export const allSiteSettings = [
     },
     {
         defaultName:            "Trello",
-        defaultNameWithTrigger: "Trello (when you drop a card on 'Done')",
+        defaultNameWithTrigger: "Trello (when you drop a card on <list name>)",
         enabled:                true,
         host:                   "trello.com",
         i18nName:               "sites_trelloName",

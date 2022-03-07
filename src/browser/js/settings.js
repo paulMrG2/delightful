@@ -57,6 +57,19 @@ const settings = () => {
         label.innerText = details.defaultNameWithTrigger;
         wrapper.append(label);
 
+        // Status list (if exists)
+        if(typeof details.statusList !== 'undefined') {
+            const statusInput = document.createElement('input');
+            statusInput.className = "settings__enabledDelightsListStatus";
+            statusInput.id = details.id + "Status";
+            statusInput.type = 'text';
+            statusInput.value = details.statusList.join(',');
+            statusInput.addEventListener('keyup', event => {
+                saveEnabledSiteStatusList(details.id, event.currentTarget.value);
+            });
+            wrapper.append(statusInput);
+        }
+
         return wrapper;
     }
 
@@ -66,7 +79,6 @@ const settings = () => {
     const enabledSites = () => {
         // Display the list
         const enabledSitesList = document.querySelector('.settings__enabledSitesList');
-        console.log('asdf', allSettings);
         allSettings.allSites.map(site => {
             enabledSitesList.append(generateSiteCheckbox(site));
         });
@@ -91,6 +103,20 @@ const settings = () => {
             });
         }
     };
+
+    const saveEnabledSiteStatusList = (id, value) => {
+        let idx = allSettings.allSites.map(site => site.id).indexOf(id);
+        if (idx > -1) {
+
+            // Update it locally
+            allSettings.allSites[idx].statusList = value.split(',').map(status => status.trim());
+
+            // Store it
+            chrome.storage.sync.set({
+                enabledSites: {sites: allSettings.allSites}
+            });
+        }
+    }
 
     /**
      * Generate a checkbox for a specified delight
@@ -165,7 +191,6 @@ const settings = () => {
     chrome.runtime.sendMessage({type: 'allSettings'}, response => {
         allSettings.allSites = response.allSites;
         allSettings.allDelights = response.allDelights;
-        console.log('weqwer', response.allSites);
         enabledSites();
         enabledDelights();
         localize();

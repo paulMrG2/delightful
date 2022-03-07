@@ -9,12 +9,12 @@
     "message": "Github"
   },
   "sites_githubNameWithTrigger": {
-    "message": "Github (when you mark an issue as 'Done') user-defined status names coming soon"
+    "message": "Github (when you mark an issue as <status name>) Comma-separated list of status names to trigger animation"
   },
   "sites_trelloName": {
     "message": "Trello"
   },
   "sites_trelloNameWithTrigger": {
-    "message": "Trello (when you drop a card on 'Done') user-defined list names coming soon"
+    "message": "Trello (when you drop a card on <list name>) Comma-separated list of list names to trigger animation"
   }
 }
