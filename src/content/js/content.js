@@ -1,17 +1,24 @@
 import {getConfetti} from "./delightConfetti";
 import {getParrot} from './delightParrot';
 
-let delightfulAnimationRunning = false;
-
-/**
- * List of settings
- */
-const allSettings = {
-    allDelights: null,
-    allSites:    null
-};
-
 if (typeof window.delightfulActivated === 'undefined') {
+
+    /**
+     * Reference vars
+     */
+    const ref = {
+        delightfulAnimationRunning: false,
+        mouseDownVal:               null
+    };
+
+    /**
+     * List of settings
+     */
+    const allSettings = {
+        allDelights: null,
+        allSites:    null
+    };
+
     window.delightfulActivated = true;
 
     /**
@@ -31,16 +38,47 @@ if (typeof window.delightfulActivated === 'undefined') {
     });
 
     /**
+     * Mousedown event for tracking drag/drop
+     */
+    document.addEventListener('mousedown', event => {
+
+        // Reset the value
+        ref.mouseDownVal1 = null;
+        ref.mouseDownVal2 = null;
+
+        // Trello
+        let trello = allSettings.allSites.map(site => site.host).indexOf('trello.com');
+        if ((trello > -1) && allSettings.allSites[trello].enabled) {
+            let listContent = event.target.closest('.js-list-content');
+            if(listContent !== null) {
+                let listName = listContent.querySelector('.js-list-name-assist');
+                if (listName !== null) {
+                    // Name of the list we're starting from (don't run animation if dropped in same list)
+                    ref.mouseDownVal1 = listName.innerHTML;
+                }
+                // Record the current task to match with
+                let task = event.target.closest('a.list-card');
+                if (task !== null) {
+                    ref.mouseDownVal2 = task.getAttribute("href").toString();
+                }
+            }
+        }
+    }, true);
+
+    /**
      * Main document event listener for clicks on any element
      */
     document.addEventListener('mouseup', event => {
-        if (!delightfulAnimationRunning) {
+        if (!ref.delightfulAnimationRunning) {
             if ((allSettings.allSites !== null) && matchTrigger(event.target)) {
                 doAnimation();
             }
         }
     }, true);
 
+    /**
+     * Initiate the animation
+     */
     const doAnimation = () => {
         // Use settings from user to determine percentage chance of a delight happening
         // todo build percentage chance into user settings, then get from chromeStorage
@@ -48,7 +86,7 @@ if (typeof window.delightfulActivated === 'undefined') {
         if (Math.random() < tempPercentageForTesting) {
 
             // Flag start of animation
-            delightfulAnimationRunning = true;
+            ref.delightfulAnimationRunning = true;
 
             // Randomly choose a delight
             let enabledDelights = [];
@@ -132,13 +170,12 @@ if (typeof window.delightfulActivated === 'undefined') {
                 return true;
             }
         }
-
         // Trello (drag and drop makes for a bit of a challenge)
         // todo user-defined list names from settings
         let trello = allSettings.allSites.map(site => site.host).indexOf('trello.com');
         if ((trello > -1) && allSettings.allSites[trello].enabled) {
             setTimeout(() => {
-                let task = target.closest('a');
+                let task = target.closest('a.list-card');
                 if (task !== null) {
                     let taskHref = task.getAttribute("href").toString();
                     let listContent = document.querySelectorAll('.js-list-content');
@@ -148,13 +185,13 @@ if (typeof window.delightfulActivated === 'undefined') {
                             let href = anchor.getAttribute('href');
                             if (href !== null) {
                                 href = href.toString();
-                                if (href === taskHref) {
+                                if ((href === taskHref) && (ref.mouseDownVal2 === taskHref)) {
                                     let listName = list.querySelector('.js-list-name-assist');
                                     if (listName !== null) {
                                         // Loop through multiple status list
                                         for (let i = 0; i < allSettings.allSites[trello].statusList.length; i++) {
                                             let status = allSettings.allSites[trello].statusList[i];
-                                            if (listName.innerHTML === status) {
+                                            if ((listName.innerHTML === status) && (listName.innerHTML !== ref.mouseDownVal1)) {
                                                 doAnimation();
                                             }
                                         }
@@ -173,7 +210,7 @@ if (typeof window.delightfulActivated === 'undefined') {
 
     const endAnimation = duration => {
         setTimeout(() => {
-            delightfulAnimationRunning = false;
+            ref.delightfulAnimationRunning = false;
         }, duration);
     };
 }
