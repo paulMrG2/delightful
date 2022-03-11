@@ -1,3 +1,5 @@
+<img src="https://github.com/paulMrG2/delightful/blob/master/assets/img/delightful-logo-horizontal-yellow-bg.svg?raw=true" width="300">
+
 # Delightful
 
 Are you bored and just not feeling it at work? Try Delightful, a Chrome extension that will brighten your day with delights when you complete a task in your project management software.
