@@ -3,7 +3,7 @@
     "message": "Delightful Settings"
   },
   "settings_devMessage": {
-    "message": "This extension is still being developed... so it's an alpha version. If you have a complaint you'll have to work through the issue yourself... maybe do some yoga, snap some twigs, or throw stones in the water... whatever makes you feel better."
+    "message": "Sure, it's only a couple of fancy things for now, but it will expand to cover more software triggers and lots of different animations. You'll never know what to expect, but you will get that warm and fuzzy feeling with an extra bit of dopamine when you deserve it the most."
   },
   "settings_heading": {
     "message": "Settings"
@@ -11,6 +11,9 @@
 
   "settings_enabledSitesHeading": {
     "message": "Enabled sites"
+  },
+  "settings_enabledSitesSubheading": {
+    "message": "In the text boxes you can add a comma-separated list of statuses/list names/column names that match what you call them in your software."
   },
   "settings_enabledDelightsHeading": {
     "message": "Enabled Delights"
@@ -20,6 +23,9 @@
     "message": "How often do you want to see a delight?"
   },
 
+  "settings_chanceOfDelightHeading": {
+    "message": "How often do you want to be delighted?"
+  },
   "settings_chanceOfDelightLabel": {
     "message": "Chance of getting a delight"
   }

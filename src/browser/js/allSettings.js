@@ -32,16 +32,16 @@ export const allSiteSettings = [
 
 export const allDelightSettings = [
     {
-        defaultName:                "Confetti",
-        defaultNameWithDescription: "Confetti (a bunch of confetti explosions all over the screen)",
+        defaultName:                "Confetti Explosions",
+        defaultNameWithDescription: "Confetti Explosions (a bunch of confetti explosions all over the screen)",
         enabled:                    true,
         i18nName:                   "delights_confettiName",
         i18nNameWithDescription:    "delights_confettiNameWithDescription",
         id:                         "delightful_delights_confetti"
     },
     {
-        defaultName:                "Parrot",
-        defaultNameWithDescription: "Parrot (the beloved party parrot dances across the bottom of the screen)",
+        defaultName:                "Party Parrot",
+        defaultNameWithDescription: "Party Parrot (the beloved party parrot dances across the bottom of the screen)",
         enabled:                    true,
         i18nName:                   "delights_parrotName",
         i18nNameWithDescription:    "delights_parrotNameWithDescription",

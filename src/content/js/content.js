@@ -140,6 +140,7 @@ if (typeof window.delightfulActivated === 'undefined') {
         let className = target.getAttribute('class') || '';
 
         // Asana
+        // todo trigger for drag/drop on Board view, with user-defined section names
         let asana = allSettings.allSites.map(site => site.host).indexOf('app.asana.com');
         if ((asana > -1) && allSettings.allSites[asana].enabled) {
 

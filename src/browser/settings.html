@@ -8,21 +8,52 @@
     <link rel="stylesheet" href="settings.css">
 </head>
 <body>
-<div>
-    <h1 data-locale="settings_pageTitle">Delightful Settings</h1>
-    <p data-locale="appDescription">A little delight goes a long way. Too much delight ruins the fun.</p>
-    <p data-locale="settings_devMessage">This extension is still being developed... so it's an alpha version. If you have a complaint you'll have to work through the issue yourself... maybe do some yoga, snap some twigs, or throw stones in the water... whatever makes you feel better.</p>
-    <h2 data-locale="settings_heading">Settings</h2>
+<div class="settings">
+    <div class="settings__header">
+        <div class="settings__headerLogo">
+            <img class="settings__headerLogoImg" src="assets/img/delightful-logo-stacked.svg" alt="Delightful Logo">
+        </div>
+    </div>
+    <div class="settings__body">
+        <h1 class="settings_pageTitle" data-locale="settings_pageTitle">Delightful Settings</h1>
+        <p class="settings__appDescription" data-locale="appDescription">A little delight goes a long way. Too much delight ruins the fun.</p>
+        <p data-locale="settings_devMessage">Sure, it's only a couple of fancy things for now, but it will expand to cover more software triggers and lots of different animations. You'll never know what to expect, but you will get that warm and fuzzy feeling with an extra bit of dopamine when you deserve it the most.</p>
 
-    <h3 data-locale="settings_enabledSitesHeading">Enabled sites</h3>
-    <div class="settings__enabledSitesList"></div>
+        <h2 data-locale="settings_chanceOfDelightHeading">How often do you want to be delighted?</h2>
+        <div class="settings__chanceOfDelight"></div>
 
-    <h3 data-locale="settings_enabledDelightsHeading">Enabled delights</h3>
-    <div class="settings__enabledDelightsList"></div>
+        <div class="settings__columns">
 
-    <h3 data-locale="settings_chanceOfDelightHeading">How often do you want to see a delight? (coming soon)</h3>
-    <div class="settings__chanceOfDelight"></div>
+            <div class="settings__column">
+                <h2 data-locale="settings_enabledSitesHeading">Enabled sites</h2>
+                <div class="settings__enabledSitesSubheading">In the text boxes you can add a comma-separated list of statuses/list names/column names that match what you call them in your software.</div>
+                <div class="settings__enabledSitesList"></div>
+            </div>
 
+            <div class="settings__column">
+                <h2 data-locale="settings_enabledDelightsHeading">Enabled delights</h2>
+                <div class="settings__enabledDelightsList"></div>
+            </div>
+
+        </div>
+
+        <h2 data-locale="settings_supportHeading">You like?</h2>
+        <div class="settings__supportBody">
+            <p>If Delightful brings you joy, please consider supporting it:</p>
+            <ul>
+                <li>Share it with your friends
+                    <a href="https://chrome.google.com/webstore/detail/delightful/lcpnconeejbcokkmdmlkhenjnkdcioji" target="_blank">Delightful on the Chrome Web Store</a>.
+                </li>
+                <li>Make a donation to the developer
+                    <a href="https://github.com/sponsors/paulMrG2/" target="_blank">Paul Groth</a>.
+                </li>
+                <li>Contribute to the code
+                    <a href="https://github.com/paulMrG2/delightful" target="_blank">Delightful on Github</a>.
+                </li>
+            </ul>
+        </div>
+
+    </div>
 </div>
 <script src="settings.js"></script>
 </body>

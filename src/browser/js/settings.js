@@ -110,9 +110,9 @@ const settings = () => {
         // Label
         const label = document.createElement('label');
         label.className = "settings__enabledSitesListLabel";
-        label.dataset.locale = details.i18nNameWithTrigger;
+        label.dataset.locale = details.i18nName;
         label.htmlFor = details.id;
-        label.innerText = details.defaultNameWithTrigger;
+        label.innerText = details.defaultName;
         wrapper.append(label);
 
         // Status list (if exists)
@@ -211,9 +211,9 @@ const settings = () => {
         // Label
         const label = document.createElement('label');
         label.className = "settings__enabledDelightsListLabel";
-        label.dataset.locale = details.i18nNameWithDescription;
+        label.dataset.locale = details.i18nName;
         label.htmlFor = details.id;
-        label.innerText = details.defaultNameWithDescription;
+        label.innerText = details.defaultName;
         wrapper.append(label);
 
         return wrapper;

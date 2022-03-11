@@ -17,18 +17,18 @@
         "https://trello.com/*"
     ],
     "icons": {
-        "16": "assets/img/delight16.png",
-        "48": "assets/img/delight48.png",
-        "128": "assets/img/delight128.png"
+        "16": "assets/img/delightful-icon16.png",
+        "48": "assets/img/delightful-icon48.png",
+        "128": "assets/img/delightful-icon128.png"
     },
     "background": {
         "service_worker": "background.js"
     },
     "action": {
         "default_icon": {
-            "16": "assets/img/delight16.png",
-            "48": "assets/img/delight48.png",
-            "128": "assets/img/delight128.png"
+            "16": "assets/img/delightful-icon16.png",
+            "48": "assets/img/delightful-icon48.png",
+            "128": "assets/img/delightful-icon128.png"
         },
         "default_popup": "menu.html",
         "default_title": "__MSG_app_name__"
