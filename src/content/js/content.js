@@ -117,11 +117,11 @@ if (typeof window.delightfulActivated === 'undefined') {
             // Call the animation
             // todo add more animations
             switch (delight.defaultName) {
-                case 'Confetti':
+                case 'Confetti Explosions': // If this is changed, also change the defaultName in allSettings.js
                     getConfetti(2000);
                     endAnimation(2000);
                     break;
-                case 'Parrot':
+                case 'Party Parrot': // If this is changed, also change the defaultName in allSettings.js
                     getParrot(2000);
                     endAnimation(2000);
                     break;

@@ -32,7 +32,7 @@ export const allSiteSettings = [
 
 export const allDelightSettings = [
     {
-        defaultName:                "Confetti Explosions",
+        defaultName:                "Confetti Explosions", // If this is changed, also change the case for switch(delight.defaultName){} in content.js
         defaultNameWithDescription: "Confetti Explosions (a bunch of confetti explosions all over the screen)",
         enabled:                    true,
         i18nName:                   "delights_confettiName",
@@ -40,7 +40,7 @@ export const allDelightSettings = [
         id:                         "delightful_delights_confetti"
     },
     {
-        defaultName:                "Party Parrot",
+        defaultName:                "Party Parrot", // If this is changed, also change the case for switch(delight.defaultName){} in content.js
         defaultNameWithDescription: "Party Parrot (the beloved party parrot dances across the bottom of the screen)",
         enabled:                    true,
         i18nName:                   "delights_parrotName",

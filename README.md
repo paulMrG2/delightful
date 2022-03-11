@@ -21,3 +21,5 @@ Install [Delightful](https://chrome.google.com/webstore/detail/delightful/lcpnco
 ## Delights
 - [Confetti](https://github.com/catdad/canvas-confetti) by [Kiril Vatev](https://github.com/catdad)
 - [Party parrot](https://codepen.io/nathangath/pen/RgvzVY/) by [@nathangath](https://codepen.io/nathangath)
+
+[<img src="https://img.youtube.com/vi/<VIDEO ID>/maxresdefault.jpg" width="50%">](https://youtu.be/<VIDEO ID>)
