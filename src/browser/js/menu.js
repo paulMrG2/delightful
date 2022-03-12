@@ -8,7 +8,7 @@ document.querySelectorAll('[data-locale]').forEach(el => {
 /**
  * Open options page
  */
-document.querySelector('.menu__buttonSettings').addEventListener('click', function() {
+document.querySelector('.menu__buttonsButtonSettings').addEventListener('click', function() {
     if (chrome.runtime.openOptionsPage) {
         chrome.runtime.openOptionsPage();
     } else {

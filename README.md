@@ -20,6 +20,8 @@ Install [Delightful](https://chrome.google.com/webstore/detail/delightful/lcpnco
 
 ## Delights
 - [Confetti](https://github.com/catdad/canvas-confetti) by [Kiril Vatev](https://github.com/catdad)
-- [Party parrot](https://codepen.io/nathangath/pen/RgvzVY/) by [@nathangath](https://codepen.io/nathangath)
+- [Nyan Cat](https://github.com/Gowee/nyancat-svg) by [Hung-I Wang](https://github.com/Gowee)
+- [Party Parrot](https://codepen.io/nathangath/pen/RgvzVY/) by [@nathangath](https://codepen.io/nathangath)
 
-[<img src="https://img.youtube.com/vi/<VIDEO ID>/maxresdefault.jpg" width="50%">](https://youtu.be/<VIDEO ID>)
+## How it looks
+[<img src="https://img.youtube.com/vi/AxXfHm9UCwo/maxresdefault.jpg" width="50%">](https://youtu.be/AxXfHm9UCwo)

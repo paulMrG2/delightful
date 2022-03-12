@@ -1,8 +1,49 @@
+/**
+These variables should be moved to their own file, but extension-cli
+doesn't allow for watching additional files in the gulpfile.
+So for now they'll have to be repeated for each file :(
+ */
+$background: #262626;
+$blue: #0088ff;
+$blueTint: #299cff;
+$headerBackground: #FFFF96;
+$text: #fff;
+$white: #fff;
+
 .menu {
-    &__button {
-        &Settings {
-            cursor: pointer;
-            padding: 6px 12px;
+    padding: 20px;
+    width: 200px;
+
+    &__buttons {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+
+        &Button {
+
+            &Settings {
+                background-color: $blue;
+                color: $white;
+                cursor: pointer;
+                font-size: 16px;
+                padding: 10px 16px;
+
+                &:hover {
+                    background-color: $blueTint;
+                }
+            }
         }
     }
+
+    &__header {
+        margin-bottom: 20px;
+
+        &Logo {
+
+            &Img {
+
+            }
+        }
+    }
+
 }

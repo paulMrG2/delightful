@@ -136,6 +136,11 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     switch (request.type) {
         case 'delight':
             switch (request.delight) {
+                case "nyanCat":
+                    getImageData('assets/img/nyan-cat.svg').then(dataUrl => {
+                        sendResponse({image: dataUrl});
+                    });
+                    break;
                 case "parrot":
                     getImageData('assets/img/parrot.svg').then(dataUrl => {
                         sendResponse({image: dataUrl});

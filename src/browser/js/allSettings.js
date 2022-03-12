@@ -40,6 +40,14 @@ export const allDelightSettings = [
         id:                         "delightful_delights_confetti"
     },
     {
+        defaultName:                "Nyan Cat", // If this is changed, also change the case for switch(delight.defaultName){} in content.js
+        defaultNameWithDescription: "Nyan Cat (no description required, you know what it is)",
+        enabled:                    true,
+        i18nName:                   "delights_nyanCatName",
+        i18nNameWithDescription:    "delights_nyanCatNameWithDescription",
+        id:                         "delightful_delights_nyan_cat"
+    },
+    {
         defaultName:                "Party Parrot", // If this is changed, also change the case for switch(delight.defaultName){} in content.js
         defaultNameWithDescription: "Party Parrot (the beloved party parrot dances across the bottom of the screen)",
         enabled:                    true,

@@ -1,5 +1,6 @@
 import {getConfetti} from "./delightConfetti";
 import {getParrot} from './delightParrot';
+import {getNyanCat} from "./delightNyanCat";
 
 if (typeof window.delightfulActivated === 'undefined') {
 
@@ -119,6 +120,10 @@ if (typeof window.delightfulActivated === 'undefined') {
             switch (delight.defaultName) {
                 case 'Confetti Explosions': // If this is changed, also change the defaultName in allSettings.js
                     getConfetti(2000);
+                    endAnimation(2000);
+                    break;
+                case 'Nyan Cat': // If this is changed, also change the defaultName in allSettings.js
+                    getNyanCat(2000);
                     endAnimation(2000);
                     break;
                 case 'Party Parrot': // If this is changed, also change the defaultName in allSettings.js
