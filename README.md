@@ -23,5 +23,5 @@ Install [Delightful](https://chrome.google.com/webstore/detail/delightful/lcpnco
 - [Nyan Cat](https://github.com/Gowee/nyancat-svg) by [Hung-I Wang](https://github.com/Gowee)
 - [Party Parrot](https://codepen.io/nathangath/pen/RgvzVY/) by [@nathangath](https://codepen.io/nathangath)
 
-## How it looks
-[<img src="https://img.youtube.com/vi/AxXfHm9UCwo/maxresdefault.jpg" width="50%">](https://youtu.be/AxXfHm9UCwo)
+## Watch a screen recording
+[<img src="https://img.youtube.com/vi/XHvM0rBabkA/maxresdefault.jpg" width="50%">](https://youtu.be/XHvM0rBabkA)

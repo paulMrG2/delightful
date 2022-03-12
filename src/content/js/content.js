@@ -82,7 +82,7 @@ if (typeof window.delightfulActivated === 'undefined') {
     document.addEventListener('mouseup', event => {
 
         if (!ref.delightfulAnimationRunning) {
-            if ((allSettings.allSites !== null) && matchTrigger(event.target)) {
+            if ((allSettings.allSites !== null) && matchTrigger(event)) {
                 doAnimation();
             }
         }
@@ -96,7 +96,7 @@ if (typeof window.delightfulActivated === 'undefined') {
         // Use settings from user to determine percentage chance of a delight happening
         let userDefinedChance = 0;
         allSettings.chanceOfDelight.map(chance => {
-            if(chance.selected) {
+            if (chance.selected) {
                 userDefinedChance = chance.value;
             }
         });
@@ -137,12 +137,12 @@ if (typeof window.delightfulActivated === 'undefined') {
     /**
      * Check if a match is found
      *
-     * @param target
+     * @param event
      * @returns {boolean}
      */
-    const matchTrigger = target => {
+    const matchTrigger = event => {
 
-        let className = target.getAttribute('class') || '';
+        let className = event.target.getAttribute('class') || '';
 
         // Asana
         // todo trigger for drag/drop on Board view, with user-defined section names
@@ -150,12 +150,12 @@ if (typeof window.delightfulActivated === 'undefined') {
         if ((asana > -1) && allSettings.allSites[asana].enabled) {
 
             // Asana task complete button top of open task pane
-            if (className.includes('TaskCompletionToggleButton--isNotPressed') || target.closest('.TaskCompletionToggleButton--isNotPressed')) {
+            if (className.includes('TaskCompletionToggleButton--isNotPressed') || event.target.closest('.TaskCompletionToggleButton--isNotPressed')) {
                 return true;
             }
 
             // Asana task complete button in main task list or subtask in open task pane
-            if (className.includes('TaskCompletionStatusIndicator--incomplete') || target.closest('.TaskCompletionStatusIndicator--incomplete')) {
+            if (className.includes('TaskCompletionStatusIndicator--incomplete') || event.target.closest('.TaskCompletionStatusIndicator--incomplete')) {
                 return true;
             }
         }
@@ -170,15 +170,15 @@ if (typeof window.delightfulActivated === 'undefined') {
                 let status = allSettings.allSites[github].statusList[i];
 
                 // Match the target
-                if (target.hasAttribute('name') && (target.getAttribute('name') === status)) {
+                if (event.target.hasAttribute('name') && (event.target.getAttribute('name') === status)) {
                     // Make sure status doesn't already have a checkmark next to it
-                    if (!target.firstChild.hasChildNodes()) {
+                    if (!event.target.firstChild.hasChildNodes()) {
                         return true;
                     }
                 }
 
                 // Match the target via child node
-                let closest = target.closest("div[name='" + status + "']");
+                let closest = event.target.closest("div[name='" + status + "']");
                 if (closest !== null) {
                     // Make sure status doesn't already have a checkmark next to it
                     if (!closest.firstChild.hasChildNodes()) {
@@ -188,7 +188,7 @@ if (typeof window.delightfulActivated === 'undefined') {
             }
 
             // Github issues button on comment block 'Close issue' or 'Close with comment'
-            if ((target.hasAttribute('name') && target.getAttribute('name') === 'comment_and_close') || target.closest("button[name='comment_and_close']")) {
+            if ((event.target.hasAttribute('name') && event.target.getAttribute('name') === 'comment_and_close') || event.target.closest("button[name='comment_and_close']")) {
                 return true;
             }
         }
@@ -197,7 +197,7 @@ if (typeof window.delightfulActivated === 'undefined') {
         let trello = allSettings.allSites.map(site => site.host).indexOf('trello.com');
         if ((trello > -1) && allSettings.allSites[trello].enabled) {
             setTimeout(() => {
-                let task = target.closest('a.list-card');
+                let task = event.target.closest('a.list-card');
                 if (task !== null) {
                     let taskHref = task.getAttribute("href").toString();
                     let listContent = document.querySelectorAll('.js-list-content');
