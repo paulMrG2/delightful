@@ -23,6 +23,12 @@
   "about_makeADonationHeading": {
     "message": "Make a donation"
   },
+  "about_rateReviewHeading": {
+    "message": "Rate and review it"
+  },
+  "about_rateReview": {
+    "message": "Rate and review on the web store"
+  },
   "about_sponsorOnGithub": {
     "message": "Sponsor me on Github"
   },

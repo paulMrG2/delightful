@@ -58,10 +58,6 @@
         "src": "./src/browser/js/settings.js"
       },
       {
-        "name": "updated",
-        "src": "./src/browser/js/updated.js"
-      },
-      {
         "name": "app",
         "src": "./src/content/js/**/*.js"
       }
@@ -82,10 +78,6 @@
       {
         "name": "settings",
         "src": "./src/browser/scss/settings.scss"
-      },
-      {
-        "name": "updated",
-        "src": "./src/browser/scss/updated.scss"
       }
     ]
   },
