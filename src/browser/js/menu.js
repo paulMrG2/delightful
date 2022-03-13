@@ -12,6 +12,15 @@ document.querySelector('.menu__buttonsButtonSettings').addEventListener('click',
     if (chrome.runtime.openOptionsPage) {
         chrome.runtime.openOptionsPage();
     } else {
-        window.open(chrome.runtime.getURL('options.html'));
+        let url = chrome.runtime.getURL("settings.html");
+        chrome.tabs.create({url});
     }
+});
+
+/**
+ * Open about page
+ */
+document.querySelector('.menu__buttonsButtonAbout').addEventListener('click', function() {
+    let url = chrome.runtime.getURL("about.html");
+    chrome.tabs.create({url});
 });

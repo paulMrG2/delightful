@@ -88,6 +88,21 @@ const chanceOfDelight = () => {
 }
 
 /**
+ * Read image file and return base64 encoded data url
+ *
+ * @param url
+ * @returns {Promise<unknown>}
+ */
+const getImageData = url => fetch(url)
+    .then(response => response.blob())
+    .then(blob => new Promise((resolve, reject) => {
+        const reader = new FileReader()
+        reader.onloadend = () => resolve(reader.result)
+        reader.onerror = reject
+        reader.readAsDataURL(blob)
+    }));
+
+/**
  * Constructor
  * - Get existing lists of sites and delights
  * - Update them with any new ones
@@ -108,6 +123,11 @@ chrome.storage.onChanged.addListener(function (changes, namespace) {
     }
 });
 
+/**
+ * - - - - - - - - - - - - - - - - - - -
+ * All other Chrome listeners after this
+ * - - - - - - - - - - - - - - - - - - -
+ */
 
 /**
  * Main listener for every active tab
@@ -170,16 +190,11 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 });
 
 /**
- * Read image file and return base64 encoded data url
- *
- * @param url
- * @returns {Promise<unknown>}
+ * Show welcome/changes pages for new install/updated
  */
-const getImageData = url => fetch(url)
-    .then(response => response.blob())
-    .then(blob => new Promise((resolve, reject) => {
-        const reader = new FileReader()
-        reader.onloadend = () => resolve(reader.result)
-        reader.onerror = reject
-        reader.readAsDataURL(blob)
-    }));
+chrome.runtime.onInstalled.addListener(details => {
+    if(details.reason === 'install') {
+        let url = chrome.runtime.getURL("about.html");
+        chrome.tabs.create({url});
+    }
+});

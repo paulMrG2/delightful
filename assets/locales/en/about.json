@@ -1,0 +1,35 @@
+{
+  "about_pageTitle": {
+    "message": "Welcome to Delightful"
+  },
+  "about_aboutHeading": {
+    "message": "About"
+  },
+  "about_versionHeading": {
+    "message": "Version:"
+  },
+  "about_authorHeading": {
+    "message": "Author:"
+  },
+  "about_showYourSupportHeading": {
+    "message": "Show your support"
+  },
+  "about_showYourSupportSubheading": {
+    "message": "If Delightful brings you joy, please consider showing your support."
+  },
+  "about_shareHeading": {
+    "message": "Share it"
+  },
+  "about_makeADonationHeading": {
+    "message": "Make a donation"
+  },
+  "about_sponsorOnGithub": {
+    "message": "Sponsor me on Github"
+  },
+  "about_becomeAPatron": {
+    "message": "Become a patron"
+  },
+  "about_contributeToTheCode": {
+    "message": "Delightful on Github"
+  }
+}

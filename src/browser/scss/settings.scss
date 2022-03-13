@@ -1,24 +1,4 @@
-/**
-These variables should be moved to their own file, but extension-cli
-doesn't allow for watching additional files in the gulpfile.
-So for now they'll have to be repeated for each file :(
- */
-$background: #262626;
-$headerBackground: #FFFF96;
-$text: #fff;
-$white: #fff;
-
-html, body {
-    background-color: $background;
-    color: $text;
-    font-size: 18px;
-    margin: 0;
-    padding: 0;
-}
-
-a {
-    color: $white;
-}
+@import "base";
 
 input[type='checkbox'] {
     height: 16px;

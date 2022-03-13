@@ -1,5 +1,8 @@
 {
   "menu_buttonSettings": {
     "message": "Settings"
+  },
+  "menu_buttonAbout": {
+    "message": "About"
   }
 }

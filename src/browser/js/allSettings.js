@@ -1,3 +1,8 @@
+/**
+ * Delightful
+ *
+ * All settings variables
+ */
 export const allSiteSettings = [
     {
         defaultName:            "Asana",

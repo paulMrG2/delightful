@@ -46,12 +46,20 @@
         "src": "./src/browser/js/background.js"
       },
       {
+        "name": "about",
+        "src": "./src/browser/js/about.js"
+      },
+      {
         "name": "menu",
         "src": "./src/browser/js/menu.js"
       },
       {
         "name": "settings",
         "src": "./src/browser/js/settings.js"
+      },
+      {
+        "name": "updated",
+        "src": "./src/browser/js/updated.js"
       },
       {
         "name": "app",
@@ -64,12 +72,20 @@
     "locales_dir": "./assets/locales/",
     "scss_bundles": [
       {
+        "name": "about",
+        "src": "./src/browser/scss/about.scss"
+      },
+      {
         "name": "menu",
         "src": "./src/browser/scss/menu.scss"
       },
       {
         "name": "settings",
         "src": "./src/browser/scss/settings.scss"
+      },
+      {
+        "name": "updated",
+        "src": "./src/browser/scss/updated.scss"
       }
     ]
   },

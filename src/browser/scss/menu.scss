@@ -17,20 +17,18 @@ $white: #fff;
     &__buttons {
         align-items: center;
         display: flex;
+        gap: 10px;
         justify-content: center;
 
         &Button {
+            background-color: $blue;
+            color: $white;
+            cursor: pointer;
+            font-size: 16px;
+            padding: 10px 16px;
 
-            &Settings {
-                background-color: $blue;
-                color: $white;
-                cursor: pointer;
-                font-size: 16px;
-                padding: 10px 16px;
-
-                &:hover {
-                    background-color: $blueTint;
-                }
+            &:hover {
+                background-color: $blueTint;
             }
         }
     }

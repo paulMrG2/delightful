@@ -1,0 +1,44 @@
+@import "base";
+
+.about {
+
+    &__appTagline {
+        font-style: italic;
+    }
+
+    &__body {
+        margin: 0 auto;
+        max-width: 1000px;
+        padding: 0 40px;
+
+        & h1, & h2 {
+            margin-top: 60px;
+        }
+    }
+
+    &__columns {
+        display: flex;
+        gap: 40px;
+    }
+
+    &__column {
+        flex-basis: 50%;
+    }
+
+    &__header {
+        background-color: $headerBackground;
+        padding: 30px;
+
+        &Logo {
+            align-items: center;
+            display: flex;
+            justify-content: center;
+            margin: 0 auto;
+
+            &Img {
+                width: 200px;
+            }
+        }
+    }
+
+}
