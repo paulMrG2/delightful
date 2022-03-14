@@ -14,7 +14,8 @@
     "host_permissions": [
         "https://app.asana.com/*",
         "https://github.com/*",
-        "https://trello.com/*"
+        "https://trello.com/*",
+        "https://www.wrike.com/*"
     ],
     "icons": {
         "16": "assets/img/delightful-icon16.png",

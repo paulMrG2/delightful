@@ -74,6 +74,7 @@ if (typeof window.delightfulActivated === 'undefined') {
                 }
             }
         }
+
     }, true);
 
     /**
@@ -224,6 +225,67 @@ if (typeof window.delightfulActivated === 'undefined') {
                     });
                 }
             }, 100);
+        }
+
+        // Wrike
+        // Only works on buttons and checkboxes. Event propagation is cancelled before we can use it.
+        let wrike = allSettings.allSites.map(site => site.host).indexOf('wrike.com');
+        if ((wrike > -1) && allSettings.allSites[wrike].enabled) {
+
+            // Wrike task complete button in right panel in multi-select mode
+            if (className.includes('select-list-item-content')) {
+                if (event.target.innerText === 'Completed') {
+                    console.log('match 1')
+                    return true;
+                }
+            }
+
+            // Wrike task complete button in right panel in multi-select mode
+            if (className.includes('select-list-item')) {
+                const selectListItemContent = event.target.querySelector('.select-list-item-content');
+                if (selectListItemContent && selectListItemContent.innerText === 'Completed') {
+                    console.log('match 2')
+                    return true;
+                }
+            }
+
+            // Wrike task complete button in right panel in multi-select mode (if not directly on the text of the button)
+            console.log(event.target)
+            if (event.target.closest('.select-list-item')) {
+                const selectListItem = event.target.closest('.select-list-item');
+                if (selectListItem) {
+                    const selectListItemContent = selectListItem.closest('.select-list-item-content');
+                    if (selectListItemContent && selectListItemContent.innerText === 'Completed') {
+                        console.log('match 3')
+                        return true;
+                    }
+                }
+            }
+
+            // Wrike task complete button in right panel in multi-select mode (if not directly on the text of the button 2)
+            if (event.target.closest('.select-list-item-content')) {
+                const selectListItemContent = event.target.closest('.select-list-item-content');
+                if (selectListItemContent && selectListItemContent.innerText === 'Completed') {
+                    console.log('match 4')
+                    return true;
+                }
+            }
+
+            if (className.includes('status-widget-completer__checkbox')) {
+                console.log(event.target.getAttribute('aria-label'), event.target.getAttribute('aria-checked'));
+                if ((event.target.getAttribute('aria-label') === 'Mark task as Completed') && (event.target.getAttribute('aria-checked') === 'false')) {
+                    console.log('match 5')
+                    return true;
+                }
+            }
+
+            if (className.includes('status-widget-trigger__toggle')) {
+                const completerCheckbox = event.target.querySelector('.status-widget-completer__checkbox');
+                if (completerCheckbox && (completerCheckbox.getAttribute('aria-label') === 'Mark task as Completed') && (completerCheckbox.getAttribute('aria-checked') === 'true')) {
+                    console.log('match 6')
+                    return true;
+                }
+            }
         }
 
         return false;

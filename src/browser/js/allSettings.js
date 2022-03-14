@@ -32,6 +32,15 @@ export const allSiteSettings = [
         i18nNameWithTrigger:    "sites_trelloNameWithTrigger",
         id:                     "delightful_sites_trello",
         statusList:             ["Done"]
+    },
+    {
+        defaultName:            "Wrike",
+        defaultNameWithTrigger: "Wrike (when you complete a task or subtask)",
+        enabled:                true,
+        host:                   "wrike.com",
+        i18nName:               "sites_wrikeName",
+        i18nNameWithTrigger:    "sites_wrikeNameWithTrigger",
+        id:                     "delightful_sites_wrike"
     }
 ];
 

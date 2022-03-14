@@ -16,5 +16,11 @@
   },
   "sites_trelloNameWithTrigger": {
     "message": "Trello (when you drop a card on <list name>) Comma-separated list of list names to trigger animation"
+  },
+  "sites_wrikeName": {
+    "message": "Wrike"
+  },
+  "sites_wrikeNameWithTrigger": {
+    "message": "Wrike (when you complete a task or subtask)"
   }
 }
