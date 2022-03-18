@@ -1,4 +1,12 @@
 /**
+ * Delightful
+ *
+ * Browser Menu
+ *
+ * @author Paul Groth (https://github.com/paulMrG2)
+ */
+
+/**
  * Localisation
  */
 document.querySelectorAll('[data-locale]').forEach(el => {

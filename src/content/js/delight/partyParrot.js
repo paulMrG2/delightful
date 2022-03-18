@@ -3,11 +3,13 @@
  *
  * Delight: Party parrot
  *
+ * @author Paul Groth (https://github.com/paulMrG2)
+ *
  * Sources used
  * https://codepen.io/nathangath/pen/RgvzVY/
  */
 
-import { delightContainer } from "./delightContainter";
+import { delightContainer } from "./delightContainer";
 
 export function getParrot(duration) {
     let width = 400;

@@ -2,6 +2,8 @@
  * Delightful
  *
  * About page
+ *
+ * @author Paul Groth (https://github.com/paulMrG2)
  */
 const about = () => {
 

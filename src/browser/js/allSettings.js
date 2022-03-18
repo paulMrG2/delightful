@@ -2,6 +2,8 @@
  * Delightful
  *
  * All settings variables
+ *
+ * @author Paul Groth (https://github.com/paulMrG2)
  */
 export const allSiteSettings = [
     {
@@ -21,6 +23,16 @@ export const allSiteSettings = [
         i18nName:               "sites_githubName",
         i18nNameWithTrigger:    "sites_githubNameWithTrigger",
         id:                     "delightful_sites_github",
+        statusList:             ["Done"]
+    },
+    {
+        defaultName:            "Jira",
+        defaultNameWithTrigger: "Jira (when you complete an issue)",
+        enabled:                true,
+        host:                   "*.jira.com",
+        i18nName:               "sites_jiraName",
+        i18nNameWithTrigger:    "sites_jiraNameWithTrigger",
+        id:                     "delightful_sites_jira",
         statusList:             ["Done"]
     },
     {
@@ -45,6 +57,14 @@ export const allSiteSettings = [
 ];
 
 export const allDelightSettings = [
+    {
+        defaultName:                "Baby Yoda", // If this is changed, also change the case for switch(delight.defaultName){} in content.js
+        defaultNameWithDescription: "Baby Yoda (uses the force of course)",
+        enabled:                    true,
+        i18nName:                   "delights_babyYodaName",
+        i18nNameWithDescription:    "delights_babyYodaNameWithDescription",
+        id:                         "delightful_delights_baby_yoda"
+    },
     {
         defaultName:                "Confetti Explosions", // If this is changed, also change the case for switch(delight.defaultName){} in content.js
         defaultNameWithDescription: "Confetti Explosions (a bunch of confetti explosions all over the screen)",

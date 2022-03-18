@@ -1,3 +1,10 @@
+/**
+ * Delightful
+ *
+ * Background file
+ *
+ * @author Paul Groth (https://github.com/paulMrG2)
+ */
 import {allSiteSettings, allDelightSettings, chanceOfDelightSetting} from "./allSettings";
 
 /**
@@ -156,6 +163,11 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     switch (request.type) {
         case 'delight':
             switch (request.delight) {
+                case "babyYoda":
+                    getImageData('assets/img/baby-yoda-force.svg').then(dataUrl => {
+                        sendResponse({image: dataUrl});
+                    });
+                    break;
                 case "nyanCat":
                     getImageData('assets/img/nyan-cat.svg').then(dataUrl => {
                         sendResponse({image: dataUrl});

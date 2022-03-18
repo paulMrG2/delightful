@@ -3,11 +3,13 @@
  *
  * Delight: Nyan Cat
  *
+ * @author Paul Groth (https://github.com/paulMrG2)
+ *
  * Sources used
  * https://github.com/Gowee/nyancat-svg
  */
 
-import { delightContainer } from "./delightContainter";
+import { delightContainer } from "./delightContainer";
 
 export function getNyanCat(duration) {
     let width = 700;

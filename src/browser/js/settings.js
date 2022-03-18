@@ -2,6 +2,8 @@
  * Delightful
  *
  * General settings
+ *
+ * @author Paul Groth (https://github.com/paulMrG2)
  */
 const settings = () => {
 

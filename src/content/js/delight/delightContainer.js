@@ -1,5 +1,9 @@
 /**
+ * Delightful
+ *
  * The container element on top of everything (hopefully)
+ *
+ * @author Paul Groth (https://github.com/paulMrG2)
  *
  * @returns {HTMLDivElement}
  */

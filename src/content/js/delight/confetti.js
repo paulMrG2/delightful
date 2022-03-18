@@ -3,11 +3,13 @@
  *
  * Delight: Canvas confetti
  *
+ * @author Paul Groth (https://github.com/paulMrG2)
+ *
  * Sources used
  * https://www.npmjs.com/package/canvas-confetti
  */
 
-import {delightContainer} from "./delightContainter";
+import {delightContainer} from "./delightContainer";
 
 const confetti = require('canvas-confetti');
 
