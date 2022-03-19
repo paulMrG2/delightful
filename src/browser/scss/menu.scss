@@ -8,7 +8,6 @@
 @import "base";
 
 .menu {
-    padding: 20px;
     width: 200px;
 
     &__buttons {
@@ -16,6 +15,7 @@
         display: flex;
         gap: 10px;
         justify-content: center;
+        padding: 20px;
 
         &Button {
             background-color: $blue;
@@ -31,7 +31,9 @@
     }
 
     &__header {
+        background-color: $headerBackground;
         margin-bottom: 20px;
+        padding: 20px;
 
         &Logo {
 

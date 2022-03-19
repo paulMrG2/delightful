@@ -14,8 +14,8 @@ export const wrike = (allSettings, ref, event) => {
 
         // Wrike
         // Only works on buttons and checkboxes. Event propagation is cancelled before we can use it.
-        let wrike = allSettings.allSites.map(site => site.host).indexOf('wrike.com');
-        if ((wrike > -1) && allSettings.allSites[wrike].enabled) {
+        let idx = allSettings.allSites.map(site => site.host).indexOf('www.wrike.com');
+        if ((idx > -1) && allSettings.allSites[idx].enabled) {
 
             // Wrike task complete button in right panel in multi-select mode
             if (className.includes('select-list-item-content')) {

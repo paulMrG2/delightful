@@ -10,13 +10,13 @@ import {doAnimation} from "../animation";
 export const github = (allSettings, ref, event) => {
 
     if(document.location.host === 'github.com') {
-        let github = allSettings.allSites.map(site => site.host).indexOf('github.com');
-        if ((github > -1) && allSettings.allSites[github].enabled) {
+        let idx = allSettings.allSites.map(site => site.host).indexOf('github.com');
+        if ((idx > -1) && allSettings.allSites[idx].enabled) {
 
             // Loop through multiple status list
-            for (let i = 0; i < allSettings.allSites[github].statusList.length; i++) {
+            for (let i = 0; i < allSettings.allSites[idx].statusList.length; i++) {
 
-                let status = allSettings.allSites[github].statusList[i];
+                let status = allSettings.allSites[idx].statusList[i];
 
                 // Match the target
                 if (event.target.hasAttribute('name') && (event.target.getAttribute('name') === status)) {

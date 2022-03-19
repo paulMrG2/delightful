@@ -11,8 +11,8 @@ export const trello = (allSettings, ref, event) => {
 
     // Trello (drag and drop makes for a bit of a challenge)
     if(document.location.host === 'trello.com') {
-        let trello = allSettings.allSites.map(site => site.host).indexOf('trello.com');
-        if ((trello > -1) && allSettings.allSites[trello].enabled) {
+        let idx = allSettings.allSites.map(site => site.host).indexOf('trello.com');
+        if ((idx > -1) && allSettings.allSites[idx].enabled) {
             setTimeout(() => {
                 let task = event.target.closest('a.list-card');
                 if (task !== null) {
@@ -28,8 +28,8 @@ export const trello = (allSettings, ref, event) => {
                                     let listName = list.querySelector('.js-list-name-assist');
                                     if (listName !== null) {
                                         // Loop through multiple status list
-                                        for (let i = 0; i < allSettings.allSites[trello].statusList.length; i++) {
-                                            let status = allSettings.allSites[trello].statusList[i];
+                                        for (let i = 0; i < allSettings.allSites[idx].statusList.length; i++) {
+                                            let status = allSettings.allSites[idx].statusList[i];
                                             if ((listName.innerHTML === status) && (listName.innerHTML !== ref.mouseDownVal1)) {
                                                 doAnimation(allSettings, ref, event);
                                             }

@@ -15,8 +15,8 @@ export const asana = (allSettings, ref, event) => {
         // todo trigger for drag/drop on Board view, with user-defined section names
         // having trouble getting the new target and going up and down the dom
 
-        let asana = allSettings.allSites.map(site => site.host).indexOf('app.asana.com');
-        if ((asana > -1) && allSettings.allSites[asana].enabled) {
+        let idx = allSettings.allSites.map(site => site.host).indexOf('app.asana.com');
+        if ((idx > -1) && allSettings.allSites[idx].enabled) {
 
             // Asana task complete button top of open task pane
             if (className.includes('TaskCompletionToggleButton--isNotPressed') || event.target.closest('.TaskCompletionToggleButton--isNotPressed')) {

@@ -5,18 +5,13 @@
  *
  * @author Paul Groth (https://github.com/paulMrG2)
  */
-// Delights
-import {getBabyYoda} from "./delight/babyYoda";
-import {getConfetti} from "./delight/confetti";
-import {getParrot} from './delight/partyParrot';
-import {getNyanCat} from "./delight/nyanCat";
 // Triggers
 import {asana} from "./trigger/asana";
 import {github} from "./trigger/github";
 import {jira} from "./trigger/jira";
-import {wrike} from "./trigger/wrike";
+import {todoist} from "./trigger/todoist";
 import {trello} from "./trigger/trello";
-// Other
+import {wrike} from "./trigger/wrike";
 
 if (typeof window.delightfulActivated === 'undefined') {
 
@@ -113,9 +108,9 @@ if (typeof window.delightfulActivated === 'undefined') {
         asana(allSettings, ref, event);
         github(allSettings, ref, event);
         jira(allSettings, ref, event);
+        todoist(allSettings, ref, event);
         trello(allSettings, ref, event);
         wrike(allSettings, ref, event);
 
-        return false;
     };
 }

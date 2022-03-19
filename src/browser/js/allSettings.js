@@ -16,6 +16,16 @@ export const allSiteSettings = [
         id:                     "delightful_sites_asana"
     },
     {
+        defaultName:            "Jira (*.atlassian.net)",
+        defaultNameWithTrigger: "Jira (when you mark an issue as <status name>)",
+        enabled:                true,
+        host:                   "*.atlassian.net",
+        i18nName:               "sites_atlassianName",
+        i18nNameWithTrigger:    "sites_atlassianNameWithTrigger",
+        id:                     "delightful_sites_atlassian",
+        statusList:             ["Done"]
+    },
+    {
         defaultName:            "Github",
         defaultNameWithTrigger: "Github (when you mark an issue as <status name>)",
         enabled:                true,
@@ -26,14 +36,23 @@ export const allSiteSettings = [
         statusList:             ["Done"]
     },
     {
-        defaultName:            "Jira",
-        defaultNameWithTrigger: "Jira (when you complete an issue)",
+        defaultName:            "Jira (*.jira.com)",
+        defaultNameWithTrigger: "Jira (when you mark an issue as <status name>)",
         enabled:                true,
         host:                   "*.jira.com",
         i18nName:               "sites_jiraName",
         i18nNameWithTrigger:    "sites_jiraNameWithTrigger",
         id:                     "delightful_sites_jira",
         statusList:             ["Done"]
+    },
+    {
+        defaultName:            "Todoist",
+        defaultNameWithTrigger: "Todoist (when you complete a task)",
+        enabled:                true,
+        host:                   "todoist.com",
+        i18nName:               "sites_todoistName",
+        i18nNameWithTrigger:    "sites_todoistNameWithTrigger",
+        id:                     "delightful_sites_todoist"
     },
     {
         defaultName:            "Trello",
@@ -49,7 +68,7 @@ export const allSiteSettings = [
         defaultName:            "Wrike",
         defaultNameWithTrigger: "Wrike (when you complete a task or subtask)",
         enabled:                true,
-        host:                   "wrike.com",
+        host:                   "www.wrike.com",
         i18nName:               "sites_wrikeName",
         i18nNameWithTrigger:    "sites_wrikeNameWithTrigger",
         id:                     "delightful_sites_wrike"

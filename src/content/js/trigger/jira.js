@@ -2,6 +2,7 @@
  * Delightful
  *
  * Trigger: Jira
+ * Two domains: *.atlassian.net, *.jira.com
  *
  * @author Paul Groth (https://github.com/paulMrG2)
  */
@@ -11,22 +12,31 @@ export const jira = (allSettings, ref, event) => {
 
     // todo make it work for Kanban board
 
-    if(document.location.host.endsWith('.atlassian.net')) {
-        let jira = allSettings.allSites.map(site => site.host).indexOf('*.jira.com');
-        if ((jira > -1) && allSettings.allSites[jira].enabled) {
+    let idx = -1;
 
-            // Loop through multiple status list
-            for (let i = 0; i < allSettings.allSites[jira].statusList.length; i++) {
+    // domain *.atlassian.net
+    if (document.location.host.endsWith('.atlassian.net')) {
+        idx = allSettings.allSites.map(site => site.host).indexOf('*.atlassian.net');
+    }
 
-                let status = allSettings.allSites[jira].statusList[i];
+    // domain *.jira.com
+    if ((idx === -1) && document.location.host.endsWith('.jira.com')) {
+        idx = allSettings.allSites.map(site => site.host).indexOf('*.jira.com');
+    }
 
-                // Target has innerText matching status
-                if (event.target.innerText.toLowerCase() === status.toLowerCase()) {
-                    let closestDivWithId = event.target.closest('div[id]');
-                    if (closestDivWithId !== null && closestDivWithId.id.startsWith('react-select-')) {
-                        // Target has parent/grandparent dev element with id starting with react-select-
-                        doAnimation(allSettings, ref, event);
-                    }
+    if ((idx > -1) && allSettings.allSites[idx].enabled) {
+
+        // Loop through multiple status list
+        for (let i = 0; i < allSettings.allSites[idx].statusList.length; i++) {
+
+            let status = allSettings.allSites[idx].statusList[i];
+
+            // Target has innerText matching status
+            if (event.target.innerText.toLowerCase() === status.toLowerCase()) {
+                let closestDivWithId = event.target.closest('div[id]');
+                if (closestDivWithId !== null && closestDivWithId.id.startsWith('react-select-')) {
+                    // Target has parent/grandparent dev element with id starting with react-select-
+                    doAnimation(allSettings, ref, event);
                 }
             }
         }

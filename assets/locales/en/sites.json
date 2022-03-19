@@ -5,6 +5,12 @@
   "sites_asanaNameWithTrigger": {
     "message": "Asana (when you complete a task or subtask using buttons or checkboxes - no drag/drop trigger)"
   },
+  "sites_atlassianName": {
+    "message": "Jira (*.atlassian.net)"
+  },
+  "sites_atlassianNameWithTrigger": {
+    "message": "Jira (when you mark an issue as <status name>) Comma-separated list of status names to trigger animation - no drag/drop Kanban trigger"
+  },
   "sites_githubName": {
     "message": "Github"
   },
@@ -12,10 +18,16 @@
     "message": "Github (when you mark an issue as <status name>) Comma-separated list of status names to trigger animation"
   },
   "sites_jiraName": {
-    "message": "Jira"
+    "message": "Jira (*.jira.com)"
   },
   "sites_jiraNameWithTrigger": {
     "message": "Jira (when you mark an issue as <status name>) Comma-separated list of status names to trigger animation - no drag/drop Kanban trigger"
+  },
+  "sites_todoistName": {
+    "message": "Todoist"
+  },
+  "sites_todoistNameWithTrigger": {
+    "message": "Todoist (when you complete a task)"
   },
   "sites_trelloName": {
     "message": "Trello"
