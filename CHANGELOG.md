@@ -7,6 +7,10 @@
 [comment]: <> (Fixed: any bugs fixed.)
 [comment]: <> (Security: security issues are declared here)
 
+## [0.1.3] - 2022-03-19
+### Changed
+- Changed the gross yellow background throughout to blue 
+
 ## [0.1.2] - 2022-03-19
 ### Added
 - 'About' page: Shows automatically when extension first installed, or via button in menu.
