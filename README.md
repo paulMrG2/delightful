@@ -1,4 +1,4 @@
-<img src="https://github.com/paulMrG2/delightful/blob/master/assets/img/delightful-logo-horizontal-yellow-bg.svg?raw=true" width="300">
+<img src="https://github.com/paulMrG2/delightful/blob/master/assets/img/delightful-logo-horizontal-blue-bg.svg?raw=true" width="300">
 
 # Delightful
 
