@@ -131,32 +131,6 @@ chrome.storage.onChanged.addListener(function (changes, namespace) {
 });
 
 /**
- * - - - - - - - - - - - - - - - - - - -
- * All other Chrome listeners after this
- * - - - - - - - - - - - - - - - - - - -
- */
-
-/**
- * Main listener for every active tab
- */
-chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
-    if (changeInfo.status === 'complete') {
-        if (typeof tab.url !== 'undefined') {
-            chrome.action.enable(tabId);
-            chrome.tabs.query({
-                active:        true,
-                currentWindow: true
-            }, tabs => {
-                chrome.scripting.executeScript({
-                    target: {tabId: tabId},
-                    files:  ["app.js"]
-                });
-            });
-        }
-    }
-});
-
-/**
  * Receive and respond to requests from the front end
  */
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
@@ -205,7 +179,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
  * Show welcome/changes pages for new install/updated
  */
 chrome.runtime.onInstalled.addListener(details => {
-    if(details.reason === 'install') {
+    if (details.reason === 'install') {
         let url = chrome.runtime.getURL("about.html");
         chrome.tabs.create({url});
     }

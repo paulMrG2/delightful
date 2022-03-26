@@ -26,17 +26,19 @@ export const jira = (allSettings, ref, event) => {
 
     if ((idx > -1) && allSettings.allSites[idx].enabled) {
 
-        // Loop through multiple status list
-        for (let i = 0; i < allSettings.allSites[idx].statusList.length; i++) {
+        if(ref.mouseDownVal1 === 'standardClickEvent' && (ref.mouseDownVal2 === event.target.className)) { // Stop cheating by matching mousedown and mouseup className
+            // Loop through multiple status list
+            for (let i = 0; i < allSettings.allSites[idx].statusList.length; i++) {
 
-            let status = allSettings.allSites[idx].statusList[i];
+                let status = allSettings.allSites[idx].statusList[i];
 
-            // Target has innerText matching status
-            if (event.target.innerText.toLowerCase() === status.toLowerCase()) {
-                let closestDivWithId = event.target.closest('div[id]');
-                if (closestDivWithId !== null && closestDivWithId.id.startsWith('react-select-')) {
-                    // Target has parent/grandparent dev element with id starting with react-select-
-                    doAnimation(allSettings, ref, event);
+                // Target has innerText matching status
+                if (event.target.innerText.toLowerCase() === status.toLowerCase()) {
+                    let closestDivWithId = event.target.closest('div[id]');
+                    if (closestDivWithId !== null && closestDivWithId.id.startsWith('react-select-')) {
+                        // Target has parent/grandparent dev element with id starting with react-select-
+                        doAnimation(allSettings, ref, event);
+                    }
                 }
             }
         }

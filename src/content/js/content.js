@@ -86,6 +86,11 @@ if (typeof window.delightfulActivated === 'undefined') {
             }
         }
 
+        if(ref.mouseDownVal1 === null) {
+            ref.mouseDownVal1 = 'standardClickEvent';
+            ref.mouseDownVal2 = event.target.className;
+        }
+
     }, true);
 
     /**
