@@ -7,6 +7,10 @@
 [comment]: <> (Fixed: any bugs fixed.)
 [comment]: <> (Security: security issues are declared here)
 
+## [0.1.5] - 2022-07-03
+### Changed
+- Changed random delight selection to not choose the previous two delights. Could do with a better solution, but this is ok for now.
+
 ## [0.1.4] - 2022-03-26
 ### Changed
 - Changed host permissions to content_scripts with <all_urls> so we don't have to get permission for every new site

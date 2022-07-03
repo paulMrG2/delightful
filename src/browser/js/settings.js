@@ -249,6 +249,8 @@ const settings = () => {
             // Update it locally
             allSettings.allDelights[idx].enabled = checked;
 
+            console.log('allSettings', allSettings)
+
             // Store it
             chrome.storage.sync.set({
                 enabledDelights: {delights: allSettings.allDelights}

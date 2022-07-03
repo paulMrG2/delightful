@@ -11,9 +11,10 @@ import {allSiteSettings, allDelightSettings, chanceOfDelightSetting} from "./all
  * List of settings
  */
 const allSettings = {
-    allSites:        [...allSiteSettings],
-    allDelights:     [...allDelightSettings],
-    chanceOfDelight: [...chanceOfDelightSetting]
+    allSites:            [...allSiteSettings],
+    allDelights:         [...allDelightSettings],
+    chanceOfDelight:     [...chanceOfDelightSetting],
+    lastTwoDelightNames: ['', '']
 };
 
 /**
