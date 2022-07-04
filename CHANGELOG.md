@@ -7,6 +7,10 @@
 [comment]: <> (Fixed: any bugs fixed.)
 [comment]: <> (Security: security issues are declared here)
 
+## [0.1.6] - 2022-07-04
+### Fixed
+- Bug from previous update where the new 'previous two delights' variable was not available when required.
+
 ## [0.1.5] - 2022-07-03
 ### Changed
 - Changed random delight selection to not choose the previous two delights. Could do with a better solution, but this is ok for now.

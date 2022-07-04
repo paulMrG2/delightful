@@ -8,13 +8,18 @@
 import {allSiteSettings, allDelightSettings, chanceOfDelightSetting} from "./allSettings";
 
 /**
+ * For testing
+ * Clear all storage for this extension
+ */
+//chrome.storage.sync.clear();
+
+/**
  * List of settings
  */
 const allSettings = {
-    allSites:            [...allSiteSettings],
-    allDelights:         [...allDelightSettings],
-    chanceOfDelight:     [...chanceOfDelightSetting],
-    lastTwoDelightNames: ['', '']
+    allSites:               [...allSiteSettings],
+    allDelights:            [...allDelightSettings],
+    chanceOfDelight:        [...chanceOfDelightSetting]
 };
 
 /**
@@ -93,7 +98,24 @@ const chanceOfDelight = () => {
             chanceOfDelight: {chance: allSettings.chanceOfDelight}
         });
     });
-}
+};
+
+/**
+ * Storage sync initiate last two delights if not already exists
+ */
+const lastTwoDelights = () => {
+
+    // Get stored list of delights
+    chrome.storage.sync.get('lastTwoDelightNames', result => {
+
+        if (Object.prototype.toString.call(result.lastTwoDelightNames) !== '[object Array]') {
+            // Initiate it
+            chrome.storage.sync.set({
+                lastTwoDelightNames: ['', '']
+            });
+        }
+    });
+};
 
 /**
  * Read image file and return base64 encoded data url
@@ -118,6 +140,7 @@ const getImageData = url => fetch(url)
 enabledSites();
 enabledDelights();
 chanceOfDelight();
+lastTwoDelights();
 // Keep settings up to date
 chrome.storage.onChanged.addListener(function (changes, namespace) {
     if (typeof changes.enabledSites?.newValue !== 'undefined') {
