@@ -7,6 +7,7 @@
  */
 // Triggers
 import {asana} from "./trigger/asana";
+import {clickup} from "./trigger/clickup";
 import {github} from "./trigger/github";
 import {jira} from "./trigger/jira";
 import {todoist} from "./trigger/todoist";
@@ -68,7 +69,7 @@ if (typeof window.delightfulActivated === 'undefined') {
         ref.mouseDownVal1 = null;
         ref.mouseDownVal2 = null;
 
-        // Trello
+        // Trello board view mousedown ref
         let trello = allSettings.allSites.map(site => site.host).indexOf('trello.com');
         if ((trello > -1) && allSettings.allSites[trello].enabled) {
             let listContent = event.target.closest('.js-list-content');
@@ -86,6 +87,17 @@ if (typeof window.delightfulActivated === 'undefined') {
             }
         }
 
+        // ClickUp board view mousedown ref
+        let clickup = allSettings.allSites.map(site => site.host).indexOf('app.clickup.com');
+        if((clickup > -1) && allSettings.allSites[clickup].enabled) {
+            if(event.target.closest('.cdk-drag') !== null) {
+                let dropList = event.target.closest('.cdk-drop-list');
+                if((dropList !== null) && (typeof dropList.dataset.status !== 'undefined')) {
+                    ref.mouseDownVal1 = dropList.dataset.status;
+                }
+            }
+        }
+
         if(ref.mouseDownVal1 === null) {
             ref.mouseDownVal1 = 'standardClickEvent';
             ref.mouseDownVal2 = event.target.className;
@@ -98,7 +110,9 @@ if (typeof window.delightfulActivated === 'undefined') {
      */
     document.addEventListener('mouseup', event => {
         if (!ref.delightfulAnimationRunning && allSettings.allSites !== null) {
-            matchTrigger(event);
+            if(event.button === 0) { // Left mouse button only
+                matchTrigger(event);
+            }
         }
     }, true);
 
@@ -111,6 +125,7 @@ if (typeof window.delightfulActivated === 'undefined') {
     const matchTrigger = event => {
 
         asana(allSettings, ref, event);
+        clickup(allSettings, ref, event);
         github(allSettings, ref, event);
         jira(allSettings, ref, event);
         todoist(allSettings, ref, event);

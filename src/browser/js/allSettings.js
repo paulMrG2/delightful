@@ -16,6 +16,15 @@ export const allSiteSettings = [
         id:                     "delightful_sites_asana"
     },
     {
+        defaultName:            "ClickUp",
+        defaultNameWithTrigger: "ClickUp (when you complete a task or subtask)",
+        enabled:                true,
+        host:                   "app.clickup.com",
+        i18nName:               "sites_clickupName",
+        i18nNameWithTrigger:    "sites_clickupNameWithTrigger",
+        id:                     "delightful_sites_clickup"
+    },
+    {
         defaultName:            "Jira (*.atlassian.net)",
         defaultNameWithTrigger: "Jira (when you mark an issue as <status name>)",
         enabled:                true,

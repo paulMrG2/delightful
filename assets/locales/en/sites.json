@@ -5,6 +5,12 @@
   "sites_asanaNameWithTrigger": {
     "message": "Asana (when you complete a task or subtask using buttons or checkboxes - no drag/drop trigger)"
   },
+  "sites_clickupName": {
+    "message": "ClickUp"
+  },
+  "sites_clickupNameWithTrigger": {
+    "message": "ClickUp (when you complete a task or subtask using buttons, checkboxes or board view drag/drop)"
+  },
   "sites_atlassianName": {
     "message": "Jira (*.atlassian.net)"
   },

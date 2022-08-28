@@ -15,6 +15,7 @@ Install [Delightful](https://chrome.google.com/webstore/detail/delightful/lcpnco
 
 ## Project Management Software Supported
 - **Asana** (when you complete a task or subtask)
+- **ClickUp** (when you complete a task or subtask)
 - **Github** (when you mark an issue as \<status name\>) _define your own status names_
 - **Jira** (when you mark an issue as \<status name\>)  _define your own status names_ (*.jira.com & *.atlassian.net)
 - **Todoist** (when you complete a task)
