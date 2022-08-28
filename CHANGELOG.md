@@ -7,6 +7,10 @@
 [comment]: <> (Fixed: any bugs fixed.)
 [comment]: <> (Security: security issues are declared here)
 
+## [1.0.0] - 2022-08-28
+### Fixed
+- Bug where settings were being overwritten in storage sync if storage sync fails e.g. no internet. The extension is now stable, so incrementing to version 1.0.0.
+
 ## [0.1.6] - 2022-07-04
 ### Fixed
 - Bug from previous update where the new 'previous two delights' variable was not available when required.

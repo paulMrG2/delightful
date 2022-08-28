@@ -244,12 +244,8 @@ const settings = () => {
         let idx = allSettings.allDelights.map(delight => delight.id).indexOf(id);
         if (idx > -1) {
 
-            //todo delights not saving (or being overwritten)
-
             // Update it locally
             allSettings.allDelights[idx].enabled = checked;
-
-            console.log('allSettings', allSettings)
 
             // Store it
             chrome.storage.sync.set({

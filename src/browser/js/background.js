@@ -17,10 +17,15 @@ import {allSiteSettings, allDelightSettings, chanceOfDelightSetting} from "./all
  * List of settings
  */
 const allSettings = {
-    allSites:               [...allSiteSettings],
-    allDelights:            [...allDelightSettings],
-    chanceOfDelight:        [...chanceOfDelightSetting]
+    allSites:        [...allSiteSettings],
+    allDelights:     [...allDelightSettings],
+    chanceOfDelight: [...chanceOfDelightSetting]
 };
+const settingsSyncAttempts = {
+    allSites:        0,
+    allDelights:     0,
+    chanceOfDelight: 0
+}
 
 /**
  * Storage sync enabled sites
@@ -41,12 +46,14 @@ const enabledSites = () => {
                     }
                 }
             });
+        } else {
+            setTimeout(() => {
+                if(settingsSyncAttempts.allSites < 5) {
+                    settingsSyncAttempts.allSites++;
+                    enabledSites();
+                }
+            }, 5000);
         }
-
-        // Store it
-        chrome.storage.sync.set({
-            enabledSites: {sites: allSettings.allSites}
-        });
     });
 };
 
@@ -66,12 +73,14 @@ const enabledDelights = () => {
                     allSettings.allDelights[idx].enabled = delight.enabled;
                 }
             });
+        } else {
+            setTimeout(() => {
+                if(settingsSyncAttempts.allDelights < 5) {
+                    settingsSyncAttempts.allDelights++;
+                    enabledDelights();
+                }
+            }, 5000);
         }
-
-        // Store it
-        chrome.storage.sync.set({
-            enabledDelights: {delights: allSettings.allDelights}
-        });
     });
 };
 
@@ -91,12 +100,14 @@ const chanceOfDelight = () => {
                     allSettings.chanceOfDelight[idx].selected = chance.selected;
                 }
             });
+        } else {
+            setTimeout(() => {
+                if(settingsSyncAttempts.chanceOfDelight < 5) {
+                    settingsSyncAttempts.chanceOfDelight++;
+                    enabledDelights();
+                }
+            }, 5000);
         }
-
-        // Store it
-        chrome.storage.sync.set({
-            chanceOfDelight: {chance: allSettings.chanceOfDelight}
-        });
     });
 };
 
