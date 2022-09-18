@@ -187,6 +187,11 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
                         sendResponse({image: dataUrl});
                     });
                     break;
+                case "successKid":
+                    getImageData('assets/img/success-kid.svg').then(dataUrl => {
+                        sendResponse({image: dataUrl});
+                    });
+                    break;
             }
             break;
         case 'allSettings':

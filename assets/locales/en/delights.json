@@ -10,5 +10,11 @@
   },
   "delights_parrotNameWithDescription": {
     "message": "Party Parrot (the beloved party parrot dances across the bottom of the screen)"
+  },
+  "delights_successKidName": {
+    "message": "Party Parrot"
+  },
+  "delights_successKidNameWithDescription": {
+    "message": "Success Kid"
   }
 }

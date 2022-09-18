@@ -7,6 +7,10 @@
 [comment]: <> (Fixed: any bugs fixed.)
 [comment]: <> (Security: security issues are declared here)
 
+## [1.0.2] - 2022-09-18
+### Added
+- Delight: Success Kid animation
+
 ## [1.0.1] - 2022-08-28
 ### Added
 - ClickUp: Triggers for completing a task or subtask, including board view.

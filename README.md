@@ -27,6 +27,7 @@ Install [Delightful](https://chrome.google.com/webstore/detail/delightful/lcpnco
 - [Confetti](https://github.com/catdad/canvas-confetti) by [Kiril Vatev](https://github.com/catdad)
 - [Nyan Cat](https://github.com/Gowee/nyancat-svg) by [Hung-I Wang](https://github.com/Gowee)
 - [Party Parrot](https://codepen.io/nathangath/pen/RgvzVY/) by [@nathangath](https://codepen.io/nathangath)
+- Success Kid - SVG and animation by [Paul Groth](https://github.com/paulMrG2), (original image by Laney Griner (2007))
 
 ## Watch a screen recording
 [<img src="https://img.youtube.com/vi/XHvM0rBabkA/maxresdefault.jpg" width="50%">](https://youtu.be/XHvM0rBabkA)

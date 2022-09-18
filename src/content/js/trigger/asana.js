@@ -28,6 +28,11 @@ export const asana = (allSettings, ref, event) => {
                 if (className.includes('TaskCompletionStatusIndicator--incomplete') || event.target.closest('.TaskCompletionStatusIndicator--incomplete')) {
                     doAnimation(allSettings, ref, event);
                 }
+
+                // Asana milestone complete button in main task list or milestone subtask in open task pane
+                if (className.includes('MilestoneCompletionStatusIndicator--incomplete') || event.target.closest('.MilestoneCompletionStatusIndicator--incomplete')) {
+                    doAnimation(allSettings, ref, event);
+                }
             }
         }
     }

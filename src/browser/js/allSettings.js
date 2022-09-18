@@ -116,6 +116,14 @@ export const allDelightSettings = [
         i18nName:                   "delights_parrotName",
         i18nNameWithDescription:    "delights_parrotNameWithDescription",
         id:                         "delightful_delights_parrot"
+    },
+    {
+        defaultName:                "Success Kid", // If this is changed, also change the case for switch(delight.defaultName){} in content.js
+        defaultNameWithDescription: "Success Kid (the success kid meme of memes)",
+        enabled:                    true,
+        i18nName:                   "delights_successKidName",
+        i18nNameWithDescription:    "delights_successKidNameWithDescription",
+        id:                         "delightful_delights_success_kid"
     }
 ];
 
