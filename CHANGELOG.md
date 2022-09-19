@@ -7,6 +7,11 @@
 [comment]: <> (Fixed: any bugs fixed.)
 [comment]: <> (Security: security issues are declared here)
 
+## [1.0.3] - 2022-09-19
+### Fixed
+- Improved memory management so that delights are removed from memory quicker once they've run
+- Removed a console.log() where every click was logging the event target (that was an annoying day as a developer)
+
 ## [1.0.2] - 2022-09-18
 ### Added
 - Delight: Success Kid animation

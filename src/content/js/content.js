@@ -64,7 +64,6 @@ if (typeof window.delightfulActivated === 'undefined') {
      * Mousedown event for tracking drag/drop
      */
     document.addEventListener('mousedown', event => {
-        console.log(event.target);
 
         // Reset the value
         ref.mouseDownVal1 = null;

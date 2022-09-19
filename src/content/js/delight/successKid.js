@@ -22,12 +22,12 @@ export function getSuccessKid(duration, event) {
     chrome.runtime.sendMessage({type: 'delight', delight: "successKid"}, response => {
 
         // Add css/style to document head
-        const style = document.createElement('style');
+        let style = document.createElement('style');
         style.setAttribute('delight', 'css');
         style.innerHTML = successKidClass;
         document.querySelector('head').append(style);
 
-        // Parrot image
+        // Success Kid image
         let imageSrc = response.image;
         let image = document.createElement('img');
         image.alt = "Success Kid";
@@ -35,7 +35,7 @@ export function getSuccessKid(duration, event) {
         image.src = imageSrc;
 
         // Get container, add the image, prepend to body
-        const container = delightContainer({});
+        let container = delightContainer({});
         container.append(image);
         document.body.prepend(container);
 
@@ -44,6 +44,9 @@ export function getSuccessKid(duration, event) {
             image.remove();
             style.remove();
             container.remove();
+            image = null;
+            style = null;
+            container = null;
         }, duration);
 
     });

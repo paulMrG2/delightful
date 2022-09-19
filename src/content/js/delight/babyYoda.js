@@ -46,7 +46,7 @@ export function getBabyYoda(duration, event) {
     chrome.runtime.sendMessage({type: 'delight', delight: "babyYoda"}, response => {
 
         // Add css/style to document head
-        const style = document.createElement('style');
+        let style = document.createElement('style');
         style.setAttribute('delight', 'css');
         style.innerHTML = babyYodaClass;
         document.querySelector('head').append(style);
@@ -59,7 +59,7 @@ export function getBabyYoda(duration, event) {
         image.src = imageSrc;
 
         // Get container, add the image, prepend to body
-        const container = delightContainer({justifyContent: 'flex-end'});
+        let container = delightContainer({justifyContent: 'flex-end'});
         container.append(image);
         document.body.prepend(container);
 
@@ -84,6 +84,9 @@ export function getBabyYoda(duration, event) {
             image.remove();
             style.remove();
             container.remove();
+            image = null;
+            style = null;
+            container = null;
         }, duration);
 
     });

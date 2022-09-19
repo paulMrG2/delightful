@@ -16,12 +16,12 @@ const confetti = require('canvas-confetti');
 export const getConfetti = (duration) => {
     let end = Date.now() + 400;
 
-    const confettiCanvas = document.createElement('canvas');
+    let confettiCanvas = document.createElement('canvas');
     confettiCanvas.style.width = '100%';
     confettiCanvas.style.height = '100%';
 
     // Get container, append the canvas, prepend to body
-    const container = delightContainer({});
+    let container = delightContainer({});
     container.append(confettiCanvas);
     document.body.prepend(container);
 
@@ -80,8 +80,9 @@ export const getConfetti = (duration) => {
     // Cleanup after animation complete
     setTimeout(() => {
         myConfetti.reset();
-        document.querySelector('.delightContainer')?.remove();
-        document.querySelector('style[delight]')?.remove();
+        container.remove();
+        confettiCanvas = null;
+        container = null;
     }, duration);
 
 };

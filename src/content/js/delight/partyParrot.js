@@ -28,20 +28,20 @@ export function getParrot(duration) {
     chrome.runtime.sendMessage({type: 'delight', delight: "parrot"}, response => {
 
         // Add css/style to document head
-        const style = document.createElement('style');
+        let style = document.createElement('style');
         style.setAttribute('delight', 'css');
         style.innerHTML = parrotClass;
         document.querySelector('head').append(style);
 
         // Parrot image
         let imageSrc = response.image;
-        const image = document.createElement('img');
+        let image = document.createElement('img');
         image.alt = "Dancing parrot";
         image.classList.add("delightParrot");
         image.src = imageSrc;
 
         // Get container, add the image, prepend to body
-        const container = delightContainer({});
+        let container = delightContainer({});
         container.append(image);
         document.body.prepend(container);
 
@@ -50,8 +50,12 @@ export function getParrot(duration) {
 
         // Cleanup after animation complete
         setTimeout(() => {
-            document.querySelector('.delightContainer')?.remove();
-            document.querySelector('style[delight]')?.remove();
+            image.remove();
+            style.remove();
+            container.remove();
+            image = null;
+            style = null;
+            container = null;
         }, duration);
 
     });
