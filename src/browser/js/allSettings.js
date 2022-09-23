@@ -86,6 +86,14 @@ export const allSiteSettings = [
 
 export const allDelightSettings = [
     {
+        defaultName:                "All of the things", // If this is changed, also change the case for switch(delight.defaultName){} in content.js
+        defaultNameWithDescription: "All of the things meme",
+        enabled:                    true,
+        i18nName:                   "delights_allOfTheThingsName",
+        i18nNameWithDescription:    "delights_allOfTheThingsNameWithDescription",
+        id:                         "delightful_delights_all_of_the_things"
+    },
+    {
         defaultName:                "Baby Yoda", // If this is changed, also change the case for switch(delight.defaultName){} in content.js
         defaultNameWithDescription: "Baby Yoda (uses the force of course)",
         enabled:                    true,

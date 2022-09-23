@@ -23,6 +23,7 @@ Install [Delightful](https://chrome.google.com/webstore/detail/delightful/lcpnco
 - **Wrike** (when you complete a task)
 
 ## Delights
+- All of the things - SVG and animation by [Paul Groth](https://github.com/paulMrG2), (original image by Allie Brosh (2010))
 - Baby Yoda by Unknown - Animation by [Paul Groth](https://github.com/paulMrG2)
 - [Confetti](https://github.com/catdad/canvas-confetti) by [Kiril Vatev](https://github.com/catdad)
 - [Nyan Cat](https://github.com/Gowee/nyancat-svg) by [Hung-I Wang](https://github.com/Gowee)

@@ -5,6 +5,7 @@
  *
  * @author Paul Groth (https://github.com/paulMrG2)
  */
+import {getAllOfTheThings} from "./delight/allOfTheThings";
 import {getBabyYoda} from "./delight/babyYoda";
 import {getConfetti} from "./delight/confetti";
 import {getNyanCat} from "./delight/nyanCat";
@@ -37,22 +38,26 @@ export const doAnimation = (allSettings, ref, event) => {
             }
         }
 
-        chrome.storage.sync.get('lastTwoDelightNames', previousNames => {
+        chrome.storage.sync.get('lastDelightNames', previousNames => {
             let delight = enabledDelights[(Math.floor(Math.random() * enabledDelights.length))];
 
             // Make sure the same delight doesn't happen too often (don't use the previous two delights)
-            if (enabledDelights.length > 2) {
-                while (delight.defaultName === previousNames.lastTwoDelightNames[0] || delight.defaultName === previousNames.lastTwoDelightNames[1]) {
+            if (enabledDelights.length > 3) {
+                while (delight.defaultName === previousNames.lastDelightNames[0] || delight.defaultName === previousNames.lastDelightNames[1] || delight.defaultName === previousNames.lastDelightNames[2]) {
                     delight = enabledDelights[(Math.floor(Math.random() * enabledDelights.length))];
                 }
             }
 
             chrome.storage.sync.set({
-                lastTwoDelightNames: [delight.defaultName, previousNames.lastTwoDelightNames[0]]
+                lastDelightNames: [delight.defaultName, previousNames.lastDelightNames[0]]
             }, () => {
 
                 // Call the animation
                 switch (delight.defaultName) {
+                    case 'All of the things': // If this is changed, also change the defaultName in allSettings.js
+                        getAllOfTheThings(2000, event);
+                        endAnimation(2000, ref);
+                        break;
                     case 'Baby Yoda': // If this is changed, also change the defaultName in allSettings.js
                         getBabyYoda(2000, event);
                         endAnimation(2000, ref);

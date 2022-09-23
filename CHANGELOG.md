@@ -7,6 +7,10 @@
 [comment]: <> (Fixed: any bugs fixed.)
 [comment]: <> (Security: security issues are declared here)
 
+## [1.0.4] - 2022-09-23
+### Added
+- Delight: All of the things animation
+
 ## [1.0.3] - 2022-09-19
 ### Fixed
 - Improved memory management so that delights are removed from memory quicker once they've run

@@ -1,4 +1,10 @@
 {
+  "delights_allOfTheThingsName": {
+    "message": "All of the things"
+  },
+  "delights_allOfTheThingsNameWithDescription": {
+    "message": "All of the things (based on the original image by Allie Brosh (2010))"
+  },
   "delights_confettiName": {
     "message": "Confetti Explosions"
   },

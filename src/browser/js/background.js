@@ -112,17 +112,17 @@ const chanceOfDelight = () => {
 };
 
 /**
- * Storage sync initiate last two delights if not already exists
+ * Storage sync initiate last few delights if not already exists
  */
-const lastTwoDelights = () => {
+const lastDelights = () => {
 
     // Get stored list of delights
-    chrome.storage.sync.get('lastTwoDelightNames', result => {
+    chrome.storage.sync.get('lastDelightNames', result => {
 
-        if (Object.prototype.toString.call(result.lastTwoDelightNames) !== '[object Array]') {
+        if (Object.prototype.toString.call(result.lastDelightNames) !== '[object Array]') {
             // Initiate it
             chrome.storage.sync.set({
-                lastTwoDelightNames: ['', '']
+                lastDelightNames: ['', '', '']
             });
         }
     });
@@ -151,7 +151,7 @@ const getImageData = url => fetch(url)
 enabledSites();
 enabledDelights();
 chanceOfDelight();
-lastTwoDelights();
+lastDelights();
 // Keep settings up to date
 chrome.storage.onChanged.addListener(function (changes, namespace) {
     if (typeof changes.enabledSites?.newValue !== 'undefined') {
@@ -172,6 +172,11 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     switch (request.type) {
         case 'delight':
             switch (request.delight) {
+                case "allOfTheThings":
+                    getImageData('assets/img/all-of-the-things.svg').then(dataUrl => {
+                        sendResponse({image: dataUrl});
+                    });
+                    break;
                 case "babyYoda":
                     getImageData('assets/img/baby-yoda-force.svg').then(dataUrl => {
                         sendResponse({image: dataUrl});
