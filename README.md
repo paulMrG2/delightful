@@ -30,5 +30,8 @@ Install [Delightful](https://chrome.google.com/webstore/detail/delightful/lcpnco
 - [Party Parrot](https://codepen.io/nathangath/pen/RgvzVY/) by [@nathangath](https://codepen.io/nathangath)
 - Success Kid - SVG and animation by [Paul Groth](https://github.com/paulMrG2), (original image by Laney Griner (2007))
 
+## Old tasks
+- Spider web background - SVG by [Paul Groth](https://github.com/paulMrG2)
+
 ## Watch a screen recording
 [<img src="https://img.youtube.com/vi/XHvM0rBabkA/maxresdefault.jpg" width="50%">](https://youtu.be/XHvM0rBabkA)

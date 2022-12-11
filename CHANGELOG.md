@@ -7,6 +7,12 @@
 [comment]: <> (Fixed: any bugs fixed.)
 [comment]: <> (Security: security issues are declared here)
 
+## [1.0.5] - 2022-12-11
+### Added
+- Old tasks: Spider web background
+### Fixed
+- Changed storage from synced to standard local to fix issues with multiple people using the same Google account
+
 ## [1.0.4] - 2022-09-23
 ### Added
 - Delight: All of the things animation

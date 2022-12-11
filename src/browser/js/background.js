@@ -11,7 +11,7 @@ import {allSiteSettings, allDelightSettings, chanceOfDelightSetting} from "./all
  * For testing
  * Clear all storage for this extension
  */
-//chrome.storage.sync.clear();
+//chrome.storage.local.clear();
 
 /**
  * List of settings
@@ -33,7 +33,7 @@ const settingsSyncAttempts = {
 const enabledSites = () => {
 
     // Get stored list of sites
-    chrome.storage.sync.get('enabledSites', result => {
+    chrome.storage.local.get('enabledSites', result => {
 
         if (typeof result !== 'undefined' && result.enabledSites?.sites?.length > 0) {
             // If we found the list, update the local array
@@ -63,7 +63,7 @@ const enabledSites = () => {
 const enabledDelights = () => {
 
     // Get stored list of delights
-    chrome.storage.sync.get('enabledDelights', result => {
+    chrome.storage.local.get('enabledDelights', result => {
 
         if (typeof result !== 'undefined' && result.enabledDelights?.delights?.length > 0) {
             // If we found the list, update the local array
@@ -90,7 +90,7 @@ const enabledDelights = () => {
 const chanceOfDelight = () => {
 
     // Get stored list of delights
-    chrome.storage.sync.get('chanceOfDelight', result => {
+    chrome.storage.local.get('chanceOfDelight', result => {
 
         if (typeof result !== 'undefined' && result.chanceOfDelight?.chance?.length > 0) {
             // If we found the list, update the local array
@@ -117,11 +117,11 @@ const chanceOfDelight = () => {
 const lastDelights = () => {
 
     // Get stored list of delights
-    chrome.storage.sync.get('lastDelightNames', result => {
+    chrome.storage.local.get('lastDelightNames', result => {
 
         if (Object.prototype.toString.call(result.lastDelightNames) !== '[object Array]') {
             // Initiate it
-            chrome.storage.sync.set({
+            chrome.storage.local.set({
                 lastDelightNames: ['', '', '']
             });
         }
@@ -189,6 +189,11 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
                     break;
                 case "parrot":
                     getImageData('assets/img/parrot.svg').then(dataUrl => {
+                        sendResponse({image: dataUrl});
+                    });
+                    break;
+                case "spiderWeb":
+                    getImageData('assets/img/spider-web.svg').then(dataUrl => {
                         sendResponse({image: dataUrl});
                     });
                     break;

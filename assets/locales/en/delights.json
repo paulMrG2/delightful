@@ -22,5 +22,11 @@
   },
   "delights_successKidNameWithDescription": {
     "message": "Success Kid"
+  },
+  "oldTasks_spiderWebName": {
+    "message": "Spider web"
+  },
+  "oldTasks_spiderWebNameWithDescription": {
+    "message": "Spider web background for old tasks"
   }
 }

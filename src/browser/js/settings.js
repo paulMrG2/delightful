@@ -81,7 +81,7 @@ const settings = () => {
         });
 
         // Store it
-        chrome.storage.sync.set({
+        chrome.storage.local.set({
             chanceOfDelight: {chance: allSettings.chanceOfDelight}
         });
     };
@@ -160,7 +160,7 @@ const settings = () => {
             allSettings.allSites[idx].enabled = checked;
 
             // Store it
-            chrome.storage.sync.set({
+            chrome.storage.local.set({
                 enabledSites: {sites: allSettings.allSites}
             });
         }
@@ -181,7 +181,7 @@ const settings = () => {
             allSettings.allSites[idx].statusList = value.split(',').map(status => status.trim());
 
             // Store it
-            chrome.storage.sync.set({
+            chrome.storage.local.set({
                 enabledSites: {sites: allSettings.allSites}
             });
         }
@@ -248,7 +248,7 @@ const settings = () => {
             allSettings.allDelights[idx].enabled = checked;
 
             // Store it
-            chrome.storage.sync.set({
+            chrome.storage.local.set({
                 enabledDelights: {delights: allSettings.allDelights}
             });
         }

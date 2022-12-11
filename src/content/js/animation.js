@@ -38,7 +38,7 @@ export const doAnimation = (allSettings, ref, event) => {
             }
         }
 
-        chrome.storage.sync.get('lastDelightNames', previousNames => {
+        chrome.storage.local.get('lastDelightNames', previousNames => {
             let delight = enabledDelights[(Math.floor(Math.random() * enabledDelights.length))];
 
             // Make sure the same delight doesn't happen too often (don't use the previous two delights)
@@ -48,7 +48,7 @@ export const doAnimation = (allSettings, ref, event) => {
                 }
             }
 
-            chrome.storage.sync.set({
+            chrome.storage.local.set({
                 lastDelightNames: [delight.defaultName, previousNames.lastDelightNames[0]]
             }, () => {
 

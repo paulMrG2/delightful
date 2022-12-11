@@ -89,16 +89,16 @@ if (typeof window.delightfulActivated === 'undefined') {
 
         // ClickUp board view mousedown ref
         let clickup = allSettings.allSites.map(site => site.host).indexOf('app.clickup.com');
-        if((clickup > -1) && allSettings.allSites[clickup].enabled) {
-            if(event.target.closest('.cdk-drag') !== null) {
+        if ((clickup > -1) && allSettings.allSites[clickup].enabled) {
+            if (event.target.closest('.cdk-drag') !== null) {
                 let dropList = event.target.closest('.cdk-drop-list');
-                if((dropList !== null) && (typeof dropList.dataset.status !== 'undefined')) {
+                if ((dropList !== null) && (typeof dropList.dataset.status !== 'undefined')) {
                     ref.mouseDownVal1 = dropList.dataset.status;
                 }
             }
         }
 
-        if(ref.mouseDownVal1 === null) {
+        if (ref.mouseDownVal1 === null) {
             ref.mouseDownVal1 = 'standardClickEvent';
             ref.mouseDownVal2 = event.target.className;
         }
@@ -110,7 +110,7 @@ if (typeof window.delightfulActivated === 'undefined') {
      */
     document.addEventListener('mouseup', event => {
         if (!ref.delightfulAnimationRunning && allSettings.allSites !== null) {
-            if(event.button === 0) { // Left mouse button only
+            if (event.button === 0) { // Left mouse button only
                 matchTrigger(event);
             }
         }
@@ -133,4 +133,71 @@ if (typeof window.delightfulActivated === 'undefined') {
         wrike(allSettings, ref, event);
 
     };
+
+    /**
+     * Asana - give old tasks some shame
+     * Move this to a more relevant location later
+     */
+    window.addEventListener('load', event => {
+        if (document.location.host === 'app.asana.com') {
+            const thirtyDaysInMs = 365 * 24 * 60 * 60 * 1000; // 30 days
+            let now = new Date();
+            const timestampThirtyDaysAgo = now.getTime() - thirtyDaysInMs;
+            let old = false;
+            let testPattern = /^[A-Za-z]{3} [0-9]{1,2}/g;
+            const asanaOldTaskObserver = new MutationObserver(mutations => {
+                old = false;
+                mutations.forEach(mutation => {
+                    const taskCreatedElement = mutation.target.querySelector('.TaskCreationBlockStory .BlockStory-timestamp > span');
+                    if ((taskCreatedElement !== null) && (taskCreatedElement.innerText.length > 0) && testPattern.test(taskCreatedElement.innerText) === true) {
+                        const taskCreatedText = taskCreatedElement.innerText;
+                        let theDateArray = taskCreatedText.split(', ');
+                        if (theDateArray.length === 1) { // This year
+                            theDateArray.push(now.getFullYear());
+                        }
+                        let taskCreatedDate = new Date((theDateArray.join(', ')));
+                        old = (timestampThirtyDaysAgo > taskCreatedDate.getTime());
+                    } else {
+                        const miniStory = mutation.target.querySelector('.MiniStoryActionSentence-content');
+                        if (miniStory !== null && miniStory.innerText.includes('duplicated task from')) {
+                            const duplicatedTaskCreatedElement = mutation.target.querySelector('.MiniStory-timestamp');
+                            if ((duplicatedTaskCreatedElement !== null) && (duplicatedTaskCreatedElement.innerText.length > 0) && testPattern.test(duplicatedTaskCreatedElement.innerText) === true) {
+                                const duplicatedTaskCreatedText = duplicatedTaskCreatedElement.innerText;
+                                let theDateArray = duplicatedTaskCreatedText.split(', ');
+                                if (theDateArray.length === 1) { // This year
+                                    theDateArray.push(now.getFullYear());
+                                }
+                                let taskCreatedDate = new Date((theDateArray.join(', ')));
+                                old = (timestampThirtyDaysAgo > taskCreatedDate.getTime());
+                            }
+                        }
+                    }
+                });
+                const taskPane = document.querySelector('article.TaskPane .DynamicBorderScrollable-content');
+                if (taskPane !== null) {
+                    if (old) {
+                        chrome.runtime.sendMessage({type: 'delight', delight: "spiderWeb"}, response => {
+                            taskPane.style.backgroundRepeat = 'no-repeat';
+                            taskPane.style.backgroundImage = "url('" + response.image + "')";
+                            taskPane.style.backgroundSize = '100%';
+                            const taskNameInput = document.querySelector('.BaseTextarea[aria-label="Task Name"]');
+                            if(taskNameInput !== null) {
+                                taskNameInput.style.backgroundColor = 'transparent';
+                            }
+                        });
+                    } else {
+                        taskPane.style.backgroundImage = 'none';
+                    }
+                }
+            });
+            const theNode = (document.querySelector('.FullWidthPageStructureWithDetailsOverlay-detailsOverlay') || document.querySelector('.FocusModePage-taskPane'));
+            if (theNode !== null) {
+                asanaOldTaskObserver.observe(theNode, {
+                    attributeFilter: ['data-task-id'],
+                    childList:       true,
+                    subtree:         false
+                });
+            }
+        }
+    });
 }
