@@ -31,7 +31,7 @@ Install [Delightful](https://chrome.google.com/webstore/detail/delightful/lcpnco
 - Success Kid - SVG and animation by [Paul Groth](https://github.com/paulMrG2), (original image by Laney Griner (2007))
 
 ## Old tasks
-- Spider web background - SVG by [Paul Groth](https://github.com/paulMrG2)
+- Spider web background (Asana only) - SVG by [Paul Groth](https://github.com/paulMrG2)
 
 ## Watch a screen recording
 [<img src="https://img.youtube.com/vi/XHvM0rBabkA/maxresdefault.jpg" width="50%">](https://youtu.be/XHvM0rBabkA)

@@ -140,35 +140,40 @@ if (typeof window.delightfulActivated === 'undefined') {
      */
     window.addEventListener('load', event => {
         if (document.location.host === 'app.asana.com') {
-            const thirtyDaysInMs = 365 * 24 * 60 * 60 * 1000; // 30 days
+            const thirtyDaysInMs = 30 * 24 * 60 * 60 * 1000; // 30 days
             let now = new Date();
             const timestampThirtyDaysAgo = now.getTime() - thirtyDaysInMs;
             let old = false;
-            let testPattern = /^[A-Za-z]{3} [0-9]{1,2}/g;
+            let testPattern1 = /^[A-Za-z]{3} [0-9]{1,2}/g;
+            let testPattern2 = /^[0-9]{1,2} [A-Za-z]{3}/g;
             const asanaOldTaskObserver = new MutationObserver(mutations => {
                 old = false;
                 mutations.forEach(mutation => {
                     const taskCreatedElement = mutation.target.querySelector('.TaskCreationBlockStory .BlockStory-timestamp > span');
-                    if ((taskCreatedElement !== null) && (taskCreatedElement.innerText.length > 0) && testPattern.test(taskCreatedElement.innerText) === true) {
+                    if ((taskCreatedElement !== null) && (taskCreatedElement.innerText.length > 0) && (testPattern1.test(taskCreatedElement.innerText) === true || testPattern2.test(taskCreatedElement.innerText) === true)) {
                         const taskCreatedText = taskCreatedElement.innerText;
                         let theDateArray = taskCreatedText.split(', ');
                         if (theDateArray.length === 1) { // This year
                             theDateArray.push(now.getFullYear());
                         }
                         let taskCreatedDate = new Date((theDateArray.join(', ')));
-                        old = (timestampThirtyDaysAgo > taskCreatedDate.getTime());
+                        if(!isNaN(taskCreatedDate)) {
+                            old = (timestampThirtyDaysAgo > taskCreatedDate.getTime());
+                        }
                     } else {
                         const miniStory = mutation.target.querySelector('.MiniStoryActionSentence-content');
                         if (miniStory !== null && miniStory.innerText.includes('duplicated task from')) {
                             const duplicatedTaskCreatedElement = mutation.target.querySelector('.MiniStory-timestamp');
-                            if ((duplicatedTaskCreatedElement !== null) && (duplicatedTaskCreatedElement.innerText.length > 0) && testPattern.test(duplicatedTaskCreatedElement.innerText) === true) {
+                            if ((duplicatedTaskCreatedElement !== null) && (duplicatedTaskCreatedElement.innerText.length > 0) && (testPattern1.test(duplicatedTaskCreatedElement.innerText) === true || testPattern2.test(duplicatedTaskCreatedElement.innerText) === true)) {
                                 const duplicatedTaskCreatedText = duplicatedTaskCreatedElement.innerText;
                                 let theDateArray = duplicatedTaskCreatedText.split(', ');
                                 if (theDateArray.length === 1) { // This year
                                     theDateArray.push(now.getFullYear());
                                 }
                                 let taskCreatedDate = new Date((theDateArray.join(', ')));
-                                old = (timestampThirtyDaysAgo > taskCreatedDate.getTime());
+                                if(!isNaN(taskCreatedDate)) {
+                                    old = (timestampThirtyDaysAgo > taskCreatedDate.getTime());
+                                }
                             }
                         }
                     }

@@ -7,6 +7,10 @@
 [comment]: <> (Fixed: any bugs fixed.)
 [comment]: <> (Security: security issues are declared here)
 
+## [1.0.6] - 2022-12-12
+### Fixed
+- Spider web background updated to recognise different date formats
+
 ## [1.0.5] - 2022-12-11
 ### Added
 - Old tasks: Spider web background
