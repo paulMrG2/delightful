@@ -7,6 +7,10 @@
 [comment]: <> (Fixed: any bugs fixed.)
 [comment]: <> (Security: security issues are declared here)
 
+## [1.0.7] - 2022-12-14
+### Fixed
+- Spider web functionality improved for different Asana layouts
+
 ## [1.0.6] - 2022-12-12
 ### Fixed
 - Spider web background updated to recognise different date formats
