@@ -7,6 +7,10 @@
 [comment]: <> (Fixed: any bugs fixed.)
 [comment]: <> (Security: security issues are declared here)
 
+## [1.0.8] - 2023-02-10
+### Fixed
+- Finally maybe but I really think so - I fixed the bug where settings revert to defaults!
+
 ## [1.0.7] - 2022-12-14
 ### Fixed
 - Spider web functionality improved for different Asana layouts
