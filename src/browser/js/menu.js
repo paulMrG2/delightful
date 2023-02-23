@@ -17,18 +17,14 @@ document.querySelectorAll('[data-locale]').forEach(el => {
  * Open options page
  */
 document.querySelector('.menu__buttonsButtonSettings').addEventListener('click', function() {
-    if (chrome.runtime.openOptionsPage) {
-        chrome.runtime.openOptionsPage();
-    } else {
-        let url = chrome.runtime.getURL("settings.html");
-        chrome.tabs.create({url});
-    }
+    let url = chrome.runtime.getURL("settings.html?v=" + Date.now()); // Avoid caching :|
+    chrome.tabs.create({url});
 });
 
 /**
  * Open about page
  */
 document.querySelector('.menu__buttonsButtonAbout').addEventListener('click', function() {
-    let url = chrome.runtime.getURL("about.html");
+    let url = chrome.runtime.getURL("about.html?v=" + Date.now()); // Avoid caching
     chrome.tabs.create({url});
 });

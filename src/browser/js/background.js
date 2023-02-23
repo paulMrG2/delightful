@@ -7,7 +7,7 @@
  */
 import {allSiteSettings, allDelightSettings, chanceOfDelightSetting} from "./allSettings";
 
-(async () => {
+(() => {
     /**
      * For testing
      * Clear all storage for this extension
@@ -18,9 +18,9 @@ import {allSiteSettings, allDelightSettings, chanceOfDelightSetting} from "./all
      * List of settings
      */
     const allSettings = {
-        allSites:        [],
-        allDelights:     [],
-        chanceOfDelight: []
+        allSites:        [...allSiteSettings],
+        allDelights:     [...allDelightSettings],
+        chanceOfDelight: [...chanceOfDelightSetting]
     };
     const settingsSyncAttempts = {
         allSites:        0,
@@ -31,10 +31,10 @@ import {allSiteSettings, allDelightSettings, chanceOfDelightSetting} from "./all
     /**
      * Storage sync enabled sites
      */
-    const enabledSites = async () => {
+    const enabledSites = () => {
 
         // Get stored list of sites
-        await chrome.storage.local.get('enabledSites', result => {
+        chrome.storage.local.get('enabledSites', result => {
 
             if (typeof result !== 'undefined' && result.enabledSites?.sites?.length > 0) {
                 // If we found the list, update the local array
@@ -52,6 +52,8 @@ import {allSiteSettings, allDelightSettings, chanceOfDelightSetting} from "./all
                     if (settingsSyncAttempts.allSites < 5) {
                         settingsSyncAttempts.allSites++;
                         enabledSites();
+                    } else {
+                        allSettings.allSites = [...allSiteSettings];
                     }
                 }, 5000);
             }
@@ -61,10 +63,10 @@ import {allSiteSettings, allDelightSettings, chanceOfDelightSetting} from "./all
     /**
      * Storage sync enabled delights
      */
-    const enabledDelights = async () => {
+    const enabledDelights = () => {
 
         // Get stored list of delights
-        await chrome.storage.local.get('enabledDelights', result => {
+        chrome.storage.local.get('enabledDelights', result => {
 
             if (typeof result !== 'undefined' && result.enabledDelights?.delights?.length > 0) {
                 // If we found the list, update the local array
@@ -79,6 +81,8 @@ import {allSiteSettings, allDelightSettings, chanceOfDelightSetting} from "./all
                     if (settingsSyncAttempts.allDelights < 5) {
                         settingsSyncAttempts.allDelights++;
                         enabledDelights();
+                    } else {
+                        allSettings.allSites = [...allDelightSettings];
                     }
                 }, 5000);
             }
@@ -88,10 +92,10 @@ import {allSiteSettings, allDelightSettings, chanceOfDelightSetting} from "./all
     /**
      * Storage sync chance of delight
      */
-    const chanceOfDelight = async () => {
+    const chanceOfDelight = () => {
 
         // Get stored list of delights
-        await chrome.storage.local.get('chanceOfDelight', result => {
+        chrome.storage.local.get('chanceOfDelight', result => {
 
             if (typeof result !== 'undefined' && result.chanceOfDelight?.chance?.length > 0) {
                 // If we found the list, update the local array
@@ -105,7 +109,9 @@ import {allSiteSettings, allDelightSettings, chanceOfDelightSetting} from "./all
                 setTimeout(() => {
                     if (settingsSyncAttempts.chanceOfDelight < 5) {
                         settingsSyncAttempts.chanceOfDelight++;
-                        enabledDelights();
+                        chanceOfDelight();
+                    } else {
+                        allSettings.allSites = [...chanceOfDelightSetting];
                     }
                 }, 5000);
             }
@@ -115,10 +121,10 @@ import {allSiteSettings, allDelightSettings, chanceOfDelightSetting} from "./all
     /**
      * Storage sync initiate last few delights if not already exists
      */
-    const lastDelights = async () => {
+    const lastDelights = () => {
 
         // Get stored list of delights
-        await chrome.storage.local.get('lastDelightNames', result => {
+        chrome.storage.local.get('lastDelightNames', result => {
 
             if (Object.prototype.toString.call(result.lastDelightNames) !== '[object Array]') {
                 // Initiate it
@@ -134,22 +140,10 @@ import {allSiteSettings, allDelightSettings, chanceOfDelightSetting} from "./all
      * - Get existing lists of sites and delights
      * - Update them with any new ones
      */
-    await enabledSites();
-    await enabledDelights();
-    await chanceOfDelight();
-    await lastDelights();
-
-    if (allSettings.allSites.length === 0) {
-        allSettings.allSites = [...allSiteSettings];
-    }
-
-    if (allSettings.allDelights.length === 0) {
-        allSettings.allDelights = [...allDelightSettings];
-    }
-
-    if (allSettings.chanceOfDelight.length === 0) {
-        allSettings.chanceOfDelight = [...chanceOfDelightSetting];
-    }
+    enabledSites();
+    enabledDelights();
+    chanceOfDelight();
+    lastDelights();
 
     /**
      * Read image file and return base64 encoded data url
