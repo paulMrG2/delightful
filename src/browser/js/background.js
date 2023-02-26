@@ -82,7 +82,7 @@ import {allSiteSettings, allDelightSettings, chanceOfDelightSetting} from "./all
                         settingsSyncAttempts.allDelights++;
                         enabledDelights();
                     } else {
-                        allSettings.allSites = [...allDelightSettings];
+                        allSettings.allDelights = [...allDelightSettings];
                     }
                 }, 5000);
             }
@@ -111,7 +111,7 @@ import {allSiteSettings, allDelightSettings, chanceOfDelightSetting} from "./all
                         settingsSyncAttempts.chanceOfDelight++;
                         chanceOfDelight();
                     } else {
-                        allSettings.allSites = [...chanceOfDelightSetting];
+                        allSettings.chanceOfDelight = [...chanceOfDelightSetting];
                     }
                 }, 5000);
             }

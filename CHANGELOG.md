@@ -7,6 +7,10 @@
 [comment]: <> (Fixed: any bugs fixed.)
 [comment]: <> (Security: security issues are declared here)
 
+## [1.1.1] - 2023-02-23
+### Fixed
+- Additional correction for the settings bug.
+
 ## [1.1.0] - 2023-02-26
 ### Added
 - Monday.com: Trigger for completing a task - currently not available for kanban drag and drop.
