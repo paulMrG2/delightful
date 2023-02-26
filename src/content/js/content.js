@@ -10,9 +10,11 @@ import {asana} from "./trigger/asana";
 import {clickup} from "./trigger/clickup";
 import {github} from "./trigger/github";
 import {jira} from "./trigger/jira";
+import {monday} from "./trigger/monday";
 import {todoist} from "./trigger/todoist";
 import {trello} from "./trigger/trello";
 import {wrike} from "./trigger/wrike";
+
 import {asanaSpiderWeb} from "./extras/asanaSpiderWeb";
 
 if (typeof window.delightfulActivated === 'undefined') {
@@ -29,7 +31,8 @@ if (typeof window.delightfulActivated === 'undefined') {
      */
     const ref = {
         delightfulAnimationRunning: false,
-        mouseDownVal:               null
+        mouseDownVal1:              null,
+        mouseDownVal2:              null
     };
 
     /**
@@ -129,6 +132,7 @@ if (typeof window.delightfulActivated === 'undefined') {
         clickup(allSettings, ref, event);
         github(allSettings, ref, event);
         jira(allSettings, ref, event);
+        monday(allSettings, ref, event);
         todoist(allSettings, ref, event);
         trello(allSettings, ref, event);
         wrike(allSettings, ref, event);

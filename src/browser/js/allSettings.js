@@ -55,6 +55,16 @@ export const allSiteSettings = [
         statusList:             ["Done"]
     },
     {
+        defaultName:            "Monday.com",
+        defaultNameWithTrigger: "Monday (when you mark a task as <status name>)",
+        enabled:                true,
+        host:                   "*.monday.com",
+        i18nName:               "sites_mondayName",
+        i18nNameWithTrigger:    "sites_mondayNameWithTrigger",
+        id:                     "delightful_sites_monday",
+        statusList:             ["Done"]
+    },
+    {
         defaultName:            "Todoist",
         defaultNameWithTrigger: "Todoist (when you complete a task)",
         enabled:                true,

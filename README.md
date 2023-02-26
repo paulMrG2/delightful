@@ -18,6 +18,7 @@ Install [Delightful](https://chrome.google.com/webstore/detail/delightful/lcpnco
 - **ClickUp** (when you complete a task or subtask)
 - **Github** (when you mark an issue as \<status name\>) _define your own status names_
 - **Jira** (when you mark an issue as \<status name\>)  _define your own status names_ (*.jira.com & *.atlassian.net)
+- **Monday.com** (when you mark a task as \<status name\>)  _define your own status names_
 - **Todoist** (when you complete a task)
 - **Trello** (when you drop a card on a list named \<list name\>) _define your own list names_
 - **Wrike** (when you complete a task)

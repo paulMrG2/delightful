@@ -18,6 +18,8 @@ export const delightContainer = options => {
     container.style.pointerEvents = 'none';
     container.style.position = (typeof options.position !== 'undefined' ? options.position : 'fixed');
     container.style.width = (typeof options.width !== 'undefined' ? options.width : '100%');
-    container.style.zIndex = (typeof options.zIndex !== 'undefined' ? options.zIndex : '40001'); // One more to beat Wrike (dear o dear Wrike, 40000 is just wrong)
+    // zIndex was 40001 which was one more to beat Wrike (dear o dear Wrike, 40000 is just wrong)
+    // it's now 100000000 to beat the 99999999 of monday.com by one :| that's just... no, come on!
+    container.style.zIndex = (typeof options.zIndex !== 'undefined' ? options.zIndex : '100000000');
     return container;
 }

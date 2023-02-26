@@ -29,6 +29,12 @@
   "sites_jiraNameWithTrigger": {
     "message": "Jira (when you mark an issue as <status name>) Comma-separated list of status names to trigger animation - no drag/drop Kanban trigger"
   },
+  "sites_mondayName": {
+    "message": "Monday.com"
+  },
+  "sites_mondayNameWithTrigger": {
+    "message": "Monday.com (when you mark a task as <status name>) Comma-separated list of status names to trigger animation - no drag/drop Kanban trigger"
+  },
   "sites_todoistName": {
     "message": "Todoist"
   },
