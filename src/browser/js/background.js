@@ -31,108 +31,104 @@ import {allSiteSettings, allDelightSettings, chanceOfDelightSetting} from "./all
     /**
      * Storage sync enabled sites
      */
-    const enabledSites = () => {
+    const enabledSites = async () => {
 
         // Get stored list of sites
-        chrome.storage.local.get('enabledSites', result => {
+        const result = await chrome.storage.local.get('enabledSites');
 
-            if (typeof result !== 'undefined' && result.enabledSites?.sites?.length > 0) {
-                // If we found the list, update the local array
-                result.enabledSites.sites.map(site => {
-                    let idx = allSettings.allSites.map(as => as.defaultName).indexOf(site.defaultName);
-                    if (idx > -1) {
-                        allSettings.allSites[idx].enabled = site.enabled;
-                        if (typeof site.statusList !== 'undefined') {
-                            allSettings.allSites[idx].statusList = site.statusList;
-                        }
+        if (typeof result !== 'undefined' && result.enabledSites?.sites?.length > 0) {
+            // If we found the list, update the local array
+            result.enabledSites.sites.map(site => {
+                let idx = allSettings.allSites.map(as => as.defaultName).indexOf(site.defaultName);
+                if (idx > -1) {
+                    allSettings.allSites[idx].enabled = site.enabled;
+                    if (typeof site.statusList !== 'undefined') {
+                        allSettings.allSites[idx].statusList = site.statusList;
                     }
-                });
-            } else {
-                setTimeout(() => {
-                    if (settingsSyncAttempts.allSites < 5) {
-                        settingsSyncAttempts.allSites++;
-                        enabledSites();
-                    } else {
-                        allSettings.allSites = [...allSiteSettings];
-                    }
-                }, 5000);
-            }
-        });
+                }
+            });
+        } else {
+            setTimeout(() => {
+                if (settingsSyncAttempts.allSites < 5) {
+                    settingsSyncAttempts.allSites++;
+                    enabledSites();
+                } else {
+                    allSettings.allSites = [...allSiteSettings];
+                }
+            }, 5000);
+        }
     };
 
     /**
      * Storage sync enabled delights
      */
-    const enabledDelights = () => {
+    const enabledDelights = async () => {
 
         // Get stored list of delights
-        chrome.storage.local.get('enabledDelights', result => {
+        const result = await chrome.storage.local.get('enabledDelights');
 
-            if (typeof result !== 'undefined' && result.enabledDelights?.delights?.length > 0) {
-                // If we found the list, update the local array
-                result.enabledDelights.delights.map(delight => {
-                    let idx = allSettings.allDelights.map(as => as.defaultName).indexOf(delight.defaultName);
-                    if (idx > -1) {
-                        allSettings.allDelights[idx].enabled = delight.enabled;
-                    }
-                });
-            } else {
-                setTimeout(() => {
-                    if (settingsSyncAttempts.allDelights < 5) {
-                        settingsSyncAttempts.allDelights++;
-                        enabledDelights();
-                    } else {
-                        allSettings.allDelights = [...allDelightSettings];
-                    }
-                }, 5000);
-            }
-        });
+        if (typeof result !== 'undefined' && result.enabledDelights?.delights?.length > 0) {
+            // If we found the list, update the local array
+            result.enabledDelights.delights.map(delight => {
+                let idx = allSettings.allDelights.map(as => as.defaultName).indexOf(delight.defaultName);
+                if (idx > -1) {
+                    allSettings.allDelights[idx].enabled = delight.enabled;
+                }
+            });
+        } else {
+            setTimeout(() => {
+                if (settingsSyncAttempts.allDelights < 5) {
+                    settingsSyncAttempts.allDelights++;
+                    enabledDelights();
+                } else {
+                    allSettings.allDelights = [...allDelightSettings];
+                }
+            }, 5000);
+        }
     };
 
     /**
      * Storage sync chance of delight
      */
-    const chanceOfDelight = () => {
+    const chanceOfDelight = async () => {
 
         // Get stored list of delights
-        chrome.storage.local.get('chanceOfDelight', result => {
+        const result = await chrome.storage.local.get('chanceOfDelight');
 
-            if (typeof result !== 'undefined' && result.chanceOfDelight?.chance?.length > 0) {
-                // If we found the list, update the local array
-                result.chanceOfDelight.chance.map(chance => {
-                    let idx = allSettings.chanceOfDelight.map(cd => cd.defaultName).indexOf(chance.defaultName);
-                    if (idx > -1) {
-                        allSettings.chanceOfDelight[idx].selected = chance.selected;
-                    }
-                });
-            } else {
-                setTimeout(() => {
-                    if (settingsSyncAttempts.chanceOfDelight < 5) {
-                        settingsSyncAttempts.chanceOfDelight++;
-                        chanceOfDelight();
-                    } else {
-                        allSettings.chanceOfDelight = [...chanceOfDelightSetting];
-                    }
-                }, 5000);
-            }
-        });
+        if (typeof result !== 'undefined' && result.chanceOfDelight?.chance?.length > 0) {
+            // If we found the list, update the local array
+            result.chanceOfDelight.chance.map(chance => {
+                let idx = allSettings.chanceOfDelight.map(cd => cd.defaultName).indexOf(chance.defaultName);
+                if (idx > -1) {
+                    allSettings.chanceOfDelight[idx].selected = chance.selected;
+                }
+            });
+        } else {
+            setTimeout(() => {
+                if (settingsSyncAttempts.chanceOfDelight < 5) {
+                    settingsSyncAttempts.chanceOfDelight++;
+                    chanceOfDelight();
+                } else {
+                    allSettings.chanceOfDelight = [...chanceOfDelightSetting];
+                }
+            }, 5000);
+        }
     };
 
     /**
      * Storage sync initiate last few delights if not already exists
      */
-    const lastDelights = () => {
+    const lastDelights = async () => {
 
         // Get stored list of delights
-        chrome.storage.local.get('lastDelightNames', result => {
+        const result = await chrome.storage.local.get('lastDelightNames');
 
-            if (Object.prototype.toString.call(result.lastDelightNames) !== '[object Array]') {
-                // Initiate it
-                chrome.storage.local.set({
-                    lastDelightNames: ['', '', '']
-                });
-            }
-        });
+        if (Object.prototype.toString.call(result.lastDelightNames) !== '[object Array]') {
+            // Initiate it
+            chrome.storage.local.set({
+                lastDelightNames: ['', '', '']
+            });
+        }
     };
 
     /**
@@ -140,10 +136,14 @@ import {allSiteSettings, allDelightSettings, chanceOfDelightSetting} from "./all
      * - Get existing lists of sites and delights
      * - Update them with any new ones
      */
-    enabledSites();
-    enabledDelights();
-    chanceOfDelight();
-    lastDelights();
+    const constructor = async () => {
+        await enabledSites();
+        await enabledDelights();
+        await chanceOfDelight();
+        await lastDelights();
+    }
+
+    constructor();
 
     /**
      * Read image file and return base64 encoded data url

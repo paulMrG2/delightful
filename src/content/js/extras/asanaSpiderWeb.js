@@ -6,7 +6,7 @@
  * @author Paul Groth (https://github.com/paulMrG2)
  *
  * Sources used
- * Original photo
+ * Original photo of web by Paul Groth
  */
 
 const ref = {
@@ -21,12 +21,15 @@ export const asanaSpiderWeb = () => {
         ref.asanaLoadObserver = new MutationObserver(() => {
             spiderWeb();
         });
+
         const asanaMainPage = document.getElementById('asana_main_page');
-        ref.asanaLoadObserver.observe(asanaMainPage, {
-            attributeFilter: ['class'],
-            childList:       true,
-            subtree:         false
-        });
+        if(asanaMainPage) {
+            ref.asanaLoadObserver.observe(asanaMainPage, {
+                attributeFilter: ['class'],
+                childList:       true,
+                subtree:         false
+            });
+        }
     });
 };
 
@@ -36,12 +39,14 @@ const spiderWeb = () => {
         ref.asanaOldTaskObserver = null;
     }
     ref.asanaOldTaskPage = null;
-    const thirtyDaysInMs = 90 * 24 * 60 * 60 * 1000; // 90 days
+
+    const daysInMs = 90 * 24 * 60 * 60 * 1000; // 90 days
     let now = new Date();
-    const timestampThirtyDaysAgo = now.getTime() - thirtyDaysInMs;
+    const timestampNDaysAgo = now.getTime() - daysInMs;
     let old = false;
     let testPattern1 = /^[A-Za-z]{3} [0-9]{1,2}/g;
     let testPattern2 = /^[0-9]{1,2} [A-Za-z]{3}/g;
+
     ref.asanaOldTaskObserver = new MutationObserver(mutations => {
         old = false;
         mutations.forEach(mutation => {
@@ -54,7 +59,7 @@ const spiderWeb = () => {
                 }
                 let taskCreatedDate = new Date((theDateArray.join(', ')));
                 if (!isNaN(taskCreatedDate)) {
-                    old = (timestampThirtyDaysAgo > taskCreatedDate.getTime());
+                    old = (timestampNDaysAgo > taskCreatedDate.getTime());
                 }
             } else {
                 const miniStory = mutation.target.querySelector('.MiniStoryActionSentence-content');
@@ -68,22 +73,29 @@ const spiderWeb = () => {
                         }
                         let taskCreatedDate = new Date((theDateArray.join(', ')));
                         if (!isNaN(taskCreatedDate)) {
-                            old = (timestampThirtyDaysAgo > taskCreatedDate.getTime());
+                            old = (timestampNDaysAgo > taskCreatedDate.getTime());
                         }
                     }
                 }
             }
         });
-        const taskPane = document.querySelector('article.TaskPane .DynamicBorderScrollable-content');
+
+        const taskPane = document.querySelector('div.TaskPane .DynamicBorderScrollable-content');
         if (taskPane !== null) {
             if (old) {
                 chrome.runtime.sendMessage({type: 'delight', delight: "spiderWeb"}, response => {
                     taskPane.style.backgroundRepeat = 'no-repeat';
                     taskPane.style.backgroundImage = "url('" + response.image + "')";
                     taskPane.style.backgroundSize = '100%';
+                    // Remove background of the title
                     const taskNameInput = document.querySelector('.BaseTextarea[aria-label="Task Name"]');
                     if (taskNameInput !== null) {
                         taskNameInput.style.backgroundColor = 'transparent';
+                    }
+                    // Remove background of the description
+                    const taskDescriptionInput = document.querySelector('#TaskDescriptionView');
+                    if (taskDescriptionInput !== null) {
+                        taskDescriptionInput.style.backgroundColor = 'transparent';
                     }
                 });
             } else {
@@ -91,20 +103,21 @@ const spiderWeb = () => {
             }
         }
     });
+
     setTimeout(() => {
-    const theNode = (document.querySelector('.FullWidthPageStructureWithDetailsOverlay-detailsOverlay') || document.querySelector('.FocusModePage-taskPane'));
-    if (theNode !== null) {
-        if (theNode.className.includes('FullWidthPageStructureWithDetailsOverlay-detailsOverlay')) {
-            ref.asanaOldTaskPage = 'MyTasksPage';
+        const theNode = (document.querySelector('.FullWidthPageStructureWithDetailsOverlay-detailsOverlay') || document.querySelector('.FocusModePage-taskPane'));
+        if (theNode !== null) {
+            if (theNode.className.includes('FullWidthPageStructureWithDetailsOverlay-detailsOverlay')) {
+                ref.asanaOldTaskPage = 'MyTasksPage';
+            }
+            if (theNode.className.includes('FocusModePage-taskPane')) {
+                ref.asanaOldTaskPage = 'ProjectPage';
+            }
+            ref.asanaOldTaskObserver.observe(theNode, {
+                attributeFilter: ['data-task-id'],
+                childList:       true,
+                subtree:         false
+            });
         }
-        if (theNode.className.includes('FocusModePage-taskPane')) {
-            ref.asanaOldTaskPage = 'ProjectPage';
-        }
-        ref.asanaOldTaskObserver.observe(theNode, {
-            attributeFilter: ['data-task-id'],
-            childList:       true,
-            subtree:         false
-        });
-    }
     }, 3000);
 };

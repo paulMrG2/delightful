@@ -7,6 +7,10 @@
 [comment]: <> (Fixed: any bugs fixed.)
 [comment]: <> (Security: security issues are declared here)
 
+## [1.1.2] - 2023-09-11
+### Fixed
+- Fixed the settings bug where they sometimes revert to default values. 99.9 percent sure it's fixed this time.
+
 ## [1.1.1] - 2023-02-23
 ### Fixed
 - Additional correction for the settings bug.
