@@ -5,241 +5,94 @@
  *
  * @author Paul Groth (https://github.com/paulMrG2)
  */
-import {allSiteSettings, allDelightSettings, chanceOfDelightSetting} from "./allSettings";
 
-(() => {
-    /**
-     * For testing
-     * Clear all storage for this extension
-     */
-    //chrome.storage.local.clear();
+/**
+ * For testing
+ * Clear all storage for this extension
+ */
+//chrome.storage.local.clear();
 
-    /**
-     * List of settings
-     */
-    const allSettings = {
-        allSites:        [...allSiteSettings],
-        allDelights:     [...allDelightSettings],
-        chanceOfDelight: [...chanceOfDelightSetting]
-    };
-    const settingsSyncAttempts = {
-        allSites:        0,
-        allDelights:     0,
-        chanceOfDelight: 0
+/**
+ * Storage sync initiate last few delights if not already exists
+ */
+const lastDelights = async () => {
+
+    // Get stored list of delights
+    const result = await chrome.storage.local.get('lastDelightNames');
+
+    if (Object.prototype.toString.call(result.lastDelightNames) !== '[object Array]') {
+        // Initiate it
+        chrome.storage.local.set({
+            lastDelightNames: ['', '', '']
+        });
     }
+};
 
-    /**
-     * Storage sync enabled sites
-     */
-    const enabledSites = async () => {
+/**
+ * Read image file and return base64 encoded data url
+ *
+ * @param url
+ * @returns {Promise<unknown>}
+ */
+const getImageData = url => fetch(url)
+    .then(response => response.blob())
+    .then(blob => new Promise((resolve, reject) => {
+        const reader = new FileReader()
+        reader.onloadend = () => resolve(reader.result)
+        reader.onerror = reject
+        reader.readAsDataURL(blob)
+    }));
 
-        // Get stored list of sites
-        const result = await chrome.storage.local.get('enabledSites');
-
-        if (typeof result !== 'undefined' && result.enabledSites?.sites?.length > 0) {
-            // If we found the list, update the local array
-            result.enabledSites.sites.map(site => {
-                let idx = allSettings.allSites.map(as => as.defaultName).indexOf(site.defaultName);
-                if (idx > -1) {
-                    allSettings.allSites[idx].enabled = site.enabled;
-                    if (typeof site.statusList !== 'undefined') {
-                        allSettings.allSites[idx].statusList = site.statusList;
-                    }
-                }
-            });
-        } else {
-            setTimeout(() => {
-                if (settingsSyncAttempts.allSites < 5) {
-                    settingsSyncAttempts.allSites++;
-                    enabledSites();
-                } else {
-                    allSettings.allSites = [...allSiteSettings];
-                }
-            }, 5000);
-        }
-    };
-
-    /**
-     * Storage sync enabled delights
-     */
-    const enabledDelights = async () => {
-
-        // Get stored list of delights
-        const result = await chrome.storage.local.get('enabledDelights');
-
-        if (typeof result !== 'undefined' && result.enabledDelights?.delights?.length > 0) {
-            // If we found the list, update the local array
-            result.enabledDelights.delights.map(delight => {
-                let idx = allSettings.allDelights.map(as => as.defaultName).indexOf(delight.defaultName);
-                if (idx > -1) {
-                    allSettings.allDelights[idx].enabled = delight.enabled;
-                }
-            });
-        } else {
-            setTimeout(() => {
-                if (settingsSyncAttempts.allDelights < 5) {
-                    settingsSyncAttempts.allDelights++;
-                    enabledDelights();
-                } else {
-                    allSettings.allDelights = [...allDelightSettings];
-                }
-            }, 5000);
-        }
-    };
-
-    /**
-     * Storage sync chance of delight
-     */
-    const chanceOfDelight = async () => {
-
-        // Get stored list of delights
-        const result = await chrome.storage.local.get('chanceOfDelight');
-
-        if (typeof result !== 'undefined' && result.chanceOfDelight?.chance?.length > 0) {
-            // If we found the list, update the local array
-            result.chanceOfDelight.chance.map(chance => {
-                let idx = allSettings.chanceOfDelight.map(cd => cd.defaultName).indexOf(chance.defaultName);
-                if (idx > -1) {
-                    allSettings.chanceOfDelight[idx].selected = chance.selected;
-                }
-            });
-        } else {
-            setTimeout(() => {
-                if (settingsSyncAttempts.chanceOfDelight < 5) {
-                    settingsSyncAttempts.chanceOfDelight++;
-                    chanceOfDelight();
-                } else {
-                    allSettings.chanceOfDelight = [...chanceOfDelightSetting];
-                }
-            }, 5000);
-        }
-    };
-
-    /**
-     * Storage sync initiate last few delights if not already exists
-     */
-    const lastDelights = async () => {
-
-        // Get stored list of delights
-        const result = await chrome.storage.local.get('lastDelightNames');
-
-        if (Object.prototype.toString.call(result.lastDelightNames) !== '[object Array]') {
-            // Initiate it
-            chrome.storage.local.set({
-                lastDelightNames: ['', '', '']
-            });
-        }
-    };
-
-    /**
-     * Constructor
-     * - Get existing lists of sites and delights
-     * - Update them with any new ones
-     */
-    const constructor = async () => {
-        await enabledSites();
-        await enabledDelights();
-        await chanceOfDelight();
-        await lastDelights();
+/**
+ * Receive and respond to requests from the front end
+ */
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    switch (request.type) {
+        case 'delight':
+            switch (request.delight) {
+                case "allOfTheThings":
+                    getImageData('assets/img/all-of-the-things.svg').then(dataUrl => {
+                        sendResponse({image: dataUrl});
+                    });
+                    break;
+                case "babyYoda":
+                    getImageData('assets/img/baby-yoda-force.svg').then(dataUrl => {
+                        sendResponse({image: dataUrl});
+                    });
+                    break;
+                case "nyanCat":
+                    getImageData('assets/img/nyan-cat.svg').then(dataUrl => {
+                        sendResponse({image: dataUrl});
+                    });
+                    break;
+                case "parrot":
+                    getImageData('assets/img/parrot.svg').then(dataUrl => {
+                        sendResponse({image: dataUrl});
+                    });
+                    break;
+                case "spiderWeb":
+                    getImageData('assets/img/spider-web.svg').then(dataUrl => {
+                        sendResponse({image: dataUrl});
+                    });
+                    break;
+                case "successKid":
+                    getImageData('assets/img/success-kid.svg').then(dataUrl => {
+                        sendResponse({image: dataUrl});
+                    });
+                    break;
+            }
+            break;
     }
+    // Return true here to keep connection open during async calls
+    return true;
+});
 
-    constructor();
-
-    /**
-     * Read image file and return base64 encoded data url
-     *
-     * @param url
-     * @returns {Promise<unknown>}
-     */
-    const getImageData = url => fetch(url)
-        .then(response => response.blob())
-        .then(blob => new Promise((resolve, reject) => {
-            const reader = new FileReader()
-            reader.onloadend = () => resolve(reader.result)
-            reader.onerror = reject
-            reader.readAsDataURL(blob)
-        }));
-
-    // Keep settings up to date
-    chrome.storage.onChanged.addListener(function (changes, namespace) {
-        if (typeof changes.enabledSites?.newValue !== 'undefined') {
-            allSettings.allSites = changes.enabledSites.newValue.sites;
-        }
-        if (typeof changes.enabledDelights?.newValue !== 'undefined') {
-            allSettings.allDelights = changes.enabledDelights.newValue.delights;
-        }
-        if (typeof changes.chanceOfDelight?.newValue !== 'undefined') {
-            allSettings.chanceOfDelight = changes.chanceOfDelight.newValue.chance;
-        }
-    });
-
-    /**
-     * Receive and respond to requests from the front end
-     */
-    chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-        switch (request.type) {
-            case 'delight':
-                switch (request.delight) {
-                    case "allOfTheThings":
-                        getImageData('assets/img/all-of-the-things.svg').then(dataUrl => {
-                            sendResponse({image: dataUrl});
-                        });
-                        break;
-                    case "babyYoda":
-                        getImageData('assets/img/baby-yoda-force.svg').then(dataUrl => {
-                            sendResponse({image: dataUrl});
-                        });
-                        break;
-                    case "nyanCat":
-                        getImageData('assets/img/nyan-cat.svg').then(dataUrl => {
-                            sendResponse({image: dataUrl});
-                        });
-                        break;
-                    case "parrot":
-                        getImageData('assets/img/parrot.svg').then(dataUrl => {
-                            sendResponse({image: dataUrl});
-                        });
-                        break;
-                    case "spiderWeb":
-                        getImageData('assets/img/spider-web.svg').then(dataUrl => {
-                            sendResponse({image: dataUrl});
-                        });
-                        break;
-                    case "successKid":
-                        getImageData('assets/img/success-kid.svg').then(dataUrl => {
-                            sendResponse({image: dataUrl});
-                        });
-                        break;
-                }
-                break;
-            case 'allSettings':
-                sendResponse({
-                    allSites:        allSettings.allSites,
-                    allDelights:     allSettings.allDelights,
-                    chanceOfDelight: allSettings.chanceOfDelight
-                });
-                break;
-            case 'allSites':
-                sendResponse(allSettings.allSites);
-                break;
-            case 'allDelights':
-                sendResponse(allSettings.allDelights);
-                break;
-            case 'chanceOfDelight':
-                sendResponse(allSettings.chanceOfDelight);
-                break;
-        }
-        // Return true here to keep connection open during async calls
-        return true;
-    });
-
-    /**
-     * Show welcome/changes pages for new install/updated
-     */
-    chrome.runtime.onInstalled.addListener(details => {
-        if (details.reason === 'install') {
-            let url = chrome.runtime.getURL("about.html");
-            chrome.tabs.create({url});
-        }
-    });
-})();
+/**
+ * Show welcome/changes pages for new install/updated
+ */
+chrome.runtime.onInstalled.addListener(details => {
+    if (details.reason === 'install') {
+        let url = chrome.runtime.getURL("about.html");
+        chrome.tabs.create({url});
+    }
+});

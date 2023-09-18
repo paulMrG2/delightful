@@ -5,7 +5,7 @@
  *
  * @author Paul Groth (https://github.com/paulMrG2)
  */
-export const allSiteSettings = [
+const allSiteSettings = [
     {
         defaultName:            "Asana",
         defaultNameWithTrigger: "Asana (when you complete a task or subtask)",
@@ -94,7 +94,7 @@ export const allSiteSettings = [
     }
 ];
 
-export const allDelightSettings = [
+const allDelightSettings = [
     {
         defaultName:                "All of the things", // If this is changed, also change the case for switch(delight.defaultName){} in content.js
         defaultNameWithDescription: "All of the things meme",
@@ -145,7 +145,7 @@ export const allDelightSettings = [
     }
 ];
 
-export const chanceOfDelightSetting = [
+const chanceOfDelightSetting = [
     {
         defaultName: "ALL OF THE THINGS!",
         i18nName:    "chance_allOfTheThings",
@@ -177,3 +177,51 @@ export const chanceOfDelightSetting = [
         value:       0
     }
 ];
+
+export const loadSettings = async () => {
+    const allSettings = {
+        allSites:         JSON.parse(JSON.stringify(allSiteSettings)),
+        allDelights:      JSON.parse(JSON.stringify(allDelightSettings)),
+        chanceOfDelight:  JSON.parse(JSON.stringify(chanceOfDelightSetting)),
+        lastDelightNames: ['', '', '']
+    };
+
+    // Get stored list of sites
+    const resultEnabledSites = await chrome.storage.local.get('enabledSites');
+    if (resultEnabledSites.enabledSites?.sites?.length > 0) {
+        // If we found the list, update the local array
+        resultEnabledSites.enabledSites.sites.map(site => {
+            let idx = allSettings.allSites.map(as => as.defaultName).indexOf(site.defaultName);
+            if (idx > -1) {
+                allSettings.allSites[idx].enabled = site.enabled;
+                if (typeof site.statusList !== 'undefined') {
+                    allSettings.allSites[idx].statusList = site.statusList;
+                }
+            }
+        });
+    }
+
+    // Get stored list of delights
+    const resultEnabledDelights = await chrome.storage.local.get('enabledDelights');
+    if (resultEnabledDelights.enabledDelights?.delights?.length > 0) {
+        // If we found the list, update the local array
+        resultEnabledDelights.enabledDelights.delights.map(delight => {
+            let idx = allSettings.allDelights.map(as => as.defaultName).indexOf(delight.defaultName);
+            if (idx > -1) {
+                allSettings.allDelights[idx].enabled = delight.enabled;
+            }
+        });
+    }
+
+    // Get stored list of delights
+    const resultChanceOfDelight = await chrome.storage.local.get('chanceOfDelight');
+    if (resultChanceOfDelight.chanceOfDelight?.chance?.length > 0) {
+        // If we found the list, update the local array
+        resultChanceOfDelight.chanceOfDelight.chance.map(chance => {
+            let idx = allSettings.chanceOfDelight.map(cd => cd.defaultName).indexOf(chance.defaultName);
+            if (idx > -1) {
+                allSettings.chanceOfDelight[idx].selected = chance.selected;
+            }
+        });
+    }
+}
