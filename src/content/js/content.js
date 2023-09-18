@@ -153,6 +153,7 @@ if (typeof window.delightfulActivated === 'undefined') {
 
 
 // Keep settings up to date
+/*
 chrome.storage.onChanged.addListener(function (changes, namespace) {
     if (typeof changes.enabledSites?.newValue !== 'undefined') {
         allSettings.allSites = changes.enabledSites.newValue.sites;
@@ -164,3 +165,4 @@ chrome.storage.onChanged.addListener(function (changes, namespace) {
         allSettings.chanceOfDelight = changes.chanceOfDelight.newValue.chance;
     }
 });
+*/
