@@ -182,8 +182,7 @@ export const loadSettings = async () => {
     const allSettings = {
         allSites:         JSON.parse(JSON.stringify(allSiteSettings)),
         allDelights:      JSON.parse(JSON.stringify(allDelightSettings)),
-        chanceOfDelight:  JSON.parse(JSON.stringify(chanceOfDelightSetting)),
-        lastDelightNames: ['', '', '']
+        chanceOfDelight:  JSON.parse(JSON.stringify(chanceOfDelightSetting))
     };
 
     // Get stored list of sites
@@ -224,4 +223,6 @@ export const loadSettings = async () => {
             }
         });
     }
+
+    return allSettings;
 }

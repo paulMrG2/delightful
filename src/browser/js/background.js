@@ -13,22 +13,6 @@
 //chrome.storage.local.clear();
 
 /**
- * Storage sync initiate last few delights if not already exists
- */
-const lastDelights = async () => {
-
-    // Get stored list of delights
-    const result = await chrome.storage.local.get('lastDelightNames');
-
-    if (Object.prototype.toString.call(result.lastDelightNames) !== '[object Array]') {
-        // Initiate it
-        chrome.storage.local.set({
-            lastDelightNames: ['', '', '']
-        });
-    }
-};
-
-/**
  * Read image file and return base64 encoded data url
  *
  * @param url

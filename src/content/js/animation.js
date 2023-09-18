@@ -38,49 +38,43 @@ export const doAnimation = (allSettings, ref, event) => {
             }
         }
 
-        chrome.storage.local.get('lastDelightNames', previousNames => {
-            let delight = enabledDelights[(Math.floor(Math.random() * enabledDelights.length))];
+        let delight = enabledDelights[(Math.floor(Math.random() * enabledDelights.length))];
 
-            // Make sure the same delight doesn't happen too often (don't use the previous two delights)
-            if (enabledDelights.length > 3) {
-                while (delight.defaultName === previousNames.lastDelightNames[0] || delight.defaultName === previousNames.lastDelightNames[1] || delight.defaultName === previousNames.lastDelightNames[2]) {
-                    delight = enabledDelights[(Math.floor(Math.random() * enabledDelights.length))];
-                }
+        // Make sure the same delight doesn't happen too often (don't use the previous two delights)
+        if (enabledDelights.length > 3) {
+            while (delight.defaultName === allSettings.lastDelightNames[0] || delight.defaultName === allSettings.lastDelightNames[1] || delight.defaultName === allSettings.lastDelightNames[2]) {
+                delight = enabledDelights[(Math.floor(Math.random() * enabledDelights.length))];
             }
+        }
 
-            chrome.storage.local.set({
-                lastDelightNames: [delight.defaultName, previousNames.lastDelightNames[0]]
-            }, () => {
-
-                // Call the animation
-                switch (delight.defaultName) {
-                    case 'All of the things': // If this is changed, also change the defaultName in allSettings.js
-                        getAllOfTheThings(2000, event);
-                        endAnimation(2000, ref);
-                        break;
-                    case 'Baby Yoda': // If this is changed, also change the defaultName in allSettings.js
-                        getBabyYoda(2000, event);
-                        endAnimation(2000, ref);
-                        break;
-                    case 'Confetti Explosions': // If this is changed, also change the defaultName in allSettings.js
-                        getConfetti(2000);
-                        endAnimation(2000, ref);
-                        break;
-                    case 'Nyan Cat': // If this is changed, also change the defaultName in allSettings.js
-                        getNyanCat(2000);
-                        endAnimation(2000, ref);
-                        break;
-                    case 'Party Parrot': // If this is changed, also change the defaultName in allSettings.js
-                        getParrot(2000);
-                        endAnimation(2000, ref);
-                        break;
-                    case 'Success Kid': // If this is changed, also change the defaultName in allSettings.js
-                        getSuccessKid(2000);
-                        endAnimation(2000, ref);
-                        break;
-                }
-            });
-        });
+        allSettings.lastDelightNames = [delight.defaultName, allSettings.lastDelightNames[0], allSettings.lastDelightNames[1]];
+        // Call the animation
+        switch (delight.defaultName) {
+            case 'All of the things': // If this is changed, also change the defaultName in allSettings.js
+                getAllOfTheThings(2000, event);
+                endAnimation(2000, ref);
+                break;
+            case 'Baby Yoda': // If this is changed, also change the defaultName in allSettings.js
+                getBabyYoda(2000, event);
+                endAnimation(2000, ref);
+                break;
+            case 'Confetti Explosions': // If this is changed, also change the defaultName in allSettings.js
+                getConfetti(2000);
+                endAnimation(2000, ref);
+                break;
+            case 'Nyan Cat': // If this is changed, also change the defaultName in allSettings.js
+                getNyanCat(2000);
+                endAnimation(2000, ref);
+                break;
+            case 'Party Parrot': // If this is changed, also change the defaultName in allSettings.js
+                getParrot(2000);
+                endAnimation(2000, ref);
+                break;
+            case 'Success Kid': // If this is changed, also change the defaultName in allSettings.js
+                getSuccessKid(2000);
+                endAnimation(2000, ref);
+                break;
+        }
     }
 };
 

@@ -16,6 +16,7 @@ import {trello} from "./trigger/trello";
 import {wrike} from "./trigger/wrike";
 
 import {asanaSpiderWeb} from "./extras/asanaSpiderWeb";
+import {loadSettings} from "../../browser/js/allSettings";
 
 if (typeof window.delightfulActivated === 'undefined') {
 
@@ -41,16 +42,18 @@ if (typeof window.delightfulActivated === 'undefined') {
     const allSettings = {
         allDelights:     null,
         allSites:        null,
-        chanceOfDelight: null
+        chanceOfDelight: null,
+        lastDelightNames: ['', '', '']
     };
+
 
     /**
      * Keep settings up to date
      */
-    chrome.runtime.sendMessage({type: 'allSettings'}, response => {
-        allSettings.allSites = response.allSites;
-        allSettings.allDelights = response.allDelights;
-        allSettings.chanceOfDelight = response.chanceOfDelight;
+    loadSettings().then(settings => {
+        allSettings.allSites = settings.allSites;
+        allSettings.allDelights = settings.allDelights;
+        allSettings.chanceOfDelight = settings.chanceOfDelight;
     });
     chrome.storage.onChanged.addListener(function (changes, namespace) {
         if (typeof changes.enabledSites?.newValue !== 'undefined') {
@@ -147,22 +150,3 @@ if (typeof window.delightfulActivated === 'undefined') {
     }
 
 }
-
-
-
-
-
-// Keep settings up to date
-/*
-chrome.storage.onChanged.addListener(function (changes, namespace) {
-    if (typeof changes.enabledSites?.newValue !== 'undefined') {
-        allSettings.allSites = changes.enabledSites.newValue.sites;
-    }
-    if (typeof changes.enabledDelights?.newValue !== 'undefined') {
-        allSettings.allDelights = changes.enabledDelights.newValue.delights;
-    }
-    if (typeof changes.chanceOfDelight?.newValue !== 'undefined') {
-        allSettings.chanceOfDelight = changes.chanceOfDelight.newValue.chance;
-    }
-});
-*/

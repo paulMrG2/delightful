@@ -59,7 +59,7 @@
       },
       {
         "name": "app",
-        "src": ["./src/content/js/**/*.js", "./src/browser/js/allSettings.js"]
+        "src": "./src/content/js/**/*.js"
       }
     ],
     "locales_list": [

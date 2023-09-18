@@ -5,6 +5,9 @@
  *
  * @author Paul Groth (https://github.com/paulMrG2)
  */
+
+import {loadSettings} from "./allSettings";
+
 const settings = () => {
 
     /**
@@ -257,7 +260,7 @@ const settings = () => {
     /**
      * Constructor
      */
-    chrome.runtime.sendMessage({type: 'allSettings'}, response => {
+    loadSettings().then(response => {
         allSettings.allSites = response.allSites;
         allSettings.allDelights = response.allDelights;
         allSettings.chanceOfDelight = response.chanceOfDelight;
@@ -265,8 +268,7 @@ const settings = () => {
         enabledSites();
         enabledDelights();
         localize();
-    });
-
+    })
 }
 
 document.addEventListener('DOMContentLoaded', settings);
