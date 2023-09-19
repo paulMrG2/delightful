@@ -7,6 +7,10 @@
 [comment]: <> (Fixed: any bugs fixed.)
 [comment]: <> (Security: security issues are declared here)
 
+## [1.1.3] - 2023-09-19
+### Fixed
+- Major restructure to move settings management to content scripts rather than relying on the service worker. This might actually fix the settings bug, but you never know.
+
 ## [1.1.2] - 2023-09-11
 ### Fixed
 - Fixed the settings bug where they sometimes revert to default values. 99.9 percent sure it's fixed this time.
