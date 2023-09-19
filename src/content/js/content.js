@@ -15,7 +15,10 @@ import {todoist} from "./trigger/todoist";
 import {trello} from "./trigger/trello";
 import {wrike} from "./trigger/wrike";
 
+// Extra bits
 import {asanaSpiderWeb} from "./extras/asanaSpiderWeb";
+
+// All settings
 import {loadSettings} from "../../browser/js/allSettings";
 
 if (typeof window.delightfulActivated === 'undefined') {
@@ -45,7 +48,6 @@ if (typeof window.delightfulActivated === 'undefined') {
         chanceOfDelight: null,
         lastDelightNames: ['', '', '']
     };
-
 
     /**
      * Keep settings up to date

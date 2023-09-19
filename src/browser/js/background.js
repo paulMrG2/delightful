@@ -2,6 +2,10 @@
  * Delightful
  *
  * Background file
+ * Note: This will run only while it's being used.
+ * After 5 minutes of activity in Chrome without using this file, it will sleep (although the listeners
+ * will continue to listen). If there's no activity in Chrome at all, it will sleep after 30 seconds.
+ * That's roughly how it works.
  *
  * @author Paul Groth (https://github.com/paulMrG2)
  */
