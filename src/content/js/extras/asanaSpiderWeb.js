@@ -97,6 +97,11 @@ const spiderWeb = () => {
                     if (taskDescriptionInput !== null) {
                         taskDescriptionInput.style.backgroundColor = 'transparent';
                     }
+                    // Remove background of the message banner if it's there
+                    const taskMessageBanner = document.querySelector('.TypographyPresentation--m.MessageBanner--default');
+                    if (taskMessageBanner !== null) {
+                        taskMessageBanner.style.backgroundColor = 'transparent';
+                    }
                 });
             } else {
                 taskPane.style.backgroundImage = 'none';
