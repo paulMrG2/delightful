@@ -112,6 +112,14 @@ const allDelightSettings = [
         id:                         "delightful_delights_baby_yoda"
     },
     {
+        defaultName:                "Badger Badger Badger", // If this is changed, also change the case for switch(delight.defaultName){} in content.js
+        defaultNameWithDescription: "Badger Badger Badger - from The Badger Song",
+        enabled:                    true,
+        i18nName:                   "delights_badgerBadgerBadger",
+        i18nNameWithDescription:    "delights_badgerBadgerBadgerWithDescription",
+        id:                         "delightful_delights_badger_badger_badger"
+    },
+    {
         defaultName:                "Confetti Explosions", // If this is changed, also change the case for switch(delight.defaultName){} in content.js
         defaultNameWithDescription: "Confetti Explosions (a bunch of confetti explosions all over the screen)",
         enabled:                    true,

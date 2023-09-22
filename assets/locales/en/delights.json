@@ -5,6 +5,18 @@
   "delights_allOfTheThingsNameWithDescription": {
     "message": "All of the things (based on the original image by Allie Brosh (2010))"
   },
+  "delights_babyYoda": {
+    "message": "Baby Yoda"
+  },
+  "delights_babyYodaWithDescription": {
+    "message": "Baby Yoda (uses the force of course)"
+  },
+  "delights_badgerBadgerBadger": {
+    "message": "Badger Badger Badger"
+  },
+  "delights_badgerBadgerBadgerWithDescription": {
+    "message": "Badger Badger Badger (from the Badger Song)"
+  },
   "delights_confettiName": {
     "message": "Confetti Explosions"
   },
