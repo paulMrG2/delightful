@@ -7,6 +7,13 @@
 [comment]: <> (Fixed: any bugs fixed.)
 [comment]: <> (Security: security issues are declared here)
 
+## [1.1.4] - 2023-09-22
+### Added
+- Badger Badger Badger delight
+### Fixed
+- ClickUp triggers
+- Asana old task message banner transparent background
+
 ## [1.1.3] - 2023-09-19
 ### Fixed
 - Major restructure to move settings management to content scripts rather than relying on the service worker. This might actually fix the settings bug, but you never know.

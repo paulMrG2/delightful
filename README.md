@@ -26,6 +26,7 @@ Install [Delightful](https://chrome.google.com/webstore/detail/delightful/lcpnco
 ## Delights
 - All of the things - SVG and animation by [Paul Groth](https://github.com/paulMrG2), (original image by Allie Brosh (2010))
 - Baby Yoda by Unknown - Animation by [Paul Groth](https://github.com/paulMrG2)
+- Badger Badger Badger - SVG and animation by [Paul Groth](https://github.com/paulMrG2), (original [Badger animation](https://www.youtube.com/watch?v=EIyixC9NsLI) by Jonti Picking A.K.A Mr Weebl)
 - [Confetti](https://github.com/catdad/canvas-confetti) by [Kiril Vatev](https://github.com/catdad)
 - [Nyan Cat](https://github.com/Gowee/nyancat-svg) by [Hung-I Wang](https://github.com/Gowee)
 - [Party Parrot](https://codepen.io/nathangath/pen/RgvzVY/) by [@nathangath](https://codepen.io/nathangath)
