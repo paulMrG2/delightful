@@ -30,6 +30,7 @@ Install [Delightful](https://chrome.google.com/webstore/detail/delightful/lcpnco
 - [Confetti](https://github.com/catdad/canvas-confetti) by [Kiril Vatev](https://github.com/catdad)
 - [Nyan Cat](https://github.com/Gowee/nyancat-svg) by [Hung-I Wang](https://github.com/Gowee)
 - [Party Parrot](https://codepen.io/nathangath/pen/RgvzVY/) by [@nathangath](https://codepen.io/nathangath)
+- Smug Thug Pew Pew - SVG and animation by [Paul Groth](https://github.com/paulMrG2), (inspired by Pew Pew emoji on Slack)
 - Success Kid - SVG and animation by [Paul Groth](https://github.com/paulMrG2), (original image by Laney Griner (2007))
 
 ## Old tasks

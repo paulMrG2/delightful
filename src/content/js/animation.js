@@ -11,6 +11,7 @@ import {getBadgerBadgerBadger} from "./delight/badger";
 import {getConfetti} from "./delight/confetti";
 import {getNyanCat} from "./delight/nyanCat";
 import {getParrot} from "./delight/partyParrot";
+import {getSmugThugPewPew} from "./delight/smugThugPewPew";
 import {getSuccessKid} from "./delight/successKid";
 
 /**
@@ -73,6 +74,10 @@ export const doAnimation = (allSettings, ref, event) => {
                 break;
             case 'Party Parrot': // If this is changed, also change the defaultName in allSettings.js
                 getParrot(2000);
+                endAnimation(2000, ref);
+                break;
+            case 'Smug Thug Pew Pew': // If this is changed, also change the defaultName in allSettings.js
+                getSmugThugPewPew(2000);
                 endAnimation(2000, ref);
                 break;
             case 'Success Kid': // If this is changed, also change the defaultName in allSettings.js

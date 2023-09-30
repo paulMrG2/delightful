@@ -7,6 +7,10 @@
 [comment]: <> (Fixed: any bugs fixed.)
 [comment]: <> (Security: security issues are declared here)
 
+## [1.1.5] - 2023-09-30
+### Added
+- Smug Thug Pew Pew delight
+
 ## [1.1.4] - 2023-09-22
 ### Added
 - Badger Badger Badger delight

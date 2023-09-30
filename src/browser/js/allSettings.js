@@ -150,6 +150,14 @@ const allDelightSettings = [
         i18nName:                   "delights_successKidName",
         i18nNameWithDescription:    "delights_successKidNameWithDescription",
         id:                         "delightful_delights_success_kid"
+    },
+    {
+        defaultName:                "Smug Thug Pew Pew", // If this is changed, also change the case for switch(delight.defaultName){} in content.js
+        defaultNameWithDescription: "Smug Thug Pew Pew (some weird new creation)",
+        enabled:                    true,
+        i18nName:                   "delights_smugThugPewPewName",
+        i18nNameWithDescription:    "delights_smugThugPewPewNameWithDescription",
+        id:                         "delightful_delights_smug_thug_pew_pew"
     }
 ];
 
