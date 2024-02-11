@@ -1,6 +1,6 @@
 {
   "settings_pageTitle": {
-    "message": "Delightful Settings"
+    "message": "Delightful settings"
   },
   "settings_devMessage": {
     "message": "Sure, it's only a couple of fancy things for now, but it will expand to cover more software triggers and lots of different animations. You'll never know what to expect, but you will get that warm and fuzzy feeling with an extra bit of dopamine when you deserve it the most."
@@ -16,7 +16,7 @@
     "message": "In the text boxes you can add a comma-separated list of statuses/list names/column names that match what you call them in your software."
   },
   "settings_enabledDelightsHeading": {
-    "message": "Enabled Delights"
+    "message": "Enabled delights"
   },
 
   "settings_settingHowOften": {
@@ -28,5 +28,9 @@
   },
   "settings_chanceOfDelightLabel": {
     "message": "Chance of getting a delight"
+  },
+
+  "settings_specialThingsHeading": {
+    "message": "Special things"
   }
 }

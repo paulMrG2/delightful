@@ -41,10 +41,10 @@
   "delights_smugThugPewPewWithDescription": {
     "message": "Smug Thug Pew Pew"
   },
-  "oldTasks_spiderWebName": {
+  "specialThings_oldTasksSpiderWebName": {
     "message": "Spider web"
   },
-  "oldTasks_spiderWebNameWithDescription": {
+  "specialThings_oldTasksSpiderWebNameWithDescription": {
     "message": "Spider web background for old tasks"
   }
 }

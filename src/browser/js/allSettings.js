@@ -68,7 +68,7 @@ const allSiteSettings = [
         defaultName:            "Todoist",
         defaultNameWithTrigger: "Todoist (when you complete a task)",
         enabled:                true,
-        host:                   "todoist.com",
+        host:                   "app.todoist.com",
         i18nName:               "sites_todoistName",
         i18nNameWithTrigger:    "sites_todoistNameWithTrigger",
         id:                     "delightful_sites_todoist"
@@ -194,11 +194,22 @@ const chanceOfDelightSetting = [
     }
 ];
 
+const specialThingsSetting = [
+    {
+        defaultName: "Old task spider web (Asana only)",
+        enabled:     true,
+        i18nName:    "special_oldTaskSpiderWeb",
+        id:          "delightful_special_spider_web",
+        taskAgeDays: 30
+    }
+];
+
 export const loadSettings = async () => {
     const allSettings = {
-        allSites:         JSON.parse(JSON.stringify(allSiteSettings)),
-        allDelights:      JSON.parse(JSON.stringify(allDelightSettings)),
-        chanceOfDelight:  JSON.parse(JSON.stringify(chanceOfDelightSetting))
+        allSites:        JSON.parse(JSON.stringify(allSiteSettings)),
+        allDelights:     JSON.parse(JSON.stringify(allDelightSettings)),
+        chanceOfDelight: JSON.parse(JSON.stringify(chanceOfDelightSetting)),
+        specialThings:   JSON.parse(JSON.stringify(specialThingsSetting))
     };
 
     // Get stored list of sites
@@ -228,7 +239,7 @@ export const loadSettings = async () => {
         });
     }
 
-    // Get stored list of delights
+    // Get stored list of chance of delights
     const resultChanceOfDelight = await chrome.storage.local.get('chanceOfDelight');
     if (resultChanceOfDelight.chanceOfDelight?.chance?.length > 0) {
         // If we found the list, update the local array
@@ -236,6 +247,19 @@ export const loadSettings = async () => {
             let idx = allSettings.chanceOfDelight.map(cd => cd.defaultName).indexOf(chance.defaultName);
             if (idx > -1) {
                 allSettings.chanceOfDelight[idx].selected = chance.selected;
+            }
+        });
+    }
+
+    // Get stored list of special things
+    const resultSpecialThings = await chrome.storage.local.get('specialThings');
+    if (resultSpecialThings.specialThings?.things?.length > 0) {
+        // If we found the list, update the local array
+        resultSpecialThings.specialThings.things.map(thing => {
+            let idx = allSettings.specialThings.map(cd => cd.defaultName).indexOf(thing.defaultName);
+            if (idx > -1) {
+                allSettings.specialThings[idx].enabled = thing.enabled;
+                allSettings.specialThings[idx].taskAgeDays = thing.taskAgeDays;
             }
         });
     }

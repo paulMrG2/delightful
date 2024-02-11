@@ -29,7 +29,8 @@ const settings = () => {
     const allSettings = {
         allDelights:     null,
         allSites:        null,
-        chanceOfDelight: null
+        chanceOfDelight: null,
+        specialThings:   null
     };
 
     /**
@@ -258,15 +259,117 @@ const settings = () => {
     };
 
     /**
+     * Generate a checkbox for a special thing
+     *
+     * @param details
+     * @returns {HTMLDivElement}
+     */
+    const generateSpecialThingCheckbox = details => {
+
+        // Wrapper
+        const wrapper = document.createElement('div');
+        wrapper.className = 'settings__specialThingsListItem';
+
+        // Input
+        const input = document.createElement('input');
+        input.checked = details.enabled;
+        input.className = "settings__specialThingsListCheckbox";
+        input.id = details.id;
+        input.type = 'checkbox';
+        input.addEventListener('change', event => {
+            saveSpecialThing(details.id, event.currentTarget.checked);
+        });
+        wrapper.append(input);
+
+        // Label
+        const label = document.createElement('label');
+        label.className = "settings__specialThingsListLabel";
+        label.dataset.locale = details.i18nName;
+        label.htmlFor = details.id;
+        label.innerText = details.defaultName;
+        wrapper.append(label);
+
+        // Special extra value
+        if (typeof details.taskAgeDays !== 'undefined') {
+            const taskAgeDaysInput = document.createElement('input');
+            taskAgeDaysInput.className = "settings__specialThingsSpiderWebTaskAgeDays";
+            taskAgeDaysInput.id = details.id + "Status";
+            taskAgeDaysInput.type = 'text';
+            taskAgeDaysInput.value = details.taskAgeDays;
+            taskAgeDaysInput.addEventListener('keyup', event => {
+                saveSpecialThingExtraValue(details.id, event.currentTarget.value);
+            });
+            wrapper.append(taskAgeDaysInput);
+        }
+
+        return wrapper;
+    }
+
+    /**
+     * Save changes to enabled special thing
+     *
+     * @param id
+     * @param checked
+     */
+    const saveSpecialThing = (id, checked) => {
+
+        let idx = allSettings.specialThings.map(thing => thing.id).indexOf(id);
+        if (idx > -1) {
+
+            // Update it locally
+            allSettings.specialThings[idx].enabled = checked;
+
+            // Store it
+            chrome.storage.local.set({
+                specialThings: {things: allSettings.specialThings}
+            });
+        }
+    };
+
+    /**
+     * Save changes to a special thing extra value
+     *
+     * @param id
+     * @param value
+     */
+    const saveSpecialThingExtraValue = (id, value) => {
+        let idx = allSettings.specialThings.map(thing => thing.id).indexOf(id);
+        if (idx > -1) {
+
+            // Update it locally
+            allSettings.specialThings[idx].taskAgeDays = parseInt(value.trim());
+
+            // Store it
+            chrome.storage.local.set({
+                specialThings: {things: allSettings.specialThings}
+            });
+        }
+    }
+
+    /**
+     * Sync enabled special things and update the list in the dom
+     */
+    const enabledSpecialThings = () => {
+
+        // Display the list
+        const enabledSpecialThingsList = document.querySelector('.settings__enabledSpecialThingsList');
+        allSettings.specialThings.map(thing => {
+            enabledSpecialThingsList.append(generateSpecialThingCheckbox(thing));
+        });
+    };
+
+    /**
      * Constructor
      */
     loadSettings().then(response => {
         allSettings.allSites = response.allSites;
         allSettings.allDelights = response.allDelights;
         allSettings.chanceOfDelight = response.chanceOfDelight;
+        allSettings.specialThings = response.specialThings;
         chanceOfDelight();
         enabledSites();
         enabledDelights();
+        enabledSpecialThings();
         localize();
     })
 }

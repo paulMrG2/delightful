@@ -15,15 +15,15 @@ const ref = {
     asanaOldTaskPage:     null
 };
 
-export const asanaSpiderWeb = () => {
+export const asanaSpiderWeb = (spiderWebSettings) => {
     window.addEventListener('load', () => {
-        spiderWeb();
+        spiderWeb(spiderWebSettings);
         ref.asanaLoadObserver = new MutationObserver(() => {
-            spiderWeb();
+            spiderWeb(spiderWebSettings);
         });
 
         const asanaMainPage = document.getElementById('asana_main_page');
-        if(asanaMainPage) {
+        if (asanaMainPage) {
             ref.asanaLoadObserver.observe(asanaMainPage, {
                 attributeFilter: ['class'],
                 childList:       true,
@@ -33,48 +33,64 @@ export const asanaSpiderWeb = () => {
     });
 };
 
-const spiderWeb = () => {
+const convert12to24hr = (time12h) => {
+    let [hours, minutes] = time12h.split(':');
+    let modifier = minutes.substring(2);
+    minutes = minutes.substring(0, 2);
+
+    if (modifier === 'pm' && hours !== '12') {
+        hours = parseInt(hours, 10) + 12;
+    }
+
+    return [hours, minutes, 0];
+}
+
+const spiderWeb = (spiderWebSettings) => {
     if (ref.asanaOldTaskObserver !== null) {
         ref.asanaOldTaskObserver.disconnect();
         ref.asanaOldTaskObserver = null;
     }
     ref.asanaOldTaskPage = null;
 
-    const daysInMs = 90 * 24 * 60 * 60 * 1000; // 90 days
-    let now = new Date();
-    const timestampNDaysAgo = now.getTime() - daysInMs;
-    let old = false;
-    let testPattern1 = /^[A-Za-z]{3} [0-9]{1,2}/g;
-    let testPattern2 = /^[0-9]{1,2} [A-Za-z]{3}/g;
-
     ref.asanaOldTaskObserver = new MutationObserver(mutations => {
+        let taskAgeDays = typeof spiderWebSettings.taskAgeDays !== 'undefined' ? spiderWebSettings.taskAgeDays : 30;
+
+        const daysInMs = taskAgeDays > 0 ? taskAgeDays * 24 * 60 * 60 * 1000 : 0;
+        let now = new Date();
+        const timestampNDaysAgo = now.getTime() - daysInMs;
+        let old = false;
         old = false;
         mutations.forEach(mutation => {
-            const taskCreatedElement = mutation.target.querySelector('.TaskCreationBlockStory .BlockStory-timestamp > span');
-            if ((taskCreatedElement !== null) && (taskCreatedElement.innerText.length > 0) && (testPattern1.test(taskCreatedElement.innerText) === true || testPattern2.test(taskCreatedElement.innerText) === true)) {
+            let taskCreatedElement = mutation.target.querySelector('.BlockStory-timestamp > span');
+            if ((taskCreatedElement !== null) && (taskCreatedElement.innerText.length > 0)) {
                 const taskCreatedText = taskCreatedElement.innerText;
-                let theDateArray = taskCreatedText.split(', ');
-                if (theDateArray.length === 1) { // This year
-                    theDateArray.push(now.getFullYear());
-                }
-                let taskCreatedDate = new Date((theDateArray.join(', ')));
-                if (!isNaN(taskCreatedDate)) {
-                    old = (timestampNDaysAgo > taskCreatedDate.getTime());
-                }
-            } else {
-                const miniStory = mutation.target.querySelector('.MiniStoryActionSentence-content');
-                if (miniStory !== null && miniStory.innerText.includes('duplicated task from')) {
-                    const duplicatedTaskCreatedElement = mutation.target.querySelector('.MiniStory-timestamp');
-                    if ((duplicatedTaskCreatedElement !== null) && (duplicatedTaskCreatedElement.innerText.length > 0) && (testPattern1.test(duplicatedTaskCreatedElement.innerText) === true || testPattern2.test(duplicatedTaskCreatedElement.innerText) === true)) {
-                        const duplicatedTaskCreatedText = duplicatedTaskCreatedElement.innerText;
-                        let theDateArray = duplicatedTaskCreatedText.split(', ');
+                if (/^[A-Za-z]{3} [0-9]{1,2}/g.test(taskCreatedText) ||
+                    /^[0-9]{1,2} [A-Za-z]{3}/g.test(taskCreatedText) ||
+                    /^[0-9]{1,2} (minute(s)?|hour(s)?) ago$/g.test(taskCreatedText) ||
+                    /^Yesterday at [0-9]{1,2}:[0-9]{2}(am|pm)$/g.test(taskCreatedText)
+                ) {
+                    let taskCreatedDate;
+                    if (/^[0-9]{1,2} (minute(s)?|hour(s)?) ago$/g.test(taskCreatedText)) {
+                        let ago = taskCreatedText.split(' ');
+                        let timeInMs = 0;
+                        if (ago[1] === 'minutes') timeInMs = parseInt(ago[0]) * 60 * 1000;
+                        if (ago[1] === 'hours') timeInMs = parseInt(ago[0]) * 60 * 60 * 1000;
+                        taskCreatedDate = now.getTime() - timeInMs;
+                    } else if (/^Yesterday at [0-9]{1,2}:[0-9]{2}(am|pm)$/g.test(taskCreatedText)) {
+                        let yesterdayArray = taskCreatedText.split(' ');
+                        let yesterday = new Date();
+                        yesterday.setDate(yesterday.getDate() - 1);
+                        yesterday.setHours(...convert12to24hr(yesterdayArray[2]));
+                        taskCreatedDate = yesterday.getTime();
+                    } else {
+                        let theDateArray = taskCreatedText.split(', ');
                         if (theDateArray.length === 1) { // This year
                             theDateArray.push(now.getFullYear());
                         }
-                        let taskCreatedDate = new Date((theDateArray.join(', ')));
-                        if (!isNaN(taskCreatedDate)) {
-                            old = (timestampNDaysAgo > taskCreatedDate.getTime());
-                        }
+                        taskCreatedDate = new Date((theDateArray.join(', '))).getTime();
+                    }
+                    if (!isNaN(taskCreatedDate)) {
+                        old = (timestampNDaysAgo > taskCreatedDate);
                     }
                 }
             }
@@ -93,7 +109,7 @@ const spiderWeb = () => {
                         taskNameInput.style.backgroundColor = 'transparent';
                     }
                     // Remove background of the description
-                    const taskDescriptionInput = document.querySelector('#TaskDescriptionView');
+                    const taskDescriptionInput = document.querySelector('#TaskDescription');
                     if (taskDescriptionInput !== null) {
                         taskDescriptionInput.style.backgroundColor = 'transparent';
                     }
@@ -109,20 +125,18 @@ const spiderWeb = () => {
         }
     });
 
-    setTimeout(() => {
-        const theNode = (document.querySelector('.FullWidthPageStructureWithDetailsOverlay-detailsOverlay') || document.querySelector('.FocusModePage-taskPane'));
-        if (theNode !== null) {
-            if (theNode.className.includes('FullWidthPageStructureWithDetailsOverlay-detailsOverlay')) {
-                ref.asanaOldTaskPage = 'MyTasksPage';
-            }
-            if (theNode.className.includes('FocusModePage-taskPane')) {
-                ref.asanaOldTaskPage = 'ProjectPage';
-            }
-            ref.asanaOldTaskObserver.observe(theNode, {
-                attributeFilter: ['data-task-id'],
-                childList:       true,
-                subtree:         false
-            });
+    const theNode = (document.querySelector('.FullWidthPageStructureWithDetailsOverlay-detailsOverlay') || document.querySelector('.FocusModePage-taskPane'));
+    if (theNode !== null) {
+        if (theNode.className.includes('FullWidthPageStructureWithDetailsOverlay-detailsOverlay')) {
+            ref.asanaOldTaskPage = 'MyTasksPage';
         }
-    }, 3000);
+        if (theNode.className.includes('FocusModePage-taskPane')) {
+            ref.asanaOldTaskPage = 'ProjectPage';
+        }
+        ref.asanaOldTaskObserver.observe(theNode, {
+            attributeFilter: ['data-task-id'],
+            childList:       true,
+            subtree:         false
+        });
+    }
 };

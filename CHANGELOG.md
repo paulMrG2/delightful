@@ -7,6 +7,20 @@
 [comment]: <> (Fixed: any bugs fixed.)
 [comment]: <> (Security: security issues are declared here)
 
+## [1.2.0] - 2024-02-11
+### Fixed
+- Todoist
+  - Changed the host from todoist.com to app.todoist.com
+  - Triggers
+- Wrike triggers. Only the checkbox in the task modal works in the new UI
+- Trello drag and drop trigger
+- Asana spider web
+  - Task description background transparency removed again
+  - Some older duplicated tasks weren't showing
+### Changed
+- Improved performance
+- Many other minor changes throughout
+
 ## [1.1.5] - 2023-09-30
 ### Added
 - Smug Thug Pew Pew delight

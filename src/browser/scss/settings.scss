@@ -20,7 +20,7 @@ input[type='checkbox'] {
     }
 
     &__body {
-        margin: 0 auto;
+        margin: 80px auto;
         max-width: 1000px;
         padding: 0 40px;
 
@@ -83,6 +83,11 @@ input[type='checkbox'] {
                 width: 200px;
             }
         }
+    }
+
+    &__specialThingsSpiderWebTaskAgeDays {
+        margin-left: 10px;
+        width: 30px;
     }
 
     &DelightSwitchList {
