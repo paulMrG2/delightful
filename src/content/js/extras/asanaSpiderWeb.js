@@ -66,16 +66,23 @@ const spiderWeb = (spiderWebSettings) => {
                 const taskCreatedText = taskCreatedElement.innerText;
                 if (/^[A-Za-z]{3} [0-9]{1,2}/g.test(taskCreatedText) ||
                     /^[0-9]{1,2} [A-Za-z]{3}/g.test(taskCreatedText) ||
-                    /^[0-9]{1,2} (minute(s)?|hour(s)?) ago$/g.test(taskCreatedText) ||
+                    /^[0-9]{1,2} (minute(s)?|hour(s)?|day(s)?) ago$/g.test(taskCreatedText) ||
+                    /^Today at [0-9]{1,2}:[0-9]{2}(am|pm)$/g.test(taskCreatedText) ||
                     /^Yesterday at [0-9]{1,2}:[0-9]{2}(am|pm)$/g.test(taskCreatedText)
                 ) {
                     let taskCreatedDate;
-                    if (/^[0-9]{1,2} (minute(s)?|hour(s)?) ago$/g.test(taskCreatedText)) {
+                    if (/^[0-9]{1,2} (minute(s)?|hour(s)?|day(s)?) ago$/g.test(taskCreatedText)) {
                         let ago = taskCreatedText.split(' ');
                         let timeInMs = 0;
-                        if (ago[1] === 'minutes') timeInMs = parseInt(ago[0]) * 60 * 1000;
-                        if (ago[1] === 'hours') timeInMs = parseInt(ago[0]) * 60 * 60 * 1000;
+                        if (ago[1].startsWith('minute')) timeInMs = parseInt(ago[0]) * 60 * 1000;
+                        if (ago[1].startsWith('hour')) timeInMs = parseInt(ago[0]) * 60 * 60 * 1000;
+                        if (ago[1].startsWith('day')) timeInMs = parseInt(ago[0]) * 24 * 60 * 60 * 1000;
                         taskCreatedDate = now.getTime() - timeInMs;
+                    } else if (/^Today at [0-9]{1,2}:[0-9]{2}(am|pm)$/g.test(taskCreatedText)) {
+                        let yesterdayArray = taskCreatedText.split(' ');
+                        let yesterday = new Date();
+                        yesterday.setHours(...convert12to24hr(yesterdayArray[2]));
+                        taskCreatedDate = yesterday.getTime();
                     } else if (/^Yesterday at [0-9]{1,2}:[0-9]{2}(am|pm)$/g.test(taskCreatedText)) {
                         let yesterdayArray = taskCreatedText.split(' ');
                         let yesterday = new Date();

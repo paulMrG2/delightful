@@ -7,6 +7,10 @@
 [comment]: <> (Fixed: any bugs fixed.)
 [comment]: <> (Security: security issues are declared here)
 
+## [1.2.1] - 2024-02-11
+### Fixed
+- Asana spider web not showing sometimes
+
 ## [1.2.0] - 2024-02-11
 ### Fixed
 - Todoist
