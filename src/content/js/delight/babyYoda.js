@@ -51,7 +51,7 @@ export function getBabyYoda(duration, event) {
         style.innerHTML = babyYodaClass;
         document.querySelector('head').append(style);
 
-        // Parrot image
+        // Baby Yoda image
         let imageSrc = response.image;
         let image = document.createElement('img');
         image.alt = "Baby Yoda";

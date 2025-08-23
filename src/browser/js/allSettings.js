@@ -158,6 +158,14 @@ const allDelightSettings = [
         i18nName:                   "delights_smugThugPewPewName",
         i18nNameWithDescription:    "delights_smugThugPewPewNameWithDescription",
         id:                         "delightful_delights_smug_thug_pew_pew"
+    },
+    {
+        defaultName:                "Vault Boy", // If this is changed, also change the case for switch(delight.defaultName){} in content.js
+        defaultNameWithDescription: "Vault Boy. A poor effort of animation... I'm not proud, but still happy he's there. If you can do better, please send it my way, or send a pull request!",
+        enabled:                    true,
+        i18nName:                   "delights_vaultBoyName",
+        i18nNameWithDescription:    "delights_vaultBoyNameWithDescription",
+        id:                         "delightful_delights_vault_boy"
     }
 ];
 

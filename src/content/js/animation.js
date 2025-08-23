@@ -13,6 +13,7 @@ import {getNyanCat} from "./delight/nyanCat";
 import {getParrot} from "./delight/partyParrot";
 import {getSmugThugPewPew} from "./delight/smugThugPewPew";
 import {getSuccessKid} from "./delight/successKid";
+import {getVaultBoy} from "./delight/vaultBoy";
 
 /**
  * Initiate the animation
@@ -82,6 +83,10 @@ export const doAnimation = (allSettings, ref, event) => {
                 break;
             case 'Success Kid': // If this is changed, also change the defaultName in allSettings.js
                 getSuccessKid(2000);
+                endAnimation(2000, ref);
+                break;
+            case 'Vault Boy': // If this is changed, also change the defaultName in allSettings.js
+                getVaultBoy(2000);
                 endAnimation(2000, ref);
                 break;
         }

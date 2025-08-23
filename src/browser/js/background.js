@@ -78,6 +78,11 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
                         sendResponse({image: dataUrl});
                     });
                     break;
+                case "vaultBoy":
+                    getImageData('assets/img/vault-boy.svg').then(dataUrl => {
+                        sendResponse({image: dataUrl});
+                    });
+                    break;
             }
             break;
     }

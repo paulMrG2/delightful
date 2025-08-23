@@ -46,5 +46,11 @@
   },
   "specialThings_oldTasksSpiderWebNameWithDescription": {
     "message": "Spider web background for old tasks"
+  },
+  "delights_vaultBoyName": {
+    "message": "Vault Boy"
+  },
+  "delights_vaultBoyNameWithDescription": {
+    "message": "Vault Boy. A poor effort of animation... I'm not proud, but still happy he's there. If you can do better, please send it my way, or send a pull request!"
   }
 }
