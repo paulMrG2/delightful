@@ -7,6 +7,13 @@
 [comment]: <> (Fixed: any bugs fixed.)
 [comment]: <> (Security: security issues are declared here)
 
+## [1.3.0] - 2025-08-23
+### Added
+- Productive triggers
+- Fallout Vault Boy delight
+### Fixed
+- Asana spider web not showing again
+
 ## [1.2.1] - 2024-02-11
 ### Fixed
 - Asana spider web not showing sometimes

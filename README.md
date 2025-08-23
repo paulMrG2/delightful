@@ -4,8 +4,6 @@
 
 Are you bored and just not feeling it at work? Try Delightful, a Chrome extension that will brighten your day with delights when you complete a task in your project management software.
 
-Inspired by Asana delights not working for a while, and since they returned there has been some issues. We do love Asana delights, but we need that little bit more, and not just for Asana.
-
 You'll never know what to expect, but you will get that warm and fuzzy feeling with an extra bit of dopamine when you deserve it the most.
 
 _A little delight goes a long way, too much delight ruins the fun._
@@ -19,6 +17,7 @@ Install [Delightful](https://chrome.google.com/webstore/detail/delightful/lcpnco
 - **Github** (when you mark an issue as \<status name\>) _define your own status names_
 - **Jira** (when you mark an issue as \<status name\>)  _define your own status names_ (*.jira.com & *.atlassian.net)
 - **Monday.com** (when you mark a task as \<status name\>)  _define your own status names_
+- **Productive** (when you complete a task)
 - **Todoist** (when you complete a task)
 - **Trello** (when you drop a card on a list named \<list name\>) _define your own list names_
 - **Wrike** (when you complete a task)
@@ -32,6 +31,7 @@ Install [Delightful](https://chrome.google.com/webstore/detail/delightful/lcpnco
 - [Party Parrot](https://codepen.io/nathangath/pen/RgvzVY/) by [@nathangath](https://codepen.io/nathangath)
 - Smug Thug Pew Pew - SVG and animation by [Paul Groth](https://github.com/paulMrG2), (inspired by Pew Pew emoji on Slack)
 - Success Kid - SVG and animation by [Paul Groth](https://github.com/paulMrG2), (original image by Laney Griner (2007))
+- Fallout Vault Boy by unknown at [SeekLogo](https://seeklogo.com/vector-logo/284917/vault-boy)) animation by [Paul Groth](https://github.com/paulMrG2)
 
 ## Old tasks
 - Spider web background (Asana only) - SVG by [Paul Groth](https://github.com/paulMrG2), (original image by Paul Groth (2022))

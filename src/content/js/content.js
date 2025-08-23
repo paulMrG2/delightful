@@ -12,6 +12,7 @@ import {github} from "./trigger/github";
 import {jira} from "./trigger/jira";
 import {monday} from "./trigger/monday";
 import {todoist} from "./trigger/todoist";
+import {productive} from "./trigger/productive";
 import {trello} from "./trigger/trello";
 import {wrike} from "./trigger/wrike";
 
@@ -167,6 +168,9 @@ if (typeof window.delightfulActivated === 'undefined') {
                 break;
             case 'trello.com':
                 trello(allSettings, ref, event);
+                break;
+            case 'app.productive.io':
+                productive(allSettings, ref, event);
                 break;
             case 'www.wrike.com':
                 wrike(allSettings, ref, event);

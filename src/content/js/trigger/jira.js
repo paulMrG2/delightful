@@ -28,6 +28,7 @@ export const jira = (allSettings, ref, event) => {
 
         if(ref.mouseDownVal1 === 'standardClickEvent' && (ref.mouseDownVal2 === event.target.className)) { // Stop cheating by matching mousedown and mouseup className
             // Loop through multiple status list
+            // todo this can be optimised, probably doesn't need a loop
             for (let i = 0; i < allSettings.allSites[idx].statusList.length; i++) {
 
                 let status = allSettings.allSites[idx].statusList[i];

@@ -65,6 +65,15 @@ const allSiteSettings = [
         statusList:             ["Done"]
     },
     {
+        defaultName:            "Productive",
+        defaultNameWithTrigger: "Productive (when you complete a task)",
+        enabled:                true,
+        host:                   "app.productive.io",
+        i18nName:               "sites_productiveName",
+        i18nNameWithTrigger:    "sites_productiveNameWithTrigger",
+        id:                     "delightful_sites_productive"
+    },
+    {
         defaultName:            "Todoist",
         defaultNameWithTrigger: "Todoist (when you complete a task)",
         enabled:                true,

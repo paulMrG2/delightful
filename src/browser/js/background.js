@@ -63,13 +63,13 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
                         sendResponse({image: dataUrl});
                     });
                     break;
-                case "spiderWeb":
-                    getImageData('assets/img/spider-web.svg').then(dataUrl => {
+                case "smugThugPewPew":
+                    getImageData('assets/img/smug-thug-pew-pew.svg').then(dataUrl => {
                         sendResponse({image: dataUrl});
                     });
                     break;
-                case "smugThugPewPew":
-                    getImageData('assets/img/smug-thug-pew-pew.svg').then(dataUrl => {
+                case "spiderWeb":
+                    getImageData('assets/img/spider-web.svg').then(dataUrl => {
                         sendResponse({image: dataUrl});
                     });
                     break;
