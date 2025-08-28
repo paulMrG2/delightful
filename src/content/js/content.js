@@ -18,6 +18,7 @@ import {wrike} from "./trigger/wrike";
 
 // Extra bits
 import {asanaSpiderWeb} from "./extras/asanaSpiderWeb";
+import {productiveSpiderWeb} from "./extras/productiveSpiderWeb";
 
 // All settings
 import {loadSettings} from "../../browser/js/allSettings";
@@ -194,6 +195,9 @@ if (typeof window.delightfulActivated === 'undefined') {
                 case 'delightful_special_spider_web':
                     if (document.location.host === 'app.asana.com' && allSettings.specialThings[i].enabled) {
                         asanaSpiderWeb(allSettings.specialThings[i]);
+                    }
+                    if (document.location.host === 'app.productive.io' && allSettings.specialThings[i].enabled) {
+                        productiveSpiderWeb(allSettings.specialThings[i]);
                     }
                     break;
             }

@@ -39,7 +39,7 @@
     "message": "Productive"
   },
   "sites_productiveNameWithTrigger": {
-    "message": "Productive (when you complete a task)"
+    "message": "Productive (when you mark a task as <status name>) Comma-separated list of status names to trigger animation"
   },
   "sites_todoistName": {
     "message": "Todoist"

@@ -32,13 +32,13 @@ export const productive = (allSettings, ref, event) => {
         // Make sure it's not already closed (clicking on the unopened combobox while the status is closed)
         if(event.target.closest('div[role="combobox"][aria-expanded="false"]')) return;
 
-        if(className.includes('select-field-standard-item__title') && event.target.innerText.toLowerCase().includes('closed')) {
+        if(className.includes('select-field-standard-item__title') && allSettings.allSites[idx].statusList.some(s => event.target.innerText.toLowerCase().includes(s.toLowerCase()))) {
           // This is the closed status in the dropdown in the task pane view.
           doAnimation(allSettings, ref, event);
-        } else if (event.target.querySelector('.select-field-standard-item__title')?.innerText.toLowerCase().includes('closed')) {
+        } else if (!event.target.querySelector('label') && allSettings.allSites[idx].statusList.some(s => event.target.querySelector('.select-field-standard-item__title')?.innerText.toLowerCase().includes(s.toLowerCase()))) {
           // This is the closed status in the dropdown in the task pane view.
           doAnimation(allSettings, ref, event);
-        } else if(event.target.closest('.select-field-standard-item')?.querySelector('.select-field-standard-item__title')?.innerText.toLowerCase().includes('closed')) {
+        } else if(allSettings.allSites[idx].statusList.some(s => event.target.closest('.select-field-standard-item')?.querySelector('.select-field-standard-item__title')?.innerText.toLowerCase().includes(s.toLowerCase()))) {
           // This is inside the closed status in the dropdown in the task pane view.
           // This will handle anything inside the closed status item e.g. the SVG icon.
           doAnimation(allSettings, ref, event);

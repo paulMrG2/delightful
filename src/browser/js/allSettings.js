@@ -66,12 +66,13 @@ const allSiteSettings = [
     },
     {
         defaultName:            "Productive",
-        defaultNameWithTrigger: "Productive (when you complete a task)",
+        defaultNameWithTrigger: "Productive (when you mark a task as <status name>)",
         enabled:                true,
         host:                   "app.productive.io",
         i18nName:               "sites_productiveName",
         i18nNameWithTrigger:    "sites_productiveNameWithTrigger",
-        id:                     "delightful_sites_productive"
+        id:                     "delightful_sites_productive",
+        statusList:             ["Approved", "Closed", "Completed"]
     },
     {
         defaultName:            "Todoist",
@@ -213,7 +214,7 @@ const chanceOfDelightSetting = [
 
 const specialThingsSetting = [
     {
-        defaultName: "Old task spider web (Asana only)",
+        defaultName: "Old task spider web (Asana and Productive)",
         enabled:     true,
         i18nName:    "special_oldTaskSpiderWeb",
         id:          "delightful_special_spider_web",

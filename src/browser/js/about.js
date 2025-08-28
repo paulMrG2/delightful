@@ -13,9 +13,9 @@ const about = () => {
     const localize = () => {
         document.title = chrome.i18n.getMessage("about_pageTitle");
         document.querySelectorAll('[data-locale]').forEach(el => {
-            let text = chrome.i18n.getMessage(el.dataset.locale);
-            if ((typeof text !== 'undefined') && text !== '') {
-                el.innerText = text;
+            let html = chrome.i18n.getMessage(el.dataset.locale);
+            if ((typeof html !== 'undefined') && html !== '') {
+                el.innerHTML = html;
             }
         });
     };

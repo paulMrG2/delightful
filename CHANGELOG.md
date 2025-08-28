@@ -7,6 +7,12 @@
 [comment]: <> (Fixed: any bugs fixed.)
 [comment]: <> (Security: security issues are declared here)
 
+## [1.3.1] - 2025-08-28
+### Added
+- Spider web background for Productive old tasks
+### Fixed
+- Clicks on the Productive task sidebar blank space triggered a delight if the task was already completed.
+
 ## [1.3.0] - 2025-08-23
 ### Added
 - Productive triggers

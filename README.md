@@ -17,7 +17,7 @@ Install [Delightful](https://chrome.google.com/webstore/detail/delightful/lcpnco
 - **Github** (when you mark an issue as \<status name\>) _define your own status names_
 - **Jira** (when you mark an issue as \<status name\>)  _define your own status names_ (*.jira.com & *.atlassian.net)
 - **Monday.com** (when you mark a task as \<status name\>)  _define your own status names_
-- **Productive** (when you complete a task)
+- **Productive** (when you mark a task as \<status name\>)  _define your own status names_
 - **Todoist** (when you complete a task)
 - **Trello** (when you drop a card on a list named \<list name\>) _define your own list names_
 - **Wrike** (when you complete a task)
@@ -27,14 +27,14 @@ Install [Delightful](https://chrome.google.com/webstore/detail/delightful/lcpnco
 - Baby Yoda by Unknown - Animation by [Paul Groth](https://github.com/paulMrG2)
 - Badger Badger Badger - SVG and animation by [Paul Groth](https://github.com/paulMrG2), (original [Badger animation](https://www.youtube.com/watch?v=EIyixC9NsLI) by Jonti Picking A.K.A Mr Weebl)
 - [Confetti](https://github.com/catdad/canvas-confetti) by [Kiril Vatev](https://github.com/catdad)
+- Fallout Vault Boy by unknown at [SeekLogo](https://seeklogo.com/vector-logo/284917/vault-boy)) animation by [Paul Groth](https://github.com/paulMrG2)
 - [Nyan Cat](https://github.com/Gowee/nyancat-svg) by [Hung-I Wang](https://github.com/Gowee)
 - [Party Parrot](https://codepen.io/nathangath/pen/RgvzVY/) by [@nathangath](https://codepen.io/nathangath)
 - Smug Thug Pew Pew - SVG and animation by [Paul Groth](https://github.com/paulMrG2), (inspired by Pew Pew emoji on Slack)
 - Success Kid - SVG and animation by [Paul Groth](https://github.com/paulMrG2), (original image by Laney Griner (2007))
-- Fallout Vault Boy by unknown at [SeekLogo](https://seeklogo.com/vector-logo/284917/vault-boy)) animation by [Paul Groth](https://github.com/paulMrG2)
 
 ## Old tasks
-- Spider web background (Asana only) - SVG by [Paul Groth](https://github.com/paulMrG2), (original image by Paul Groth (2022))
+- Spider web background (Asana and Productive) - SVG by [Paul Groth](https://github.com/paulMrG2), (original image by Paul Groth (2022))
 
 ## Watch a screen recording
 [<img src="https://img.youtube.com/vi/XHvM0rBabkA/maxresdefault.jpg" width="50%">](https://youtu.be/XHvM0rBabkA)
