@@ -12,16 +12,16 @@ export const clickup = (allSettings, ref, event) => {
     let className = event.target.getAttribute('class') || '';
 
     if (ref.mouseDownVal1 === 'standardClickEvent' && (ref.mouseDownVal2 === event.target.className)) { // Stop cheating by matching mousedown and mouseup className
-        let idx = allSettings.allSites.map(site => site.host).indexOf('app.clickup.com');
+        let idx = allSettings.allSites.map(site => site.id).indexOf('delightful_sites_clickup');
         if ((idx > -1) && allSettings.allSites[idx].enabled) {
 
             // ClickUp task complete button top of open task pane
             if (event.target.closest('.simple-open')) {
-                doAnimation(allSettings, ref, event);
+                doAnimation(allSettings, ref, event, 'delightful_sites_clickup');
             }
             // ClickUp task complete button top of open task pane
             if ((className.includes('cu-task-row-status_dot') || event.target.closest('.cu-task-row-status_dot')) && event.target.closest('[data-pendo="task-row__main-done-false"]')) {
-                doAnimation(allSettings, ref, event);
+                doAnimation(allSettings, ref, event, 'delightful_sites_clickup');
             }
         }
     }
@@ -30,7 +30,7 @@ export const clickup = (allSettings, ref, event) => {
     if ((ref.mouseDownVal1 !== 'standardClickEvent') && (ref.mouseDownVal1 !== 'complete')) {
         let dropList = event.target.closest('.cdk-drop-list');
         if (dropList.dataset.status === 'complete') {
-            doAnimation(allSettings, ref, event);
+            doAnimation(allSettings, ref, event, 'delightful_sites_clickup');
         }
     }
 };

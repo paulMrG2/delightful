@@ -5,12 +5,6 @@
   "delights_allOfTheThingsNameWithDescription": {
     "message": "All of the things (based on the original image by Allie Brosh (2010))"
   },
-  "delights_babyYoda": {
-    "message": "Baby Yoda"
-  },
-  "delights_babyYodaWithDescription": {
-    "message": "Baby Yoda (uses the force of course)"
-  },
   "delights_badgerBadgerBadger": {
     "message": "Badger Badger Badger"
   },
@@ -22,6 +16,12 @@
   },
   "delights_confettiNameWithDescription": {
     "message": "Confetti Explosions (a bunch of confetti explosions all over the screen)"
+  },
+  "delights_grogu": {
+    "message": "Grogu"
+  },
+  "delights_groguWithDescription": {
+    "message": "Grogu (uses the force of course. AKA Baby Yoda)"
   },
   "delights_parrotName": {
     "message": "Party Parrot"

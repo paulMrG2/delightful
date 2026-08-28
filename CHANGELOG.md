@@ -7,6 +7,13 @@
 [comment]: <> (Fixed: any bugs fixed.)
 [comment]: <> (Security: security issues are declared here)
 
+## [1.4.0] - 2026-08-22
+### Fixed
+- The All OF THE THINGS meme animation has its arms and legs back! Phew... that was scary. Can you imagine walking down the street to get your lunch, and whoah... your arms and legs just fall off because some developer did a boo boo? This was caused by a "low-priority" chromium bug.
+- Performance and stability improvements.
+### Changed
+- 'Baby Yoda' to 'Grogu', like it should have been from the start.
+
 ## [1.3.1] - 2025-08-28
 ### Added
 - Spider web background for Productive old tasks

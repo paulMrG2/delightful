@@ -13,7 +13,7 @@ export const wrike = (allSettings, ref, event) => {
 
     // Wrike
     // Only works on buttons and checkboxes. Event propagation is cancelled before we can use it.
-    let idx = allSettings.allSites.map(site => site.host).indexOf('www.wrike.com');
+    let idx = allSettings.allSites.map(site => site.id).indexOf('delightful_sites_wrike');
     if ((idx > -1) && allSettings.allSites[idx].enabled) {
 
         if (ref.mouseDownVal1 === 'standardClickEvent' && (ref.mouseDownVal2 === event.target.className)) { // Stop cheating by matching mousedown and mouseup className
@@ -22,7 +22,7 @@ export const wrike = (allSettings, ref, event) => {
             // Wrike right modal status checkbox
             if (className.includes('status-button__checkbox')) {
                 if ((event.target.getAttribute('aria-label') === 'Change to Completed') && (event.target.getAttribute('aria-checked') === 'false')) {
-                    doAnimation(allSettings, ref, event);
+                    doAnimation(allSettings, ref, event, 'delightful_sites_wrike');
                 }
             }
         }

@@ -12,6 +12,12 @@
 
 import { delightContainer } from "./delightContainer";
 
+const imagePromise = new Promise(resolve =>
+  chrome.runtime.sendMessage({type: 'delight', delight: "successKid"}, r =>
+    resolve(r?.image ?? null)
+  )
+);
+
 export function getSuccessKid(duration, event) {
 
     let successKidClass = ".delightSuccessKid {";
@@ -19,7 +25,8 @@ export function getSuccessKid(duration, event) {
     successKidClass += "width:100vw;";
     successKidClass += "}";
 
-    chrome.runtime.sendMessage({type: 'delight', delight: "successKid"}, response => {
+    imagePromise.then(imageSrc => {
+        if (!imageSrc) return;
 
         // Add css/style to document head
         let style = document.createElement('style');
@@ -28,7 +35,6 @@ export function getSuccessKid(duration, event) {
         document.querySelector('head').append(style);
 
         // Success Kid image
-        let imageSrc = response.image;
         let image = document.createElement('img');
         image.alt = "Success Kid";
         image.classList.add("delightSuccessKid");

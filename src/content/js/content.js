@@ -5,14 +5,15 @@
  *
  * @author Paul Groth (https://github.com/paulMrG2)
  */
+
 // Triggers
 import {asana} from "./trigger/asana";
 import {clickup} from "./trigger/clickup";
 import {github} from "./trigger/github";
 import {jira} from "./trigger/jira";
 import {monday} from "./trigger/monday";
-import {todoist} from "./trigger/todoist";
 import {productive} from "./trigger/productive";
+import {todoist} from "./trigger/todoist";
 import {trello} from "./trigger/trello";
 import {wrike} from "./trigger/wrike";
 
@@ -89,7 +90,7 @@ if (typeof window.delightfulActivated === 'undefined') {
         ref.mouseDownVal2 = null;
 
         // Trello board view mousedown ref
-        let trello = allSettings.allSites.map(site => site.host).indexOf('trello.com');
+        let trello = allSettings.allSites.map(site => site.id).indexOf('delightful_sites_trello');
         if ((trello > -1) && allSettings.allSites[trello].enabled) {
             let listContent = event.target.closest('[data-testid="list"]');
             if (listContent !== null) {
@@ -107,7 +108,7 @@ if (typeof window.delightfulActivated === 'undefined') {
         }
 
         // ClickUp board view mousedown ref
-        let clickup = allSettings.allSites.map(site => site.host).indexOf('app.clickup.com');
+        let clickup = allSettings.allSites.map(site => site.id).indexOf('delightful_sites_clickup');
         if ((clickup > -1) && allSettings.allSites[clickup].enabled) {
             if (event.target.closest('.cdk-drag') !== null) {
                 let dropList = event.target.closest('.cdk-drop-list');
@@ -146,43 +147,32 @@ if (typeof window.delightfulActivated === 'undefined') {
         }
     });
 
+    const triggerMap = {
+        'delightful_sites_asana':      asana,
+        'delightful_sites_atlassian':  jira,
+        'delightful_sites_clickup':    clickup,
+        'delightful_sites_github':     github,
+        'delightful_sites_monday':     monday,
+        'delightful_sites_productive': productive,
+        'delightful_sites_todoist':    todoist,
+        'delightful_sites_trello':     trello,
+        'delightful_sites_wrike':      wrike,
+    };
+
     /**
      * Check if a match is found
      *
      * @param event
-     * @returns {boolean}
      */
     const matchTrigger = event => {
-
-        switch (document.location.host) {
-            case 'app.asana.com':
-                asana(allSettings, ref, event);
-                break;
-            case 'app.clickup.com':
-                clickup(allSettings, ref, event);
-                break;
-            case 'github.com':
-                github(allSettings, ref, event);
-                break;
-            case 'app.todoist.com':
-                todoist(allSettings, ref, event);
-                break;
-            case 'trello.com':
-                trello(allSettings, ref, event);
-                break;
-            case 'app.productive.io':
-                productive(allSettings, ref, event);
-                break;
-            case 'www.wrike.com':
-                wrike(allSettings, ref, event);
-                break;
-            default:
-                if (document.location.host.endsWith('.atlassian.net') || document.location.host.endsWith('.jira.com')) {
-                    jira(allSettings, ref, event);
-                }
-                if (document.location.host.endsWith('.monday.com')) {
-                    monday(allSettings, ref, event);
-                }
+        const host = document.location.host;
+        const site = allSettings.allSites.find(s =>
+            host === s.host ||
+            (s.host.startsWith('*.') && host.endsWith(s.host.slice(1)))
+        );
+        if (site) {
+            const trigger = triggerMap[site.id];
+            if (trigger) trigger(allSettings, ref, event);
         }
     };
 
@@ -190,13 +180,16 @@ if (typeof window.delightfulActivated === 'undefined') {
      * Special things
      */
     const specialThings = () => {
+        const host = document.location.host;
+        const asanaHost = allSettings.allSites.find(s => s.id === 'delightful_sites_asana')?.host;
+        const productiveHost = allSettings.allSites.find(s => s.id === 'delightful_sites_productive')?.host;
         for (let i = 0; i < allSettings.specialThings.length; i++) {
             switch (allSettings.specialThings[i].id) {
                 case 'delightful_special_spider_web':
-                    if (document.location.host === 'app.asana.com' && allSettings.specialThings[i].enabled) {
+                    if (host === asanaHost && allSettings.specialThings[i].enabled) {
                         asanaSpiderWeb(allSettings.specialThings[i]);
                     }
-                    if (document.location.host === 'app.productive.io' && allSettings.specialThings[i].enabled) {
+                    if (host === productiveHost && allSettings.specialThings[i].enabled) {
                         productiveSpiderWeb(allSettings.specialThings[i]);
                     }
                     break;

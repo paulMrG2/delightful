@@ -11,6 +11,12 @@
 
 import { delightContainer } from "./delightContainer";
 
+const imagePromise = new Promise(resolve =>
+  chrome.runtime.sendMessage({type: 'delight', delight: "vaultBoy"}, r =>
+    resolve(r?.image ?? null)
+  )
+);
+
 export function getVaultBoy(duration) {
     const height = 500;
     const moveX = 600;
@@ -28,7 +34,8 @@ export function getVaultBoy(duration) {
     vaultBoyClass += "transition: transform " + 550 + "ms ease;";
     vaultBoyClass += "}";
 
-    chrome.runtime.sendMessage({type: 'delight', delight: "vaultBoy"}, response => {
+    imagePromise.then(imageSrc => {
+        if (!imageSrc) return;
 
         // Add css/style to document head
         let style = document.createElement('style');
@@ -37,7 +44,6 @@ export function getVaultBoy(duration) {
         document.querySelector('head').append(style);
 
         // Vault Boy image
-        let imageSrc = response.image;
         let image = document.createElement('img');
         image.alt = "Vault Boy";
         image.classList.add("delightVaultBoy");

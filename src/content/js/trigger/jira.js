@@ -2,7 +2,6 @@
  * Delightful
  *
  * Trigger: Jira
- * Two domains: *.atlassian.net, *.jira.com
  *
  * @author Paul Groth (https://github.com/paulMrG2)
  */
@@ -12,17 +11,7 @@ export const jira = (allSettings, ref, event) => {
 
     // todo make it work for Kanban board
 
-    let idx = -1;
-
-    // domain *.atlassian.net
-    if (document.location.host.endsWith('.atlassian.net')) {
-        idx = allSettings.allSites.map(site => site.host).indexOf('*.atlassian.net');
-    }
-
-    // domain *.jira.com
-    if ((idx === -1) && document.location.host.endsWith('.jira.com')) {
-        idx = allSettings.allSites.map(site => site.host).indexOf('*.jira.com');
-    }
+    let idx = allSettings.allSites.map(site => site.id).indexOf('delightful_sites_atlassian');
 
     if ((idx > -1) && allSettings.allSites[idx].enabled) {
 
@@ -38,7 +27,7 @@ export const jira = (allSettings, ref, event) => {
                     let closestDivWithId = event.target.closest('div[id]');
                     if (closestDivWithId !== null && closestDivWithId.id.startsWith('react-select-')) {
                         // Target has parent/grandparent dev element with id starting with react-select-
-                        doAnimation(allSettings, ref, event);
+                        doAnimation(allSettings, ref, event, 'delightful_sites_atlassian');
                     }
                 }
             }

@@ -9,7 +9,7 @@ import {doAnimation} from "../animation";
 
 export const github = (allSettings, ref, event) => {
 
-    let idx = allSettings.allSites.map(site => site.host).indexOf('github.com');
+    let idx = allSettings.allSites.map(site => site.id).indexOf('delightful_sites_github');
     if ((idx > -1) && allSettings.allSites[idx].enabled) {
 
         if (ref.mouseDownVal1 === 'standardClickEvent' && (ref.mouseDownVal2 === event.target.className)) { // Stop cheating by matching mousedown and mouseup className
@@ -22,7 +22,7 @@ export const github = (allSettings, ref, event) => {
                 if (event.target.hasAttribute('name') && (event.target.getAttribute('name') === status)) {
                     // Make sure status doesn't already have a checkmark next to it
                     if (!event.target.firstChild.hasChildNodes()) {
-                        doAnimation(allSettings, ref, event);
+                        doAnimation(allSettings, ref, event, 'delightful_sites_github');
                     }
                 }
 
@@ -31,14 +31,14 @@ export const github = (allSettings, ref, event) => {
                 if (closest !== null) {
                     // Make sure status doesn't already have a checkmark next to it
                     if (!closest.firstChild.hasChildNodes()) {
-                        doAnimation(allSettings, ref, event);
+                        doAnimation(allSettings, ref, event, 'delightful_sites_github');
                     }
                 }
             }
 
             // Github issues button on comment block 'Close issue' or 'Close with comment'
             if ((event.target.hasAttribute('name') && event.target.getAttribute('name') === 'comment_and_close') || event.target.closest("button[name='comment_and_close']")) {
-                doAnimation(allSettings, ref, event);
+                doAnimation(allSettings, ref, event, 'delightful_sites_github');
             }
         }
     }

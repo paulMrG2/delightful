@@ -11,7 +11,7 @@ export const monday = (allSettings, ref, event) => {
 
     if (ref.mouseDownVal1 === 'standardClickEvent' && (ref.mouseDownVal2 === event.target.className)) { // Stop cheating by matching mousedown and mouseup className
 
-        let idx = allSettings.allSites.map(site => site.host).indexOf('*.monday.com');
+        let idx = allSettings.allSites.map(site => site.id).indexOf('delightful_sites_monday');
         if ((idx > -1) && allSettings.allSites[idx].enabled) {
 
             let targetListItem = null;
@@ -28,7 +28,7 @@ export const monday = (allSettings, ref, event) => {
                     for (let i = 0; i < allSettings.allSites[idx].statusList.length; i++) {
                         let status = allSettings.allSites[idx].statusList[i];
                         if (button.innerText.toLowerCase() === status.toLowerCase()) {
-                            doAnimation(allSettings, ref, event);
+                            doAnimation(allSettings, ref, event, 'delightful_sites_monday');
                         }
                     }
                 }

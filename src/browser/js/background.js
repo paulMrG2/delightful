@@ -43,13 +43,13 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
                         sendResponse({image: dataUrl});
                     });
                     break;
-                case "babyYoda":
-                    getImageData('assets/img/baby-yoda-force.svg').then(dataUrl => {
+                case "badger":
+                    getImageData('assets/img/badger.svg').then(dataUrl => {
                         sendResponse({image: dataUrl});
                     });
                     break;
-                case "badger":
-                    getImageData('assets/img/badger.svg').then(dataUrl => {
+                case "grogu":
+                    getImageData('assets/img/grogu-the-force.svg').then(dataUrl => {
                         sendResponse({image: dataUrl});
                     });
                     break;

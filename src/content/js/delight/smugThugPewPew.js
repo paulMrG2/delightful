@@ -11,13 +11,20 @@
 
 import { delightContainer } from "./delightContainer";
 
+const imagePromise = new Promise(resolve =>
+  chrome.runtime.sendMessage({type: 'delight', delight: "smugThugPewPew"}, r =>
+    resolve(r?.image ?? null)
+  )
+);
+
 export function getSmugThugPewPew(duration, event) {
 
     let smugThugPewPewClass = ".delightSmugThugPewPew {";
     smugThugPewPewClass += "width:min(80%, 800px);";
     smugThugPewPewClass += "}";
 
-    chrome.runtime.sendMessage({type: 'delight', delight: "smugThugPewPew"}, response => {
+    imagePromise.then(imageSrc => {
+        if (!imageSrc) return;
 
         // Add css/style to document head
         let style = document.createElement('style');
@@ -26,7 +33,6 @@ export function getSmugThugPewPew(duration, event) {
         document.querySelector('head').append(style);
 
         // Smug Thug Pew Pew image
-        let imageSrc = response.image;
         let image = document.createElement('img');
         image.alt = "Smug Thug Pew Pew";
         image.classList.add("delightSmugThugPewPew");

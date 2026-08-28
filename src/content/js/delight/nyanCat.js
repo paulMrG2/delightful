@@ -11,6 +11,12 @@
 
 import { delightContainer } from "./delightContainer";
 
+const imagePromise = new Promise(resolve =>
+  chrome.runtime.sendMessage({type: 'delight', delight: "nyanCat"}, r =>
+    resolve(r?.image ?? null)
+  )
+);
+
 export function getNyanCat(duration) {
     let width = 700;
 
@@ -25,7 +31,8 @@ export function getNyanCat(duration) {
     nyanCatClass += "transition: transform " + (duration - 300) + "ms cubic-bezier(0.2, 0.8, 0.8, 0.2);"
     nyanCatClass += "}";
 
-    chrome.runtime.sendMessage({type: 'delight', delight: "nyanCat"}, response => {
+    imagePromise.then(imageSrc => {
+        if (!imageSrc) return;
 
         // Add css/style to document head
         let style = document.createElement('style');
@@ -34,7 +41,6 @@ export function getNyanCat(duration) {
         document.querySelector('head').append(style);
 
         // Nyan Cat image
-        let imageSrc = response.image;
         let image = document.createElement('img');
         image.alt = "Nyan Cat";
         image.classList.add("delightNyanCat");

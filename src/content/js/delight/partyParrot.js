@@ -11,6 +11,12 @@
 
 import { delightContainer } from "./delightContainer";
 
+const imagePromise = new Promise(resolve =>
+  chrome.runtime.sendMessage({type: 'delight', delight: "parrot"}, r =>
+    resolve(r?.image ?? null)
+  )
+);
+
 export function getParrot(duration) {
     let width = 400;
 
@@ -25,7 +31,8 @@ export function getParrot(duration) {
     parrotClass += "transition: transform " + (duration - 300) + "ms cubic-bezier(0.2, 0.8, 0.8, 0.2);"
     parrotClass += "}";
 
-    chrome.runtime.sendMessage({type: 'delight', delight: "parrot"}, response => {
+    imagePromise.then(imageSrc => {
+        if (!imageSrc) return;
 
         // Add css/style to document head
         let style = document.createElement('style');
@@ -34,7 +41,6 @@ export function getParrot(duration) {
         document.querySelector('head').append(style);
 
         // Parrot image
-        let imageSrc = response.image;
         let image = document.createElement('img');
         image.alt = "Dancing parrot";
         image.classList.add("delightParrot");

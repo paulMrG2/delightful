@@ -5,6 +5,7 @@
  *
  * @author Paul Groth (https://github.com/paulMrG2)
  */
+
 const allSiteSettings = [
     {
         defaultName:            "Asana",
@@ -25,16 +26,6 @@ const allSiteSettings = [
         id:                     "delightful_sites_clickup"
     },
     {
-        defaultName:            "Jira (*.atlassian.net)",
-        defaultNameWithTrigger: "Jira (when you mark an issue as <status name>)",
-        enabled:                true,
-        host:                   "*.atlassian.net",
-        i18nName:               "sites_atlassianName",
-        i18nNameWithTrigger:    "sites_atlassianNameWithTrigger",
-        id:                     "delightful_sites_atlassian",
-        statusList:             ["Done"]
-    },
-    {
         defaultName:            "Github",
         defaultNameWithTrigger: "Github (when you mark an issue as <status name>)",
         enabled:                true,
@@ -45,13 +36,13 @@ const allSiteSettings = [
         statusList:             ["Done"]
     },
     {
-        defaultName:            "Jira (*.jira.com)",
+        defaultName:            "Jira (*.atlassian.net)",
         defaultNameWithTrigger: "Jira (when you mark an issue as <status name>)",
         enabled:                true,
-        host:                   "*.jira.com",
-        i18nName:               "sites_jiraName",
-        i18nNameWithTrigger:    "sites_jiraNameWithTrigger",
-        id:                     "delightful_sites_jira",
+        host:                   "*.atlassian.net",
+        i18nName:               "sites_atlassianName",
+        i18nNameWithTrigger:    "sites_atlassianNameWithTrigger",
+        id:                     "delightful_sites_atlassian",
         statusList:             ["Done"]
     },
     {
@@ -106,7 +97,7 @@ const allSiteSettings = [
 
 const allDelightSettings = [
     {
-        defaultName:                "All of the things", // If this is changed, also change the case for switch(delight.defaultName){} in content.js
+        defaultName:                "All of the things",
         defaultNameWithDescription: "All of the things meme",
         enabled:                    true,
         i18nName:                   "delights_allOfTheThingsName",
@@ -114,15 +105,7 @@ const allDelightSettings = [
         id:                         "delightful_delights_all_of_the_things"
     },
     {
-        defaultName:                "Baby Yoda", // If this is changed, also change the case for switch(delight.defaultName){} in content.js
-        defaultNameWithDescription: "Baby Yoda (uses the force of course)",
-        enabled:                    true,
-        i18nName:                   "delights_babyYodaName",
-        i18nNameWithDescription:    "delights_babyYodaNameWithDescription",
-        id:                         "delightful_delights_baby_yoda"
-    },
-    {
-        defaultName:                "Badger Badger Badger", // If this is changed, also change the case for switch(delight.defaultName){} in content.js
+        defaultName:                "Badger Badger Badger",
         defaultNameWithDescription: "Badger Badger Badger - from The Badger Song",
         enabled:                    true,
         i18nName:                   "delights_badgerBadgerBadger",
@@ -130,7 +113,7 @@ const allDelightSettings = [
         id:                         "delightful_delights_badger_badger_badger"
     },
     {
-        defaultName:                "Confetti Explosions", // If this is changed, also change the case for switch(delight.defaultName){} in content.js
+        defaultName:                "Confetti Explosions",
         defaultNameWithDescription: "Confetti Explosions (a bunch of confetti explosions all over the screen)",
         enabled:                    true,
         i18nName:                   "delights_confettiName",
@@ -138,7 +121,15 @@ const allDelightSettings = [
         id:                         "delightful_delights_confetti"
     },
     {
-        defaultName:                "Nyan Cat", // If this is changed, also change the case for switch(delight.defaultName){} in content.js
+        defaultName:                "Grogu",
+        defaultNameWithDescription: "Grogu (uses the force of course, and sometimes called Baby Yoda, or Din Grogu)",
+        enabled:                    true,
+        i18nName:                   "delights_groguName",
+        i18nNameWithDescription:    "delights_groguNameWithDescription",
+        id:                         "delightful_delights_grogu"
+    },
+    {
+        defaultName:                "Nyan Cat",
         defaultNameWithDescription: "Nyan Cat (no description required, you know what it is)",
         enabled:                    true,
         i18nName:                   "delights_nyanCatName",
@@ -146,7 +137,7 @@ const allDelightSettings = [
         id:                         "delightful_delights_nyan_cat"
     },
     {
-        defaultName:                "Party Parrot", // If this is changed, also change the case for switch(delight.defaultName){} in content.js
+        defaultName:                "Party Parrot",
         defaultNameWithDescription: "Party Parrot (the beloved party parrot dances across the bottom of the screen)",
         enabled:                    true,
         i18nName:                   "delights_parrotName",
@@ -154,7 +145,7 @@ const allDelightSettings = [
         id:                         "delightful_delights_parrot"
     },
     {
-        defaultName:                "Success Kid", // If this is changed, also change the case for switch(delight.defaultName){} in content.js
+        defaultName:                "Success Kid",
         defaultNameWithDescription: "Success Kid (the success kid meme of memes)",
         enabled:                    true,
         i18nName:                   "delights_successKidName",
@@ -162,7 +153,7 @@ const allDelightSettings = [
         id:                         "delightful_delights_success_kid"
     },
     {
-        defaultName:                "Smug Thug Pew Pew", // If this is changed, also change the case for switch(delight.defaultName){} in content.js
+        defaultName:                "Smug Thug Pew Pew",
         defaultNameWithDescription: "Smug Thug Pew Pew (some weird new creation)",
         enabled:                    true,
         i18nName:                   "delights_smugThugPewPewName",
@@ -170,7 +161,7 @@ const allDelightSettings = [
         id:                         "delightful_delights_smug_thug_pew_pew"
     },
     {
-        defaultName:                "Vault Boy", // If this is changed, also change the case for switch(delight.defaultName){} in content.js
+        defaultName:                "Vault Boy",
         defaultNameWithDescription: "Vault Boy. A poor effort of animation... I'm not proud, but still happy he's there. If you can do better, please send it my way, or send a pull request!",
         enabled:                    true,
         i18nName:                   "delights_vaultBoyName",

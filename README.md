@@ -24,7 +24,7 @@ Install [Delightful](https://chrome.google.com/webstore/detail/delightful/lcpnco
 
 ## Delights
 - All of the things - SVG and animation by [Paul Groth](https://github.com/paulMrG2), (original image by Allie Brosh (2010))
-- Baby Yoda by Unknown - Animation by [Paul Groth](https://github.com/paulMrG2)
+- Grogu (AKA Baby Yoda) by Unknown - Animation by [Paul Groth](https://github.com/paulMrG2)
 - Badger Badger Badger - SVG and animation by [Paul Groth](https://github.com/paulMrG2), (original [Badger animation](https://www.youtube.com/watch?v=EIyixC9NsLI) by Jonti Picking A.K.A Mr Weebl)
 - [Confetti](https://github.com/catdad/canvas-confetti) by [Kiril Vatev](https://github.com/catdad)
 - Fallout Vault Boy by unknown at [SeekLogo](https://seeklogo.com/vector-logo/284917/vault-boy)) animation by [Paul Groth](https://github.com/paulMrG2)

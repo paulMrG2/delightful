@@ -11,6 +11,12 @@
 
 import {delightContainer} from "./delightContainer";
 
+const imagePromise = new Promise(resolve =>
+  chrome.runtime.sendMessage({type: 'delight', delight: "badger"}, r =>
+    resolve(r?.image ?? null)
+  )
+);
+
 function getBadger(bNum) {
     let width = Math.round(document.body.clientWidth / 3) - (bNum * 70);
     let pos = {x: 10, y: 15};
@@ -56,7 +62,8 @@ export function getBadgerBadgerBadger(duration) {
         badgerClasses += getBadger(i);
     }
 
-    chrome.runtime.sendMessage({type: 'delight', delight: "badger"}, response => {
+    imagePromise.then(imageSrc => {
+        if (!imageSrc) return;
 
         // Add css/style to document head
         let style = document.createElement('style');
@@ -73,7 +80,6 @@ export function getBadgerBadgerBadger(duration) {
 
         for (let i = 0; i < 6; i++) {
             // Badger image
-            let imageSrc = response.image;
             images.push(document.createElement('img'));
             images[i].alt = "Badger";
             images[i].classList.add(`delightBadger${i}`);
